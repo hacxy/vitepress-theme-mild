@@ -82,8 +82,8 @@ watchEffect(() => {
         <span class="text">
           {{ article.date }}
         </span>
-        <span class="text">{{ article.words }} 个字</span>
-        <span class="text">{{ article.minutes }} 分钟
+        <span class="text">{{ article.words }} words</span>
+        <span class="text">{{ article.minutes }} min
         </span>
       </div>
     </div>
@@ -123,6 +123,15 @@ watchEffect(() => {
   padding-bottom: 75px;
   position: relative;
   min-height: 665px;
+
+  .post-item {
+    padding: 14px 14px;
+    transition: box-shadow 0.5s;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
   .post-info {
     display: flex;
     align-items: center;
@@ -159,15 +168,6 @@ watchEffect(() => {
   .post {
     width: 800px;
   }
-}
-
-.post-item {
-  border-bottom: 1px dashed var(--vp-c-divider-light);
-  padding: 14px 14px;
-  transition: box-shadow 0.5s;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .post-item a,

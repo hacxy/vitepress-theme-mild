@@ -47,6 +47,7 @@
     "dayjs": "^1.11.13",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
+    "nprogress": "^0.2.0",
     "reading-time-estimator": "^1.11.0",
     "sass": "^1.72.0",
     "simple-git": "^3.27.0",
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.9",
+    "@types/nprogress": "^0.2.3",
     "bumpp": "^9.9.1",
     "tsup": "^8.3.5",
     "typescript": "^5.3.3",

@@ -34,7 +34,7 @@ importers:
     devDependencies:
       vitepress:
         specifier: ^1.5.0
-        version: 1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3)
+        version: 1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3)
       vitepress-theme-mild:
         specifier: workspace:*
         version: link:../theme
@@ -68,6 +68,9 @@ importers:
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
+      nprogress:
+        specifier: ^0.2.0
+        version: 0.2.0
       reading-time-estimator:
         specifier: ^1.11.0
         version: 1.11.0
@@ -96,6 +99,9 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
+      '@types/nprogress':
+        specifier: ^0.2.3
+        version: 0.2.3
       bumpp:
         specifier: ^9.9.1
         version: 9.9.1
@@ -107,7 +113,7 @@ importers:
         version: 5.4.3
       vitepress:
         specifier: ^1.5.0
-        version: 1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3)
+        version: 1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3)
 
 packages:
 
@@ -1001,6 +1007,9 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
+
+  '@types/nprogress@0.2.3':
+    resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -2710,6 +2719,9 @@ packages:
   npm-run-path@5.3.0:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
+  nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -4547,6 +4559,8 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
+  '@types/nprogress@0.2.3': {}
+
   '@types/unist@3.0.3': {}
 
   '@types/web-bluetooth@0.0.20': {}
@@ -4774,7 +4788,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vueuse/integrations@11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.4.3))':
+  '@vueuse/integrations@11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(nprogress@0.2.0)(vue@3.5.13(typescript@5.4.3))':
     dependencies:
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.4.3))
       '@vueuse/shared': 11.3.0(vue@3.5.13(typescript@5.4.3))
@@ -4782,6 +4796,7 @@ snapshots:
     optionalDependencies:
       async-validator: 4.2.5
       focus-trap: 7.6.2
+      nprogress: 0.2.0
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -6630,6 +6645,8 @@ snapshots:
     dependencies:
       path-key: 4.0.0
 
+  nprogress@0.2.0: {}
+
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
@@ -7416,7 +7433,7 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.72.0
 
-  vitepress@1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3):
+  vitepress@1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.72.0)(search-insights@2.13.0)(typescript@5.4.3):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.18.0)(search-insights@2.13.0)
@@ -7429,7 +7446,7 @@ snapshots:
       '@vue/devtools-api': 7.6.8
       '@vue/shared': 3.5.13
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.4.3))
-      '@vueuse/integrations': 11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.4.3))
+      '@vueuse/integrations': 11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(nprogress@0.2.0)(vue@3.5.13(typescript@5.4.3))
       focus-trap: 7.6.2
       mark.js: 8.11.1
       minisearch: 7.1.1
