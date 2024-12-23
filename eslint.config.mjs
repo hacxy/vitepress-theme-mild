@@ -7,7 +7,8 @@ export default linter({
     }
   },
   rules: {
-    'regexp/no-unused-capturing-group': 0
+    'regexp/no-unused-capturing-group': 0,
+    'no-restricted-globals': 0
   },
   ignores: [
     'packages/demo/**/*',

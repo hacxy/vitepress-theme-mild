@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import matter from 'gray-matter';
-import { createContentLoader } from 'vitepress';
+import { readingTime } from 'reading-time-estimator';
+import { createArticlesListLoader } from '../utils/node/articles';
 
 function getTextDescription(text: string, count = 100) {
   const finalText = text
@@ -26,23 +27,32 @@ function getTextDescription(text: string, count = 100) {
   return finalText;
 }
 
-export default createContentLoader('./**/*.md', {
+export default createArticlesListLoader({
   includeSrc: true,
   render: true,
   excerpt: true,
   transform(rawData) {
-    const finalRawData = rawData.filter(item => !['/', '/README.html'].includes(item.url));
-    const data = finalRawData.map(item => {
+    const data = rawData.filter(item => !['blog', 'home'].includes(item.frontmatter.layout)).map(item => {
       const content = matter(item.src || '').content;
+      const { words, minutes } = readingTime(content, 200);
       const match = content.match(/^(#+)\s+(.+)/m);
       const title = match?.[2] || '';
       const description = getTextDescription(content);
-      item.frontmatter.date = dayjs(item.frontmatter.date).format('YYYY-MM-DD');
+      let { date, ...frontmatter } = item.frontmatter;
+      if (date) {
+        date = dayjs(item.frontmatter.date).format('YYYY-MM-DD');
+      }
+      else {
+        date = item.fileModifiedTime; // 文件最后修改时间(兜底)
+      }
       return {
         path: item.url,
         description,
         title,
-        ...item.frontmatter
+        words,
+        minutes,
+        date,
+        ...frontmatter,
       };
     });
     return data;
@@ -55,6 +65,8 @@ export interface ArticlesData {
   description: string
   date: string
   tags: string[]
+  words: number
+  minutes: number
 }
 declare const data: ArticlesData[];
 export { data };

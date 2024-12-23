@@ -1,5 +1,6 @@
 import type { VitePressPluginTwoslashOptions } from '@shikijs/vitepress-twoslash';
 import type { DefaultTheme, RawConfigExports } from 'vitepress';
+import { vitePluginForArco } from '@arco-plugins/vite-vue';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 
 export interface ThemeConfig {
@@ -21,6 +22,11 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<De
       codeTransformers
     },
     vite: {
+      plugins: [
+        vitePluginForArco({
+          style: 'css'
+        })
+      ],
       build: {
         chunkSizeWarningLimit: 2000
       },

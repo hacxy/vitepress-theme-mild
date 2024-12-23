@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { ArticlesData } from '../store/articles.data.js';
+import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
-import { useRouter, withBase } from 'vitepress';
-import { computed, ref } from 'vue';
-import { data } from '../store/articles.data.js';
+import { useRouter } from 'vitepress';
+import { computed, ref, watchEffect } from 'vue';
+import { data } from '../datas/articles.data.js';
 
 const router = useRouter();
 const params = useUrlSearchParams();
@@ -32,7 +32,6 @@ const totalPages = computed(() => {
   const total = data?.length || 0;
   return Math.ceil(total / pageSize.value);
 });
-
 const posts = computed(() => {
   return paginate(data, pageSize.value, currentPage.value);
 });
@@ -40,17 +39,25 @@ const posts = computed(() => {
 function handleChangePage(i: number) {
   currentPage.value = i;
   params.pageNum = String(i);
+  window.scrollTo({ top: 0, behavior: 'auto' });
 }
 function handleClick(path: string) {
-  router.go(withBase(path));
+  router.go(path);
 }
+
+watchEffect(() => {
+  if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
+    currentPage.value = 0;
+    params.pageNum = String(1);
+  }
+});
 </script>
 
 <template>
   <div class="post">
     <div
       v-for="(article, index) in posts"
-      :key="article.path"
+      :key="article.path + article.title"
       v-motion
       class="post-item"
       :initial="{
@@ -72,37 +79,95 @@ function handleClick(path: string) {
       </div>
       <p class="describe" v-html="article.description" />
       <div class="post-info">
-        {{ article.date }}
-        <span v-for="item in article.tags" :key="item"><a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span>
+        <span class="text">
+          {{ article.date }}
+        </span>
+        <span class="text">{{ article.words }} 个字</span>
+        <span class="text">{{ article.minutes }} 分钟
+        </span>
       </div>
     </div>
+    <APagination
+      :current="currentPage"
+      :page-size="4"
+      :total="data.length"
+      @change="handleChangePage"
+    />
   </div>
-
-  <v-pagination
-    v-model="currentPage"
-    :length="totalPages"
-    @update:model-value="handleChangePage"
-  />
 </template>
 
 <style lang="scss" scoped>
-:deep(.v-pagination) {
+:deep(.arco-pagination) {
   color: var(--vp-c-text-1);
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .arco-pagination-item {
+    transition: all 0.2s;
+  }
+  .arco-pagination-item-active {
+    color: #000;
+  }
+  .arco-pagination-item:hover {
+    background-color: #ffffff6c;
+    color: #000;
+  }
+  .arco-pagination-item-active:hover {
+    background-color: #fff;
+  }
 }
+
 .post {
-  min-height: calc(100vh - 400px);
+  padding-bottom: 75px;
+  position: relative;
+  min-height: 665px;
+  .post-info {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--vp-c-text-3);
+    .text {
+      flex-shrink: 0;
+    }
+    .text:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 10px;
+      margin: 0 8px;
+      background-color: var(--vp-c-text-3);
+      opacity: 0.7;
+    }
+    .tag-item {
+      transition: color 0.5s;
+    }
+    .tag-item:hover {
+      color: var(--vp-c-text-1);
+    }
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024) {
+  .post {
+    width: 600px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .post {
+    width: 800px;
+  }
 }
 
 .post-item {
   border-bottom: 1px dashed var(--vp-c-divider-light);
   padding: 14px 14px;
-  transition: all 0.5s;
+  transition: box-shadow 0.5s;
   cursor: pointer;
   border-radius: 10px;
   margin-bottom: 10px;
-}
-.post-item:hover {
-  box-shadow: 0 0 8px #0000003a;
 }
 
 .post-item a,
@@ -112,7 +177,6 @@ function handleClick(path: string) {
   text-decoration: none;
   cursor: pointer;
 }
-
 .post-header {
   display: flex;
   align-items: center;
@@ -123,7 +187,6 @@ function handleClick(path: string) {
   font-weight: 500;
   margin: 0.1rem 0;
 }
-
 .describe {
   font-size: 0.9375rem;
   display: -webkit-box;
@@ -134,6 +197,7 @@ function handleClick(path: string) {
   margin: 10px 0;
   line-height: 1.5rem;
 }
+
 .link {
   display: inline-block;
   width: 24px;

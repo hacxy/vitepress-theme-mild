@@ -2,9 +2,10 @@ import { defineConfig } from "vitepress";
 import { defineThemeConfig } from 'vitepress-theme-mild/config'
 
 export default defineConfig({
-  title: "Hacxy Blog",
+  title: "Hacxy",
   description: "A hacxy blog",
   extends: defineThemeConfig(),
+  lastUpdated: true,
   themeConfig: {
     // logo: "logo.png",
     // 展示 2,3 级标题在目录中
