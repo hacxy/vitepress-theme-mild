@@ -3,17 +3,13 @@ import ArticlesList from './ArticlesList.vue';
 </script>
 
 <template>
-  <div class="articles-list-wrapper">
+  <div class="VSPage">
     <articles-list />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .articles-list-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   @media (max-width: 600px) {
     padding: 0 32px 15px;
   }

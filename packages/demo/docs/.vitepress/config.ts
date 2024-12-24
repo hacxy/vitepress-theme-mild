@@ -7,6 +7,12 @@ export default defineConfig({
   extends: defineThemeConfig(),
   lastUpdated: true,
   themeConfig: {
+    nav: [
+      {
+        text: 'Tags',
+        link: '/src/tags'
+      }
+    ],
     // logo: "logo.png",
     // 展示 2,3 级标题在目录中
     outline: {

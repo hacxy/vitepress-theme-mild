@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
 import { readingTime } from 'reading-time-estimator';
+import { NOT_ARTICLE_LAYOUTS } from '../constants';
 import { createArticlesListLoader } from '../utils/node/articles';
 import { formatDate } from '../utils/node/date';
 
@@ -24,7 +25,7 @@ function getTextDescription(text: string, count = 100) {
     ?.trim()
     ?.slice(0, count);
 
-  return finalText;
+  return `${finalText}...`;
 }
 
 export default createArticlesListLoader({
@@ -32,7 +33,7 @@ export default createArticlesListLoader({
   render: true,
   excerpt: true,
   transform(rawData) {
-    const data = rawData.filter(item => !['blog', 'home'].includes(item.frontmatter.layout)).map(item => {
+    const data = rawData.filter(item => !NOT_ARTICLE_LAYOUTS.includes(item.frontmatter.layout)).map(item => {
       const content = matter(item.src || '').content;
       const { words, minutes } = readingTime(content, 200);
       const match = content.match(/^(#+)\s+(.+)/m);

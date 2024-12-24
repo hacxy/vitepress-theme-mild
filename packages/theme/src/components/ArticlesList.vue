@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
-import { NPagination } from 'naive-ui';
+import { NEllipsis, NPagination } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import { computed, ref, watch, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData.js';
+import { handleTagsData } from '../utils/client/tags.js';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
 import IconWords from './icons/IconWords.vue';
@@ -14,7 +15,7 @@ const params = useUrlSearchParams();
 const currentPage = ref(Number(params.pageNum) || 1);
 const pageSize = ref(4);
 const { articleData } = useArticleData();
-
+handleTagsData(articleData.value);
 function paginate(data: ArticlesData[], pageSize: number, currentPage: number) {
   // 参数校验，如果数据不是数组或者没有数据，直接返回空数组
   if (!Array.isArray(data) || data?.length === 0) {
@@ -41,11 +42,6 @@ const posts = computed(() => {
   return paginate(articleData.value, pageSize.value, currentPage.value);
 });
 
-// function handleChangePage(i: number) {
-//   currentPage.value = i;
-//   params.pageNum = String(i);
-//   window.scrollTo({ top: 0, behavior: 'auto' });
-// }
 function handleClick(path: string) {
   router.go(path);
 }
@@ -63,7 +59,7 @@ watch(currentPage, () => {
 </script>
 
 <template>
-  <div class="post">
+  <div class="VSContent post">
     <div
       v-for="(article, index) in posts"
       :key="article.path + article.title"
@@ -86,16 +82,9 @@ watch(currentPage, () => {
           <a> {{ article?.title }}</a>
         </div>
       </div>
-      <div
-        class="describe"
-        :ellipsis="{
-          rows: 1,
-          showTooltip: false,
-        }"
-      >
+      <n-ellipsis class="describe" :tooltip="{ show: false }">
         {{ article.description }}
-        <!-- <p class="describe" v-html="article.description" /> -->
-      </div>
+      </n-ellipsis>
       <div class="post-info">
         <div class="text">
           <icon-calendar />
@@ -144,7 +133,8 @@ watch(currentPage, () => {
 .post {
   padding-bottom: 75px;
   position: relative;
-  min-height: 665px;
+  min-height: 700px;
+  max-width: 800px;
 
   .post-item {
     padding: 14px 14px;
@@ -192,18 +182,6 @@ watch(currentPage, () => {
   }
 }
 
-@media (min-width: 601px) and (max-width: 1024) {
-  .post {
-    width: 600px;
-  }
-}
-
-@media (min-width: 1025px) {
-  .post {
-    width: 800px;
-  }
-}
-
 .post-item a,
 .pagination a {
   color: var(--vp-c-text-1);
@@ -221,11 +199,8 @@ watch(currentPage, () => {
   font-weight: 500;
   margin: 0.1rem 0;
 }
-.describe {
+:deep(.n-ellipsis) {
   font-size: 0.9375rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
   overflow: hidden;
   color: var(--vp-c-text-2);
   margin: 10px 0;
