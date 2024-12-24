@@ -45,6 +45,7 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
               new URL('../src/components/Sidebar.vue', import.meta.url)
             )
           },
+          { find: /^dayjs\/(.*).js/, replacement: 'dayjs/esm/$1' }
         ]
       },
       plugins: [
