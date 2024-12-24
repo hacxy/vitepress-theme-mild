@@ -36,6 +36,9 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
       progressBar,
     },
     vite: {
+      ssr: {
+        noExternal: ['naive-ui']
+      },
       resolve: {
         alias: [
           {

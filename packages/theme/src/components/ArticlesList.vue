@@ -3,7 +3,7 @@ import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useRouter } from 'vitepress';
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData.js';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
@@ -55,6 +55,9 @@ watchEffect(() => {
     currentPage.value = 0;
     params.pageNum = String(1);
   }
+});
+
+watch(currentPage, () => {
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
 </script>
@@ -120,6 +123,12 @@ watchEffect(() => {
   justify-content: center;
   position: absolute;
   bottom: 15px;
+  .n-pagination-item.n-pagination-item--disabled {
+    background-color: #00000000 !important;
+  }
+  .n-pagination-item--button {
+    border: none !important;
+  }
   .n-pagination-item {
     color: var(--vp-c-text-2);
   }

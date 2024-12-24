@@ -41,6 +41,9 @@ importers:
 
   packages/theme:
     dependencies:
+      '@css-render/vue3-ssr':
+        specifier: ^0.15.14
+        version: 0.15.14(vue@3.5.13(typescript@5.4.3))
       '@shikijs/vitepress-twoslash':
         specifier: ^1.24.3
         version: 1.24.3(@nuxt/kit@3.14.1592(rollup@4.28.1))(typescript@5.4.3)

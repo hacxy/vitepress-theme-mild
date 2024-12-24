@@ -40,6 +40,7 @@
     "eslint": "^9.17.0"
   },
   "dependencies": {
+    "@css-render/vue3-ssr": "^0.15.14",
     "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",

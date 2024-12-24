@@ -1,4 +1,5 @@
 import type { Theme } from 'vitepress';
+import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import DefaultTheme from 'vitepress/theme';
@@ -12,6 +13,11 @@ const MildTheme: Theme = {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app, router }) {
+    if ((import.meta as any).env.SSR) {
+      const { collect } = setup(app);
+      app.provide('css-render-collect', collect);
+    }
+
     if (!(import.meta as any).env.SSR) {
       router.onBeforePageLoad = () => {
         NProgress.start();
