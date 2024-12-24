@@ -1,7 +1,6 @@
 ---
 description: 分享下我的个人 MacOS 前端开发环境搭建
-categories:
-  - 开发工具
+category: 开发工具
 tag:
   - MacOS
   - VSCode

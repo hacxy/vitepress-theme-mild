@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 export function normalizePath(path: string): string {
   // Replace backslashes with slashes
   let normalizedPath = path.replace(/\\/g, '/');
@@ -11,5 +13,9 @@ export function normalizePath(path: string): string {
   }
 
   return normalizedPath;
+}
+
+export function getPattern(srcDir: string) {
+  return normalizePath(path.join(srcDir, './**/*.md'));
 }
 

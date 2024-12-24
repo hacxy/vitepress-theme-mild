@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
-import { normalizePath } from './path';
+import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
   url: string
@@ -77,7 +77,7 @@ export function createArticlesListLoader<T = ContentData[]>(
     watch: string | string[]
     load: () => Promise<T>
   } {
-  let pattern = ['./**/*.md'];
+  // let pattern = ['./**/*.md'];
 
   const config: SiteConfig = (global as any).VITEPRESS_CONFIG;
 
@@ -88,19 +88,20 @@ export function createArticlesListLoader<T = ContentData[]>(
     );
   }
 
-  pattern = pattern.map(p => normalizePath(path.join(config.srcDir, p)));
+  // pattern = pattern.map(p => normalizePath(path.join(config.srcDir, p)));
+  // const pattern = normalizePath(path.join(config.srcDir, './**/*.md'));
+  const pattern = getPattern(config.srcDir);
   const cache = new Map<string, { data: any, timestamp: number }>();
 
   return {
     watch: pattern,
     async load(files?: string[]) {
-      files = (
-        await glob(pattern, {
-          ignore: ['**/node_modules/**', '**/dist/**', '**/README.md'],
-          expandDirectories: false,
-          absolute: true
-        })
-      ).sort();
+      files = await glob(pattern, {
+        ignore: ['**/node_modules/**', '**/dist/**', '**/README.md'],
+        expandDirectories: false,
+        absolute: true
+      });
+
       const md = await createMarkdownRenderer(
         config.srcDir,
         config.markdown,

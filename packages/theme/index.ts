@@ -4,6 +4,7 @@ import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import DefaultTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
+import Layout from './src/components/Layout.vue';
 import NProgress from './src/utils/client/nprogress';
 // import 'vuetify/styles';
 import '@shikijs/vitepress-twoslash/style.css';
@@ -24,7 +25,7 @@ import './style.scss';
 
 const MildTheme: Theme = {
   extends: DefaultTheme,
-  Layout: DefaultTheme.Layout,
+  Layout,
   enhanceApp({ app, router }) {
     // const config: SiteConfig = (global as any).VITEPRESS_CONFIG;
     // console.log(config);

@@ -1,5 +1,6 @@
 ---
 date: 2024-12-18
+category: 服务器
 ---
 
 # demo1

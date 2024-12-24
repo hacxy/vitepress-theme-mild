@@ -67,6 +67,7 @@ export interface ArticlesData {
   tags: string[]
   words: number
   minutes: number
+  category: string
 }
 declare const data: ArticlesData[];
 export { data };

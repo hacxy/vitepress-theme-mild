@@ -13,7 +13,6 @@ export default defineConfig({
       level: [2, 4],
       label: "目录",
     },
-    sidebar: {},
     socialLinks: [
       {
         icon: "github",

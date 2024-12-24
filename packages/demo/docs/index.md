@@ -15,7 +15,6 @@ hero:
     - theme: alt
       text: Github
       link: https://github.com/hacxy
-
 features:
   - icon: 🥳️
     title: Active

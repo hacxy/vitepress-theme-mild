@@ -4,6 +4,9 @@ import { useUrlSearchParams } from '@vueuse/core';
 import { useRouter } from 'vitepress';
 import { computed, ref, watchEffect } from 'vue';
 import { data } from '../datas/articles.data.js';
+import IconCalendar from './icons/IconCalendar.vue';
+import IconClock from './icons/IconClock.vue';
+import IconWords from './icons/IconWords.vue';
 
 const router = useRouter();
 const params = useUrlSearchParams();
@@ -77,14 +80,29 @@ watchEffect(() => {
           <a> {{ article?.title }}</a>
         </div>
       </div>
-      <p class="describe" v-html="article.description" />
+      <ATypographyParagraph
+        class="describe"
+        :ellipsis="{
+          rows: 1,
+          showTooltip: false,
+        }"
+      >
+        {{ article.description }}
+        <!-- <p class="describe" v-html="article.description" /> -->
+      </ATypographyParagraph>
       <div class="post-info">
-        <span class="text">
-          {{ article.date }}
-        </span>
-        <span class="text">{{ article.words }} words</span>
-        <span class="text">{{ article.minutes }} min
-        </span>
+        <div class="text">
+          <icon-calendar />
+          <span>{{ article.date }}</span>
+        </div>
+        <div class="text">
+          <icon-words />
+          {{ article.words }} words
+        </div>
+        <div class="text">
+          <icon-clock />
+          {{ article.minutes }} min
+        </div>
       </div>
     </div>
     <APagination
@@ -138,7 +156,19 @@ watchEffect(() => {
     font-size: 13px;
     color: var(--vp-c-text-3);
     .text {
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      vertical-align: middle;
+      svg {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        margin-right: 3px;
+        height: 100%;
+      }
     }
     .text:not(:last-child)::after {
       content: '';
