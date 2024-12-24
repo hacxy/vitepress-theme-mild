@@ -40,14 +40,14 @@
     "eslint": "^9.17.0"
   },
   "dependencies": {
-    "@arco-design/web-vue": "^2.56.3",
-    "@arco-plugins/vite-vue": "^1.4.5",
+    "@primevue/themes": "^4.2.5",
     "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
     "nprogress": "^0.2.0",
+    "primevue": "^4.2.5",
     "reading-time-estimator": "^1.11.0",
     "sass": "^1.72.0",
     "tinyglobby": "^0.2.10",

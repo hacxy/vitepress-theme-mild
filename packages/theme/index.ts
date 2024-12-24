@@ -1,7 +1,8 @@
 import type { Theme } from 'vitepress';
-import ArcoVue from '@arco-design/web-vue';
+import Aura from '@primevue/themes/aura';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
+import PrimeVue from 'primevue/config';
 import DefaultTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
 import Layout from './src/components/Layout.vue';
@@ -24,8 +25,13 @@ const MildTheme: Theme = {
       };
     }
     app.use(MotionPlugin);
-    app.use(ArcoVue);
     app.use(TwoslashFloatingVue);
+    app.use(PrimeVue, {
+      theme: {
+        preset: Aura
+      }
+    });
+    // app.component(Paginator);
     app.component('blog', BlogPage);
   }
 };

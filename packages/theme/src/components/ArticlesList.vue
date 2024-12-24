@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
+import Paginator from 'primevue/paginator';
 import { useRouter } from 'vitepress';
 import { computed, ref, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData.js';
@@ -81,7 +82,7 @@ watchEffect(() => {
           <a> {{ article?.title }}</a>
         </div>
       </div>
-      <ATypographyParagraph
+      <div
         class="describe"
         :ellipsis="{
           rows: 1,
@@ -90,7 +91,7 @@ watchEffect(() => {
       >
         {{ article.description }}
         <!-- <p class="describe" v-html="article.description" /> -->
-      </ATypographyParagraph>
+      </div>
       <div class="post-info">
         <div class="text">
           <icon-calendar />
@@ -106,35 +107,36 @@ watchEffect(() => {
         </div>
       </div>
     </div>
-    <APagination
-      v-model:current="currentPage"
-      :page-size="4"
-      :total="articleData.length"
-      @change="handleChangePage"
+
+    <paginator
+      :rows="4"
+      :total-records="articleData.length"
+      @page="(e) => {
+        handleChangePage(e.page + 1)
+      }"
     />
   </div>
 </template>
 
 <style lang="scss" scoped>
-:deep(.arco-pagination) {
-  color: var(--vp-c-text-1);
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  .arco-pagination-item {
-    transition: all 0.2s;
+:deep(nav) {
+  .p-paginator {
+    color: var(--vp-c-text-1);
+    background-color: #00000000;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
   }
-  .arco-pagination-item-active {
-    color: #000;
+  .p-paginator-first:hover,
+  .p-paginator-prev:hover,
+  .p-paginator-page:hover,
+  .p-paginator-next:hover,
+  .p-paginator-last:hover {
+    background-color: var(--vp-c-text-3) !important;
   }
-  .arco-pagination-item:hover {
-    background-color: #ffffff6c;
-    color: #000;
-  }
-  .arco-pagination-item-active:hover {
-    background-color: #fff;
+  .p-paginator-page-selected {
+    background-color: var(--vp-c-text-2);
   }
 }
 

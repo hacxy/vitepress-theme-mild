@@ -1,7 +1,6 @@
 import type { VitePressPluginTwoslashOptions } from '@shikijs/vitepress-twoslash';
 import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
-import { vitePluginForArco } from '@arco-plugins/vite-vue';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 
 export interface ThemeConfig {
@@ -37,9 +36,6 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
       progressBar,
     },
     vite: {
-      optimizeDeps: {
-        include: ['@arco-design/web-vue'],
-      },
       resolve: {
         alias: [
           {
@@ -50,11 +46,7 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
           },
         ]
       },
-      plugins: [
-        vitePluginForArco({
-          style: 'css'
-        }),
-      ],
+      plugins: [],
       build: {
         chunkSizeWarningLimit: 2000
       },
