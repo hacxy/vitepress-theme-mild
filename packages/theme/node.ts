@@ -38,7 +38,7 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
     },
     vite: {
       optimizeDeps: {
-        include: ['dayjs']
+        include: ['@arco-design/web-vue'],
       },
       resolve: {
         alias: [
