@@ -49,7 +49,7 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
             replacement: fileURLToPath(
               new URL('../src/components/Sidebar.vue', import.meta.url)
             )
-          }
+          },
         ]
       },
       plugins: [

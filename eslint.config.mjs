@@ -12,6 +12,6 @@ export default linter({
   },
   ignores: [
     'packages/demo/**/*',
-    'packages/theme/src/config/*.js'
+    'packages/theme/node.js'
   ],
 });

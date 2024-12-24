@@ -1,14 +1,14 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/config/index.ts'],
+  entry: ['node.ts'],
   format: ['esm'],
   target: 'node18',
   platform: 'node',
   bundle: true,
   minify: true,
-  dts: true,
-  clean: true,
+  dts: false,
+  clean: false,
   // watch: true,
   // treeshake: true,
 });

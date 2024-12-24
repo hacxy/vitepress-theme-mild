@@ -17,8 +17,8 @@
       "import": "./index.ts"
     },
     "./config": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./node.ts",
+      "import": "./dist/node.js"
     }
   },
   "module": "./index.ts",
