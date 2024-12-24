@@ -7,7 +7,7 @@ import BlogPage from './src/components/BlogPage.vue';
 import Layout from './src/components/Layout.vue';
 import NProgress from './src/utils/client/nprogress';
 import '@shikijs/vitepress-twoslash/style.css';
-import './style.scss';
+import './src/styles/index.scss';
 
 const MildTheme: Theme = {
   extends: DefaultTheme,
