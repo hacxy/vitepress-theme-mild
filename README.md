@@ -1,6 +1,16 @@
-# vitepress-theme-mild
+<p align="center">
+  <img width="240" style="text-align:center;" src="https://raw.githubusercontent.com/hacxy/hacxy/main/images/simple-icons_vitepress%20(1).png"/>
+</p>
 
+<h1 align="center">
+ vitepress-theme-mild
+</h1>
+
+<h4 align="center">
 极简风格的 Vitepress 博客主题.
+</h4>
+
+![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
 
 - 💡 简约风格且配置简单
 - 🌈 过渡动画效果以及页面加载进度条
