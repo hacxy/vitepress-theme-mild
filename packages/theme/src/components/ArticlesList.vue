@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
-import Paginator from 'primevue/paginator';
+import { NPagination } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import { computed, ref, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData.js';
@@ -41,11 +41,11 @@ const posts = computed(() => {
   return paginate(articleData.value, pageSize.value, currentPage.value);
 });
 
-function handleChangePage(i: number) {
-  currentPage.value = i;
-  params.pageNum = String(i);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
+// function handleChangePage(i: number) {
+//   currentPage.value = i;
+//   params.pageNum = String(i);
+//   window.scrollTo({ top: 0, behavior: 'auto' });
+// }
 function handleClick(path: string) {
   router.go(path);
 }
@@ -55,6 +55,7 @@ watchEffect(() => {
     currentPage.value = 0;
     params.pageNum = String(1);
   }
+  window.scrollTo({ top: 0, behavior: 'auto' });
 });
 </script>
 
@@ -108,35 +109,26 @@ watchEffect(() => {
       </div>
     </div>
 
-    <paginator
-      :rows="4"
-      :total-records="articleData.length"
-      @page="(e) => {
-        handleChangePage(e.page + 1)
-      }"
-    />
+    <n-pagination v-model:page="currentPage" :page-count="totalPages" />
   </div>
 </template>
 
 <style lang="scss" scoped>
-:deep(nav) {
-  .p-paginator {
+:deep(.n-pagination) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 15px;
+  .n-pagination-item {
+    color: var(--vp-c-text-2);
+  }
+  .n-pagination-item--active {
+    border-color: var(--vp-c-text-1) !important;
+    color: var(--vp-c-text-1) !important;
+  }
+  .n-pagination-item:hover {
     color: var(--vp-c-text-1);
-    background-color: #00000000;
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .p-paginator-first:hover,
-  .p-paginator-prev:hover,
-  .p-paginator-page:hover,
-  .p-paginator-next:hover,
-  .p-paginator-last:hover {
-    background-color: var(--vp-c-text-3) !important;
-  }
-  .p-paginator-page-selected {
-    background-color: var(--vp-c-text-2);
   }
 }
 
