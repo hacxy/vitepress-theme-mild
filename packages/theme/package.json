@@ -24,6 +24,7 @@
   "module": "./index.ts",
   "types": "./index.ts",
   "files": [
+    "dist",
     "index.ts",
     "src"
   ],
