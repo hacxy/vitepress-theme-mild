@@ -3,7 +3,7 @@ import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
 import { useRouter } from 'vitepress';
 import { computed, ref, watchEffect } from 'vue';
-import { data } from '../datas/articles.data.js';
+import { useArticleData } from '../hooks/useArticleData.js';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
 import IconWords from './icons/IconWords.vue';
@@ -12,6 +12,7 @@ const router = useRouter();
 const params = useUrlSearchParams();
 const currentPage = ref(Number(params.pageNum) || 1);
 const pageSize = ref(4);
+const { articleData } = useArticleData();
 
 function paginate(data: ArticlesData[], pageSize: number, currentPage: number) {
   // 参数校验，如果数据不是数组或者没有数据，直接返回空数组
@@ -32,11 +33,11 @@ function paginate(data: ArticlesData[], pageSize: number, currentPage: number) {
 }
 
 const totalPages = computed(() => {
-  const total = data?.length || 0;
+  const total = articleData.value.length || 0;
   return Math.ceil(total / pageSize.value);
 });
 const posts = computed(() => {
-  return paginate(data, pageSize.value, currentPage.value);
+  return paginate(articleData.value, pageSize.value, currentPage.value);
 });
 
 function handleChangePage(i: number) {
@@ -106,9 +107,9 @@ watchEffect(() => {
       </div>
     </div>
     <APagination
-      :current="currentPage"
+      v-model:current="currentPage"
       :page-size="4"
-      :total="data.length"
+      :total="articleData.length"
       @change="handleChangePage"
     />
   </div>
