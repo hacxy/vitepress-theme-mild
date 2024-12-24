@@ -3,7 +3,6 @@ import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { vitePluginForArco } from '@arco-plugins/vite-vue';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
-import { generateSidebar } from 'vitepress-sidebar';
 
 export interface ThemeConfig {
   /**
@@ -36,10 +35,6 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
     },
     themeConfig: {
       progressBar,
-      sidebar: generateSidebar({
-        documentRootPath: 'docs'
-      })
-
     },
     vite: {
       resolve: {
