@@ -1,9 +1,9 @@
 import path from 'node:path';
-import dayjs from 'dayjs';
 import fs from 'fs-extra';
 import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
+import { formatDate } from './date';
 import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
@@ -135,7 +135,7 @@ export function createArticlesListLoader<T = ContentData[]>(
                 .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
           // eslint-disable-next-line no-undefined
           const html = render ? md.render(src) : undefined;
-          const fileModifiedTime = dayjs(timestamp).format('YYYY-MM-DD');
+          const fileModifiedTime = formatDate(timestamp);
           const renderedExcerpt = renderExcerpt
             ? excerpt && md.render(excerpt)
             // eslint-disable-next-line no-undefined

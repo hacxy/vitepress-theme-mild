@@ -1,7 +1,7 @@
-import dayjs from 'dayjs';
 import matter from 'gray-matter';
 import { readingTime } from 'reading-time-estimator';
 import { createArticlesListLoader } from '../utils/node/articles';
+import { formatDate } from '../utils/node/date';
 
 function getTextDescription(text: string, count = 100) {
   const finalText = text
@@ -40,7 +40,7 @@ export default createArticlesListLoader({
       const description = getTextDescription(content);
       let { date, ...frontmatter } = item.frontmatter;
       if (date) {
-        date = dayjs(item.frontmatter.date).format('YYYY-MM-DD');
+        date = formatDate(item.frontmatter.date);
       }
       else {
         date = item.fileModifiedTime; // 文件最后修改时间(兜底)
