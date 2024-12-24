@@ -1,2 +1,2 @@
-import MildTheme from "vitepress-theme-hacxy";
+import MildTheme from "vitepress-theme-mild";
 export default MildTheme;
