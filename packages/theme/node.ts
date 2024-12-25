@@ -16,7 +16,7 @@ export interface ThemeConfig {
    */
   twoslash?: false | VitePressPluginTwoslashOptions
 }
-export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<ThemeConfig & DefaultTheme.Config> {
+export function defineThemeConfig(config: ThemeConfig = {}) {
   const { twoslash, progressBar = true } = config;
   const codeTransformers = [];
   if (twoslash !== false) {
@@ -73,5 +73,5 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
         },
       },
     },
-  };
+  } as RawConfigExports<DefaultTheme.Config>;
 }

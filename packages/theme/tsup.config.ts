@@ -7,8 +7,8 @@ export default defineConfig({
   platform: 'node',
   bundle: true,
   minify: true,
-  dts: false,
-  clean: false,
+  dts: true,
+  clean: true,
   // watch: true,
   // treeshake: true,
 });
