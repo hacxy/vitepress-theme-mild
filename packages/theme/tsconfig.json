@@ -17,5 +17,6 @@
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }

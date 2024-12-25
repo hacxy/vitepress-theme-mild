@@ -69,19 +69,7 @@ const hasSidebar = computed(() => {
       v-else-if="frontmatter.layout && frontmatter.layout !== 'doc'"
     />
 
-    <v-p-doc
-      v-else
-      v-motion
-      :initial="{
-        opacity: 0,
-      }"
-      :enter="{
-        opacity: 1,
-        transition: {
-          delay: 100,
-        },
-      }"
-    >
+    <v-p-doc v-else>
       <template #doc-top>
         <slot name="doc-top" />
       </template>

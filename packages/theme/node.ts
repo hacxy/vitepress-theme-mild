@@ -64,6 +64,12 @@ export function defineThemeConfig(config: ThemeConfig = {}) {
             replacement: fileURLToPath(
               new URL('../src/components/LocalNav.vue', import.meta.url)
             )
+          },
+          {
+            find: /^.*\/VPNavBar\.vue$/,
+            replacement: fileURLToPath(
+              new URL('../src/components/NavBar.vue', import.meta.url)
+            )
           }
         ]
       },

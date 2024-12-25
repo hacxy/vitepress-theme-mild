@@ -51,6 +51,7 @@ watchEffect(() => {
     currentPage.value = 0;
     params.pageNum = String(1);
   }
+  params.pageNum = String(currentPage.value);
 });
 
 watch(currentPage, () => {
