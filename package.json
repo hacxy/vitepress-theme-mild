@@ -11,7 +11,7 @@
     "dev": "pnpm -F vitepress-theme-mild run dev",
     "build": "pnpm -F vitepress-theme-mild run build",
     "release": "pnpm -F vitepress-theme-mild run release",
-    "demo:dev": "pnpm -F demo run dev",
+    "demo:dev": "pnpm build && pnpm -F demo run dev",
     "demo:build": "pnpm -F demo run build",
     "demo:preview": "pnpm -F demo run preview",
     "prepare": "simple-git-hooks",
