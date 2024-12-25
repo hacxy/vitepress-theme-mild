@@ -36,11 +36,9 @@
     "release": "bumpp && pnpm publish",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "@shikijs/vitepress-twoslash": "^1.24.3"
-  },
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",
+    "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",
     "fs-extra": "^11.2.0",
@@ -60,7 +58,7 @@
     "@types/nprogress": "^0.2.3",
     "bumpp": "^9.9.1",
     "eslint": "^9.17.0",
-    "tsup": "^8.3.5",
+    "tsup": "8.3.0",
     "typescript": "^5.3.3",
     "vitepress": "^1.5.0"
   }

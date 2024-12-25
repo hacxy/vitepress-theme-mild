@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
-import VPDoc from 'vitepress/dist/client/theme-default/components/VPDoc.vue';
 import VPHome from 'vitepress/dist/client/theme-default/components/VPHome.vue';
 import VPPage from 'vitepress/dist/client/theme-default/components/VPPage.vue';
 import NotFound from 'vitepress/dist/client/theme-default/NotFound.vue';
 import { computed } from 'vue';
+import VPDoc from './Doc.vue';
 
 const { page, frontmatter } = useData();
 const hasSidebar = computed(() => {

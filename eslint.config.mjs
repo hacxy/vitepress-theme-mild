@@ -8,7 +8,8 @@ export default linter({
   },
   rules: {
     'regexp/no-unused-capturing-group': 0,
-    'no-restricted-globals': 0
+    'no-restricted-globals': 0,
+    'vue/custom-event-name-casing': 0
   },
   ignores: [
     'packages/demo/**/*',

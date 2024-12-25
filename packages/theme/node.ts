@@ -58,6 +58,12 @@ export function defineThemeConfig(config: ThemeConfig = {}) {
             replacement: fileURLToPath(
               new URL('../src/components/Footer.vue', import.meta.url)
             )
+          },
+          {
+            find: /^.*\/VPLocalNav\.vue$/,
+            replacement: fileURLToPath(
+              new URL('../src/components/LocalNav.vue', import.meta.url)
+            )
           }
         ]
       },

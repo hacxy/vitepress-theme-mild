@@ -13,6 +13,15 @@ export default defineConfig({
         link: '/src/tags'
       }
     ],
+    sidebar: [
+      {
+        text: "Examples",
+        items: [
+          { text: "Markdown Examples", link: "/markdown-examples" },
+          { text: "Runtime API Examples", link: "/api-examples" },
+        ],
+      },
+    ],
     // logo: "logo.png",
     // 展示 2,3 级标题在目录中
     outline: {
