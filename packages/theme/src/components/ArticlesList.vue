@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
 import { useUrlSearchParams } from '@vueuse/core';
-import { NEllipsis, NPagination } from 'naive-ui';
+import { NPagination, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import { computed, ref, watch, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData.js';
@@ -83,13 +83,15 @@ watch(currentPage, () => {
           <a> {{ article?.title }}</a>
         </div>
       </div>
-      <n-ellipsis class="describe" :tooltip="{ show: false }">
+      <div class="describe">
         {{ article.description }}
-      </n-ellipsis>
+      </div>
       <div class="post-info">
         <div class="text">
           <icon-calendar />
-          <span>{{ article.date }}</span>
+          <span>
+            <n-time :time="article.date" format="yyyy-MM-dd" />
+          </span>
         </div>
         <div class="text">
           <icon-words />
@@ -200,7 +202,8 @@ watch(currentPage, () => {
   font-weight: 500;
   margin: 0.1rem 0;
 }
-:deep(.n-ellipsis) {
+
+.describe {
   font-size: 0.9375rem;
   overflow: hidden;
   color: var(--vp-c-text-2);
@@ -248,14 +251,6 @@ watch(currentPage, () => {
     line-clamp: 2;
     overflow: hidden;
     width: 17rem;
-  }
-  .describe {
-    font-size: 0.9375rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
-    overflow: hidden;
-    margin: 0.5rem 0 1rem;
   }
 }
 </style>

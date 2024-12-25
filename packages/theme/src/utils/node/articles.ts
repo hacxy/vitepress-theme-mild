@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
-import { formatDate } from './date';
+import { dateToUnixTimestamp } from './date';
 import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
@@ -12,7 +12,7 @@ export interface ContentData {
   html: string | undefined
   frontmatter: Record<string, any>
   excerpt: string | undefined
-  fileModifiedTime: string
+  // fileModifiedTime: number
 }
 export interface ContentOptions<T = ContentData[]> {
   /**
@@ -127,7 +127,13 @@ export function createArticlesListLoader<T = ContentData[]>(
               ? { excerpt_separator: renderExcerpt as any }
               : { excerpt: renderExcerpt as any }
           );
-          // const lastEditTime = await getLastCommitDate(file);
+
+          if (frontmatter.date) {
+            frontmatter.date = dateToUnixTimestamp(frontmatter.date);
+          }
+          else {
+            frontmatter.date = timestamp;
+          }
           const url
             = `/${
               normalizePath(path.relative(config.srcDir, file))
@@ -135,13 +141,13 @@ export function createArticlesListLoader<T = ContentData[]>(
                 .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
           // eslint-disable-next-line no-undefined
           const html = render ? md.render(src) : undefined;
-          const fileModifiedTime = formatDate(timestamp);
+          // const fileModifiedTime = timestamp;
           const renderedExcerpt = renderExcerpt
             ? excerpt && md.render(excerpt)
             // eslint-disable-next-line no-undefined
             : undefined;
           const data: ContentData = {
-            fileModifiedTime,
+            // fileModifiedTime,
             // eslint-disable-next-line no-undefined
             src: includeSrc ? src : undefined,
             html,

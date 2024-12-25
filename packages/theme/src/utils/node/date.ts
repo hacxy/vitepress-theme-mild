@@ -20,3 +20,11 @@ export function formatDate(date: number | Date | string) {
   // 返回格式化后的日期字符串
   return `${year}-${month}-${day}`;
 }
+
+export function dateToUnixTimestamp(date: Date) {
+  // 检查输入是否为 Date 对象
+  if (!(date instanceof Date)) {
+    throw new TypeError('Input must be a Date object');
+  }
+  return new Date(date.toLocaleString('en-US', { timeZone: 'UTC' })).getTime();
+}
