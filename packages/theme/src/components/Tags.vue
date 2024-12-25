@@ -1,15 +1,21 @@
 <script lang="ts" setup>
 import { useUrlSearchParams } from '@vueuse/core';
+import { NList, NListItem, NThing } from 'naive-ui';
+import { useRouter } from 'vitepress';
 import { computed, ref } from 'vue';
 import { useArticleData } from '../hooks/useArticleData';
 import { handleTagsData } from '../utils/client/tags';
 
+const router = useRouter();
 const { articleData } = useArticleData();
 const tagsData = computed(() => {
   return handleTagsData(articleData.value);
 });
 const params = useUrlSearchParams();
 const selectTag = ref(params.tag);
+const currentArticle = computed(() => {
+  return tagsData.value.find(item => item.name === selectTag.value || '')?.articles || [];
+});
 
 function toggleTag(tag: string) {
   selectTag.value = tag;
@@ -33,6 +39,20 @@ function toggleTag(tag: string) {
       <div class="tag-header">
         {{ selectTag }}
       </div>
+
+      <n-list
+        :hoverable="true"
+        :clickable="true"
+        :show-divider="false"
+      >
+        <n-list-item
+          v-for="(article) in currentArticle"
+          :key="article.path"
+          @click="router.go(article.path)"
+        >
+          <n-thing :title="article.title" :title-extra="article.date" :description="article.description" />
+        </n-list-item>
+      </n-list>
     </div>
   </div>
   <!-- <a
@@ -91,6 +111,27 @@ function toggleTag(tag: string) {
 
   .date {
     font-size: 0.75rem;
+  }
+}
+:deep(.n-list) {
+  background-color: #00000000;
+  // --n-border-color: var(--vp-c-text-3);
+  .n-thing-main {
+    .n-thing-header__title {
+      color: var(--vp-c-text-1);
+    }
+    .n-thing-header__extra {
+      color: var(--vp-c-text-1);
+    }
+    .n-thing-main__description {
+      color: var(--vp-c-text-2);
+    }
+  }
+  .n-list-item {
+    border-color: var(--vp-c-text-3) !important;
+  }
+  .n-list-item:hover {
+    background-color: var(--vp-c-bg-alt) !important;
   }
 }
 </style>

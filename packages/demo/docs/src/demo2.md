@@ -4,7 +4,7 @@ tags:
   - demo
 ---
 
-# demo
+# demo2
 
 可以在 Markdown 文件、主题中的 \*.vue 组件、样式和普通的 .css 文件中引用静态资源，可以使用绝对路径 (基于项目根目录) 或者相对路径 (基于文件系统)。后者类似于 Vite、Vue CLI 或者 webpack 的 file-loader 的行为。
 

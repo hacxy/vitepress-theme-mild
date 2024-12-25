@@ -47,6 +47,18 @@ export function defineThemeConfig(config: ThemeConfig = {}): RawConfigExports<Th
               new URL('../src/components/Sidebar.vue', import.meta.url)
             )
           },
+          {
+            find: /^.*\/VPContent\.vue$/,
+            replacement: fileURLToPath(
+              new URL('../src/components/Content.vue', import.meta.url)
+            )
+          },
+          {
+            find: /^.*\/VPFooter\.vue$/,
+            replacement: fileURLToPath(
+              new URL('../src/components/Footer.vue', import.meta.url)
+            )
+          }
         ]
       },
       plugins: [],

@@ -1,83 +1,86 @@
 // Cover default theme styles
-.VPFooter {
-  padding: 10px 32px 10px !important;
-  .copyright {
-    color: #888;
-    text-align: center;
-    font-size: 0.75rem;
-    width: 100%;
-    padding: 15px 0;
-    overflow: auto;
-    a {
-      color: var(--vp-c-text-1);
-      font-weight: 500;
+
+.VSLayout {
+  .VPFooter {
+    padding: 10px 32px 10px !important;
+    .copyright {
+      color: #888;
+      text-align: center;
+      font-size: 0.75rem;
+      width: 100%;
+      padding: 15px 0;
+      overflow: auto;
+      a {
+        color: var(--vp-c-text-1);
+        font-weight: 500;
+      }
     }
   }
-}
 
-.VPNavBar {
-  .divider {
-    transition: opacity 0.3s;
-  }
-}
-
-.VPNavBar.top {
-  .divider {
-    opacity: 0;
-  }
-}
-
-.VPNavBarTitle.has-sidebar {
-  .title {
-    border-bottom: none;
-  }
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root),
-.dark::view-transition-new(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root),
-.dark::view-transition-old(root) {
-  z-index: 9999;
-}
-
-.VPSwitchAppearance {
-  width: 22px !important;
-}
-
-.VPSwitchAppearance .check {
-  transform: none !important;
-}
-
-.VSPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (max-width: 600px) {
-    padding: 0 32px 15px;
+  .VPNavBar {
+    .divider {
+      transition: opacity 0.3s;
+    }
   }
 
-  @media (min-width: 601px) and (max-width: 1024px) {
-    padding: 0 64px 15px;
+  .VPNavBar.top {
+    .divider {
+      opacity: 0;
+    }
   }
 
-  .VSContent {
+  .VPNavBarTitle.has-sidebar {
+    .title {
+      border-bottom: none;
+    }
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root),
+  .dark::view-transition-new(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root),
+  .dark::view-transition-old(root) {
+    z-index: 9999;
+  }
+
+  .VPSwitchAppearance {
+    width: 22px !important;
+  }
+
+  .VPSwitchAppearance .check {
+    transform: none !important;
+  }
+
+  .VSPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @media (max-width: 600px) {
-      width: 100%;
+      padding: 0 32px 15px;
     }
+
     @media (min-width: 601px) and (max-width: 1024px) {
-      width: 100%;
+      padding: 0 64px 15px;
     }
-    @media (min-width: 1025px) {
-      width: 800px;
+
+    .VSContent {
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+      @media (min-width: 601px) and (max-width: 1024px) {
+        width: 100%;
+      }
+      @media (min-width: 1025px) {
+        width: 800px;
+      }
     }
   }
 }

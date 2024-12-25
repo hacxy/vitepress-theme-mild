@@ -2,7 +2,6 @@
 import { useScrollLock } from '@vueuse/core';
 import { inBrowser, useData } from 'vitepress';
 import VPSidebarGroup from 'vitepress/dist/client/theme-default/components/VPSidebarGroup.vue';
-import { useSidebar } from 'vitepress/theme';
 import { computed, ref, watch } from 'vue';
 import { data } from '../datas/articles.data';
 import { handleSidebarData } from '../utils/client/sidebar';
@@ -14,8 +13,6 @@ const { frontmatter } = useData();
 const sidebarGroups = computed(() => {
   return handleSidebarData(data, frontmatter.value.category);
 });
-const { hasSidebar } = useSidebar();
-
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null);
 const isLocked = useScrollLock(inBrowser ? document.body : null);
@@ -46,7 +43,7 @@ watch(
 
 <template>
   <aside
-    v-if="hasSidebar && frontmatter.category"
+    v-if="frontmatter.category"
     ref="navEl"
     class="VPSidebar"
     :class="{ open: open && frontmatter.category }"
