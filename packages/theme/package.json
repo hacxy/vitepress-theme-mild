@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20.14.9",
     "@types/nprogress": "^0.2.3",
     "bumpp": "^9.9.1",

@@ -8,7 +8,7 @@ export default defineConfig({
   lang: 'zh',
   appearance: 'dark',
   themeConfig: {
-    logo: 'logo.png',
+    logo: '/logo.png',
     search: {
       provider: 'local',
       options: {
