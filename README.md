@@ -12,11 +12,10 @@
 
 ![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
 
-- 💡 一切从简, 使用简单, 配置简单, 风格简约
-- 🌈 一些过渡动画和页面加载进度条
+- 💡 配置简单, 零帧起手
+- 🌈 极致简约的风格
 - 📃 自动扫描文章列表, 文件发生变化时同步热更新🔥
 - ✨ 根据文章分类自动生成侧边栏分组
-- 🏷️ 标签页布局
 
 ## 示例
 
@@ -84,12 +83,14 @@ npm install vitepress-theme-mild@latest -D
   - 在 `.vitepress` 文件夹中新建 `theme/index.ts` (注意文件后缀名取决于你的项目) 导入主题:
 
     ```ts
+    // .vitepress/theme/config.ts
     import MildTheme from 'vitepress-theme-mild';
     export default MildTheme;
     ```
 
   - 在 `config.ts` 中聚合配置:
     ```ts
+    // .vitepress/config.ts
     import { defineConfig } from 'vitepress';
     import { defineThemeConfig } from 'vitepress-theme-mild/config';
     export default defineConfig({
