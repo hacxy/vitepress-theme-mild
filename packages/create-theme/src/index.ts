@@ -16,6 +16,14 @@ export async function bootstrap() {
   const targetPath = path.resolve(process.cwd(), packageName);
   fs.copySync(templatePath, targetPath);
   fs.renameSync(path.resolve(targetPath, '_gitignore'), path.resolve(targetPath, '.gitignore'));
+
+  const pkg = JSON.parse(
+    fs.readFileSync(path.resolve(targetPath, 'package.json'), 'utf-8')
+  );
+  pkg.name = packageName;
+
+  fs.writeFileSync(path.resolve(targetPath, 'package.json'), `${JSON.stringify(pkg, null, 2)}\n`);
+
   console.log(`\ncd ${targetPath}\nnpm run install\nnpm run dev`);
 }
 
