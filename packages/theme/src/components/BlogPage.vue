@@ -3,13 +3,14 @@ import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useData } from 'vitepress';
 import { computed, ref, watch, watchEffect } from 'vue';
+import { DEFAULT_PAGE_SIZE } from '../constants';
 import { useArticleData } from '../hooks/useArticleData';
 import { paginate } from '../utils/client/article';
 import ArticlesList from './ArticlesList.vue';
 
 const { frontmatter } = useData();
 const articleTitle = ref(frontmatter.value?.article?.title);
-const pageSize = ref(4);
+const pageSize = ref(frontmatter.value?.article?.pageSize || DEFAULT_PAGE_SIZE);
 const params = useUrlSearchParams();
 const currentPage = ref(Number(params.pageNum) || 1);
 const { articleData } = useArticleData();
