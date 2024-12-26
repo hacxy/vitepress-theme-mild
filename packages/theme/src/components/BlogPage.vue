@@ -43,7 +43,7 @@ watch(currentPage, () => {
       <div class="VMArticlesListWrapper">
         <articles-list :list-data="posts" :title="articleTitle" />
       </div>
-      <n-pagination v-model:page="currentPage" :page-count="totalPages" />
+      <n-pagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
     </div>
   </div>
 </template>

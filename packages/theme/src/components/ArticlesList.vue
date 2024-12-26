@@ -22,59 +22,67 @@ const router = useRouter();
           {{ props.title }}
         </div>
       </template>
-      <n-list-item
-        v-for="(article, index) in props.listData"
-        :key="article.path"
-        v-motion
-        :initial="{
-          opacity: 0,
-        }"
-        :enter="{
-          opacity: 1,
-          transition: {
-            duration: 500,
-            delay: index * 200,
-          },
-        }"
-        @click="router.go(article.path)"
-      >
-        <n-thing
-          :title="article.title"
-          :title-extra="article.category"
-          :description="article.description"
+
+      <template v-if="props.listData">
+        <n-list-item
+          v-for="(article, index) in props.listData"
+          :key="article.path"
+          v-motion
+          :initial="{
+            opacity: 0,
+          }"
+          :enter="{
+            opacity: 1,
+            transition: {
+              duration: 500,
+              delay: index * 200,
+            },
+          }"
+          @click="router.go(article.path)"
         >
-          <div class="VMArticleInfo">
-            <div class="VMArticleInfoLeft">
-              <div class="text">
-                <icon-calendar />
-                <span>
-                  <n-time :time="article.date" format="yyyy-MM-dd" />
-                </span>
+          <n-thing
+            :title="article.title"
+            :title-extra="article.category"
+            :description="article.description"
+          >
+            <div class="VMArticleInfo">
+              <div class="VMArticleInfoLeft">
+                <div class="text">
+                  <icon-calendar />
+                  <span>
+                    <n-time :time="article.date" format="yyyy-MM-dd" />
+                  </span>
+                </div>
+                <div class="text">
+                  <icon-words />
+                  {{ article.words }} words
+                </div>
+                <div class="text">
+                  <icon-clock />
+                  {{ article.minutes }} min
+                </div>
               </div>
-              <div class="text">
-                <icon-words />
-                {{ article.words }} words
-              </div>
-              <div class="text">
-                <icon-clock />
-                {{ article.minutes }} min
+              <div class="VMArticleInfoRight">
+                <n-space>
+                  <n-tag
+                    v-for="tag in article.tags"
+                    :key="tag"
+                    size="tiny"
+                    :bordered="false"
+                  >
+                    {{ tag }}
+                  </n-tag>
+                </n-space>
               </div>
             </div>
-            <div class="VMArticleInfoRight">
-              <n-space>
-                <n-tag
-                  v-for="tag in article.tags"
-                  :key="tag"
-                  size="tiny"
-                  :bordered="false"
-                >
-                  {{ tag }}
-                </n-tag>
-              </n-space>
-            </div>
-          </div>
-        </n-thing>
-      </n-list-item>
+          </n-thing>
+        </n-list-item>
+      </template>
+      <template v-else>
+        <div class="VMEmpty">
+          还没有文章, 快去创作吧~
+        </div>
+      </template>
     </n-list>
   </div>
 </template>
@@ -122,6 +130,11 @@ const router = useRouter();
         color: var(--vp-c-default-1);
       }
     }
+  }
+
+  .VMEmpty {
+    color: var(--vp-c-text-2);
+    text-align: center;
   }
 }
 :deep(.n-list) {
