@@ -52,6 +52,7 @@ watch(currentPage, () => {
 :deep(.n-pagination) {
   display: flex;
   justify-content: center;
+  padding-bottom: 20px;
   .n-pagination-item.n-pagination-item--disabled {
     background-color: #00000000 !important;
   }

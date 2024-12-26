@@ -1,5 +1,8 @@
 ---
 outline: deep
+tags:
+  - api
+  - examples
 ---
 
 # Runtime API Examples
