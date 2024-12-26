@@ -16,5 +16,6 @@ fs.renameSync(path.resolve(targetPath, '.gitignore'), path.resolve(targetPath, '
 const packageData = JSON.parse(fs.readFileSync(packagePath));
 packageData.devDependencies['vitepress-theme-mild'] = packageVersion;
 fs.writeFileSync(packagePath, `${JSON.stringify(packageData, null, 2)}\n`);
+fs.removeSync(path.resolve(targetPath, 'node_modules'));
 
 console.log('模板同步完成');
