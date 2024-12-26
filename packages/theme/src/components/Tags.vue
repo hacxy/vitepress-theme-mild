@@ -1,22 +1,25 @@
 <script lang="ts" setup>
+import type { ArticlesData } from 'src/datas/articles.data';
 import { useUrlSearchParams } from '@vueuse/core';
-import { NList, NListItem, NThing } from 'naive-ui';
-import { useRouter } from 'vitepress';
-import { computed, ref } from 'vue';
+import { computed, nextTick, ref, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData';
 import { handleTagsData } from '../utils/client/tags';
+import ArticlesList from './ArticlesList.vue';
 
-const router = useRouter();
 const { articleData } = useArticleData();
 const tagsData = computed(() => {
   return handleTagsData(articleData.value);
 });
-const params = useUrlSearchParams();
-const selectTag = ref(params.tag);
-const currentArticle = computed(() => {
-  return tagsData.value.find(item => item.name === selectTag.value || '')?.articles || [];
+const params = useUrlSearchParams<{ tag: string }>();
+const selectTag = ref<string>(params.tag);
+const currentArticle = ref<ArticlesData[]>([]);
+watchEffect(() => {
+  const articles = tagsData.value.find(item => item.name === selectTag.value || '')?.articles || [];
+  currentArticle.value = [];
+  nextTick(() => {
+    currentArticle.value = articles;
+  });
 });
-
 function toggleTag(tag: string) {
   selectTag.value = tag;
   params.tag = tag;
@@ -24,52 +27,33 @@ function toggleTag(tag: string) {
 </script>
 
 <template>
-  <div class="VSPage">
-    <div class="VSContent">
-      <div class="tags-wrapper">
-        <span
-          v-for="(tag) in tagsData"
-          :key="tag.name"
-          class="tag"
-          @click="() => toggleTag(tag.name)"
-        >
-          {{ tag.name }} <strong>({{ tag.count }})</strong>
-        </span>
+  <div class="VMPage">
+    <div class="VMContent">
+      <div v-if="tagsData.length">
+        <div class="tags-wrapper">
+          <span
+            v-for="(tag) in tagsData"
+            :key="tag.name"
+            class="tag"
+            @click="() => toggleTag(tag.name)"
+          >
+            {{ tag.name }} <strong>({{ tag.articles.length }})</strong>
+          </span>
+        </div>
+        <articles-list :list-data="currentArticle" :title="selectTag" />
       </div>
-      <div class="tag-header">
-        {{ selectTag }}
+      <div v-else class="empty">
+        空空如也~
       </div>
-
-      <n-list
-        :hoverable="true"
-        :clickable="true"
-        :show-divider="false"
-      >
-        <n-list-item
-          v-for="(article) in currentArticle"
-          :key="article.path"
-          @click="router.go(article.path)"
-        >
-          <n-thing :title="article.title" :title-extra="article.date" :description="article.description" />
-        </n-list-item>
-      </n-list>
     </div>
   </div>
-  <!-- <a
-    v-for="(article, index) in selectTag ? data[selectTag] : []"
-    :key="index"
-    :href="withBase(article.path)"
-    class="posts"
-  >
-    <div class="post-container">
-      <div class="post-dot" />
-      {{ article.title }}
-    </div>
-    <div class="date">{{ article.date }}</div>
-  </a> -->
 </template>
 
 <style scoped lang="scss">
+.empty {
+  padding-top: 20px;
+  text-align: center;
+}
 .tags-wrapper {
   margin-top: 14px;
   display: flex;
@@ -111,27 +95,6 @@ function toggleTag(tag: string) {
 
   .date {
     font-size: 0.75rem;
-  }
-}
-:deep(.n-list) {
-  background-color: #00000000;
-  // --n-border-color: var(--vp-c-text-3);
-  .n-thing-main {
-    .n-thing-header__title {
-      color: var(--vp-c-text-1);
-    }
-    .n-thing-header__extra {
-      color: var(--vp-c-text-1);
-    }
-    .n-thing-main__description {
-      color: var(--vp-c-text-2);
-    }
-  }
-  .n-list-item {
-    border-color: var(--vp-c-text-3) !important;
-  }
-  .n-list-item:hover {
-    background-color: var(--vp-c-bg-alt) !important;
   }
 }
 </style>

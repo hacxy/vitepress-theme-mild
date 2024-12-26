@@ -1,5 +1,4 @@
 // Cover default theme styles
-
 .VMLayout {
   .VPFooter {
     padding: 10px 32px 10px !important;
@@ -43,7 +42,7 @@
     transform: none !important;
   }
 
-  .VSPage {
+  .VMPage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +54,7 @@
       padding: 0 64px 15px;
     }
 
-    .VSContent {
+    .VMContent {
       @media (max-width: 600px) {
         width: 100%;
       }

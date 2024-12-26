@@ -27,9 +27,7 @@ export default createArticlesListLoader({
       const title = match?.[2] || '';
       let { date, description = content, ...frontmatter } = item.frontmatter;
 
-      if (description?.length > 100) {
-        description = getTextDescription(description);
-      }
+      description = getTextDescription(description);
       return {
         path: item.url,
         description,

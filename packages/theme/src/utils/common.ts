@@ -21,5 +21,5 @@ export function getTextDescription(text: string, count = 100) {
     ?.trim()
     ?.slice(0, count);
 
-  return `${finalText}...`;
+  return text.length > 100 ? `${finalText}...` : finalText;
 }

@@ -1,256 +1,161 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
-import { useUrlSearchParams } from '@vueuse/core';
-import { NPagination, NTime } from 'naive-ui';
+import { NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
-import { computed, ref, watch, watchEffect } from 'vue';
-import { useArticleData } from '../hooks/useArticleData.js';
-import { handleTagsData } from '../utils/client/tags.js';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
 import IconWords from './icons/IconWords.vue';
 
+const props = defineProps<{ listData: ArticlesData[], title?: string }>();
 const router = useRouter();
-const params = useUrlSearchParams();
-const currentPage = ref(Number(params.pageNum) || 1);
-const pageSize = ref(4);
-const { articleData } = useArticleData();
-handleTagsData(articleData.value);
-function paginate(data: ArticlesData[], pageSize: number, currentPage: number) {
-  // 参数校验，如果数据不是数组或者没有数据，直接返回空数组
-  if (!Array.isArray(data) || data?.length === 0) {
-    return [];
-  }
-  // 如果每页显示数量小于等于0，默认设置为1
-  if (pageSize <= 0) {
-    pageSize = 1;
-  }
-  // 如果当前页小于1，默认设置为1
-  if (currentPage < 1) {
-    currentPage = 1;
-  }
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  return data.slice(startIndex, endIndex);
-}
-
-const totalPages = computed(() => {
-  const total = articleData.value.length || 0;
-  return Math.ceil(total / pageSize.value);
-});
-const posts = computed(() => {
-  return paginate(articleData.value, pageSize.value, currentPage.value);
-});
-
-function handleClick(path: string) {
-  router.go(path);
-}
-
-watchEffect(() => {
-  if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
-    currentPage.value = 0;
-    params.pageNum = String(1);
-  }
-  params.pageNum = String(currentPage.value);
-});
-
-watch(currentPage, () => {
-  window.scrollTo({ top: 0, behavior: 'auto' });
-});
 </script>
 
 <template>
-  <div class="VSContent post">
-    <div
-      v-for="(article, index) in posts"
-      :key="article.path + article.title"
-      v-motion
-      class="post-item"
-      :initial="{
-        opacity: 0,
-      }"
-      :enter="{
-        opacity: 1,
-        transition: {
-          duration: 500,
-          delay: index * 200,
-        },
-      }"
-      @click="handleClick(article.path)"
+  <div class="VMListWrapper">
+    <n-list
+      :hoverable="true"
+      :clickable="true"
+      :show-divider="false"
     >
-      <div class="post-header">
-        <div class="post-title">
-          <a> {{ article?.title }}</a>
+      <template v-if="props.title" #header>
+        <div v-motion-slide-visible-left>
+          {{ props.title }}
         </div>
-      </div>
-      <div class="describe">
-        {{ article.description }}
-      </div>
-      <div class="post-info">
-        <div class="text">
-          <icon-calendar />
-          <span>
-            <n-time :time="article.date" format="yyyy-MM-dd" />
-          </span>
-        </div>
-        <div class="text">
-          <icon-words />
-          {{ article.words }} words
-        </div>
-        <div class="text">
-          <icon-clock />
-          {{ article.minutes }} min
-        </div>
-      </div>
-    </div>
-
-    <n-pagination v-model:page="currentPage" :page-count="totalPages" />
+      </template>
+      <n-list-item
+        v-for="(article, index) in props.listData"
+        :key="article.path"
+        v-motion
+        :initial="{
+          opacity: 0,
+        }"
+        :enter="{
+          opacity: 1,
+          transition: {
+            duration: 500,
+            delay: index * 200,
+          },
+        }"
+        @click="router.go(article.path)"
+      >
+        <n-thing
+          :title="article.title"
+          :title-extra="article.category"
+          :description="article.description"
+        >
+          <div class="VMArticleInfo">
+            <div class="VMArticleInfoLeft">
+              <div class="text">
+                <icon-calendar />
+                <span>
+                  <n-time :time="article.date" format="yyyy-MM-dd" />
+                </span>
+              </div>
+              <div class="text">
+                <icon-words />
+                {{ article.words }} words
+              </div>
+              <div class="text">
+                <icon-clock />
+                {{ article.minutes }} min
+              </div>
+            </div>
+            <div class="VMArticleInfoRight">
+              <n-space>
+                <n-tag
+                  v-for="tag in article.tags"
+                  :key="tag"
+                  size="tiny"
+                  :bordered="false"
+                >
+                  {{ tag }}
+                </n-tag>
+              </n-space>
+            </div>
+          </div>
+        </n-thing>
+      </n-list-item>
+    </n-list>
   </div>
 </template>
 
 <style lang="scss" scoped>
-:deep(.n-pagination) {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 15px;
-  .n-pagination-item.n-pagination-item--disabled {
-    background-color: #00000000 !important;
-  }
-  .n-pagination-item--button {
-    border: none !important;
-  }
-  .n-pagination-item {
-    color: var(--vp-c-text-2);
-  }
-  .n-pagination-item--active {
-    border-color: var(--vp-c-text-1) !important;
-    color: var(--vp-c-text-1) !important;
-  }
-  .n-pagination-item:hover {
-    color: var(--vp-c-text-1);
-  }
-}
-
-.post {
-  padding-bottom: 75px;
-  position: relative;
-  min-height: 700px;
-  max-width: 800px;
-
-  .post-item {
-    padding: 14px 14px;
-    transition: box-shadow 0.5s;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-
-  .post-info {
+.VMListWrapper {
+  .VMArticleInfo {
     display: flex;
-    align-items: center;
-    font-size: 13px;
-    color: var(--vp-c-text-3);
-    .text {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .VMArticleInfoLeft {
       display: flex;
       align-items: center;
-      justify-content: center;
-      height: 24px;
-      vertical-align: middle;
-      svg {
-        display: block;
-        justify-content: center;
+      font-size: 13px;
+      color: var(--vp-c-text-3);
+      .text {
+        display: flex;
         align-items: center;
-        font-size: 13px;
-        margin-right: 3px;
-        height: 100%;
+        justify-content: center;
+        height: 24px;
+        vertical-align: middle;
+        svg {
+          display: block;
+          justify-content: center;
+          align-items: center;
+          font-size: 13px;
+          margin-right: 3px;
+          height: 100%;
+        }
+      }
+      .text:not(:last-child)::after {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: 10px;
+        margin: 0 8px;
+        background-color: var(--vp-c-text-3);
+        opacity: 0.7;
       }
     }
-    .text:not(:last-child)::after {
-      content: '';
-      display: inline-block;
-      width: 1px;
-      height: 10px;
-      margin: 0 8px;
-      background-color: var(--vp-c-text-3);
-      opacity: 0.7;
+    .VMArticleInfoRight {
+      :deep(.n-tag) {
+        background-color: var(--vp-c-brand-1);
+        color: var(--vp-c-default-1);
+      }
     }
-    .tag-item {
-      transition: color 0.5s;
+  }
+}
+:deep(.n-list) {
+  .n-list__header {
+    color: var(--vp-c-text-1);
+    font-weight: 800;
+    font-size: 2.25em;
+    border-color: var(--vp-c-text-3);
+    margin-bottom: 15px;
+  }
+  background-color: #00000000;
+  // --n-border-color: var(--vp-c-text-3);
+  .n-thing-main {
+    .n-thing-main__content {
+      margin-top: 4px;
     }
-    .tag-item:hover {
+    .n-thing-header__title {
       color: var(--vp-c-text-1);
+      font-size: 1.15rem;
+    }
+    .n-thing-header__extra {
+      color: var(--vp-c-text-1);
+      font-style: italic;
+    }
+    .n-thing-main__description {
+      color: var(--vp-c-text-2);
     }
   }
-}
-
-.post-item a,
-.pagination a {
-  color: var(--vp-c-text-1);
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-}
-.post-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.post-title {
-  font-size: 1.125rem;
-  font-weight: 500;
-  margin: 0.1rem 0;
-}
-
-.describe {
-  font-size: 0.9375rem;
-  overflow: hidden;
-  color: var(--vp-c-text-2);
-  margin: 10px 0;
-  line-height: 1.5rem;
-}
-
-.link {
-  display: inline-block;
-  width: 24px;
-  text-align: center;
-  border: 1px var(--vp-c-divider-light) solid;
-  border-right: none;
-  font-weight: 400;
-}
-.link.active {
-  background: var(--vp-c-text-1);
-  color: var(--vp-c-neutral-inverse);
-  border: 1px solid var(--vp-c-text-1) !important;
-}
-.link:first-child {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-}
-.link:last-child {
-  border-bottom-right-radius: 2px;
-  border-top-right-radius: 2px;
-  border-right: 1px var(--vp-c-divider-light) solid;
-}
-
-@media screen and (max-width: 768px) {
-  .post-item {
-    padding: 14px 0 14px 0;
+  .n-list-item {
+    border-color: var(--vp-c-text-3) !important;
+    margin-bottom: 10px;
   }
-  .post-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .post-title {
-    font-size: 1.0625rem;
-    font-weight: 400;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    overflow: hidden;
-    width: 17rem;
+  .n-list-item:hover {
+    background-color: var(--vp-c-bg-alt) !important;
   }
 }
 </style>
