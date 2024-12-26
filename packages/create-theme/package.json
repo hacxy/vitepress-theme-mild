@@ -31,8 +31,8 @@
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepublishOnly": "npm run build && npm run sync",
-    "release": "bumpp && pnpm publish"
+    "prepublishOnly": "npm run build",
+    "release": "npm run sync && bumpp && pnpm publish"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",

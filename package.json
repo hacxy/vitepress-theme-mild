@@ -15,6 +15,7 @@
     "build:dev": "pnpm -F create-mild-theme run build",
     "demo:build": "pnpm -F demo run build",
     "release": "pnpm -F vitepress-theme-mild run release && pnpm -F create-mild-theme run release",
+    "release:cli": "pnpm -F create-mild-theme run release",
     "demo:preview": "pnpm -F demo run preview",
     "prepare": "simple-git-hooks",
     "commit": "git-cz"
