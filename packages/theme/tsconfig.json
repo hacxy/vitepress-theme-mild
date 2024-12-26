@@ -4,6 +4,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
     "baseUrl": "./",
+    "rootDir": "./",
     "module": "ESNext",
     /* Bundler mode */
     "moduleResolution": "Bundler",

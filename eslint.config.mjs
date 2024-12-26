@@ -1,18 +1,11 @@
-import linter from '@hacxy/eslint-config/vue';
+import linter from '@hacxy/eslint-config';
 
 export default linter({
-  typescript: {
-    parserOptions: {
-      project: ['./tsconfig.json', 'packages/theme/tsconfig.json']
-    }
-  },
+  yaml: true,
   rules: {
-    'regexp/no-unused-capturing-group': 0,
-    'no-restricted-globals': 0,
-    'vue/custom-event-name-casing': 0
-  },
-  ignores: [
-    'packages/demo/**/*',
-    'packages/theme/node.js'
-  ],
+    'no-console': 0,
+    'no-undefined': 0,
+    'max-lines': [2, 500],
+    'max-params': [2, 5]
+  }
 });
