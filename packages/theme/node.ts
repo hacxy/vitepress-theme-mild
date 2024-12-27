@@ -2,6 +2,7 @@ import type { VitePressPluginTwoslashOptions } from '@shikijs/vitepress-twoslash
 import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
+import { insertDocsHeaderInfo } from './src/utils/node/markdown';
 
 export interface ThemeConfig {
   /**
@@ -24,6 +25,9 @@ export function defineThemeConfig(config: ThemeConfig = {}) {
   }
   return {
     markdown: {
+      config(md) {
+        md.use(insertDocsHeaderInfo);
+      },
       codeTransformers
     },
     transformPageData(pageData) {

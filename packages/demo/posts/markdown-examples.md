@@ -1,3 +1,9 @@
+---
+date: 2024-12-26
+tags:
+  - demo
+---
+
 # Markdown Extension Examples
 
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
