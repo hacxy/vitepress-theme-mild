@@ -4,6 +4,7 @@ import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import DefaultTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
+import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
 import Layout from './src/components/Layout.vue';
 import Tags from './src/components/Tags.vue';
 import NProgress from './src/utils/client/nprogress';
@@ -33,6 +34,7 @@ const MildTheme: Theme = {
     app.use(TwoslashFloatingVue);
     app.component('blog', BlogPage);
     app.component('tags', Tags);
+    app.component('DocsHeaderInfo', DocsHeaderInfo);
   }
 };
 

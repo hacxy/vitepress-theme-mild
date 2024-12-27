@@ -1,19 +1,3 @@
-.VMDocHeadInfo {
-  display: flex;
-  align-items: center;
-  margin-top: 6px;
-  flex-wrap: wrap;
-  .info {
-    display: flex;
-    align-items: center;
-    margin-right: 16px;
-    font-size: 14px;
-    color: var(--vp-c-text-2);
-    svg {
-      margin-right: 3px;
-    }
-  }
-}
 .VMLayout {
   .VPFooter {
     padding: 10px 32px 10px !important;
