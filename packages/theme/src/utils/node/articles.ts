@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
 import { dateToUnixTimestamp } from './date';
+import { getLastCommitInfo } from './git';
 import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
@@ -132,7 +133,9 @@ export function createArticlesListLoader<T = ContentData[]>(
             frontmatter.date = dateToUnixTimestamp(frontmatter.date);
           }
           else {
-            frontmatter.date = timestamp;
+            const lastCommitInfo = await getLastCommitInfo(path.relative(config.srcDir, file));
+            const lastCommitDate = lastCommitInfo?.date ? dateToUnixTimestamp(new Date(lastCommitInfo.date)) : null;
+            frontmatter.date = lastCommitDate || timestamp;
           }
           const url
             = `/${

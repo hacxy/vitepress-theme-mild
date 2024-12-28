@@ -21,7 +21,7 @@ export function formatDate(date: number | Date | string) {
   return `${year}-${month}-${day}`;
 }
 
-export function dateToUnixTimestamp(date: Date) {
+export function dateToUnixTimestamp(date?: Date) {
   // 检查输入是否为 Date 对象
   if (!(date instanceof Date)) {
     throw new TypeError('Input must be a Date object');
