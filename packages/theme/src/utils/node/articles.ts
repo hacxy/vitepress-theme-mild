@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
 import { dateToUnixTimestamp } from './date';
+import { getLastCommitInfo } from './git';
 import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
@@ -77,8 +78,6 @@ export function createArticlesListLoader<T = ContentData[]>(
     watch: string | string[]
     load: () => Promise<T>
   } {
-  // let pattern = ['./**/*.md'];
-
   const config: SiteConfig = (global as any).VITEPRESS_CONFIG;
 
   if (!config) {
@@ -87,9 +86,6 @@ export function createArticlesListLoader<T = ContentData[]>(
       + 'or before vitepress config is resolved.'
     );
   }
-
-  // pattern = pattern.map(p => normalizePath(path.join(config.srcDir, p)));
-  // const pattern = normalizePath(path.join(config.srcDir, './**/*.md'));
   const pattern = getPattern(config.srcDir);
   const cache = new Map<string, { data: any, timestamp: number }>();
 
@@ -132,7 +128,20 @@ export function createArticlesListLoader<T = ContentData[]>(
             frontmatter.date = dateToUnixTimestamp(frontmatter.date);
           }
           else {
-            frontmatter.date = timestamp;
+            const lastCommitInfo = await getLastCommitInfo(path.relative(config.srcDir, file));
+            const lastCommitDate = lastCommitInfo?.date ? dateToUnixTimestamp(new Date(lastCommitInfo.date)) : null;
+            frontmatter.date = lastCommitDate || timestamp;
+          }
+
+          if (typeof frontmatter.sticky === 'boolean' || typeof frontmatter.sticky === 'number') {
+            frontmatter.sticky = Number(frontmatter.sticky);
+          }
+          else {
+            frontmatter.sticky = 0;
+          }
+
+          if (typeof frontmatter.order !== 'number') {
+            frontmatter.order = 0;
           }
           const url
             = `/${
