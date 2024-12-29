@@ -13,6 +13,7 @@ export interface ArticlesData {
   words: number
   minutes: number
   category: string
+  order: number
 }
 
 export default createArticlesListLoader({
@@ -20,7 +21,12 @@ export default createArticlesListLoader({
   render: true,
   excerpt: true,
   transform(rawData) {
-    const data = rawData.filter(item => !NOT_ARTICLE_LAYOUTS.includes(item.frontmatter.layout)).sort((a, b) => b.frontmatter.date - a.frontmatter.date).map(item => {
+    const data = rawData.filter(item => !NOT_ARTICLE_LAYOUTS.includes(item.frontmatter.layout)).sort((a, b) => {
+      if (a.frontmatter.sticky !== b.frontmatter.sticky) {
+        return b.frontmatter.sticky - a.frontmatter.sticky;
+      }
+      return b.frontmatter.date - a.frontmatter.date;
+    }).map(item => {
       const content = matter(item.src || '').content;
       const { words, minutes } = readingTime(content, 200);
       const match = content.match(/^(#+)\s+(.+)/m);

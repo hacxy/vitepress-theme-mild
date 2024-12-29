@@ -2,7 +2,9 @@ import type { ArticlesData } from 'src/datas/articles.data';
 
 export function handleSidebarData(data: ArticlesData[], category: string) {
   const sidebarMap = new Map<string, { link: string, text: string }[]>();
-  data.filter(i => i.category).forEach(({ category, path, title }) => {
+  data.filter(i => i.category).sort((a, b) => {
+    return (b.order - a.order);
+  }).forEach(({ category, path, title }) => {
     if (!sidebarMap.has(category)) {
       sidebarMap.set(category, [{ text: title, link: path }]);
     }
