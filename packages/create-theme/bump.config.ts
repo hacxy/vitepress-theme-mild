@@ -1,5 +1,7 @@
 import { defineConfig } from 'bumpp';
 
 export default defineConfig({
-  tag: false
+  tag: false,
+  noGitCheck: true,
+  all: true
 });
