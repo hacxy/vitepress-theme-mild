@@ -10,6 +10,7 @@ import Tags from './src/components/Tags.vue';
 import NProgress from './src/utils/client/nprogress';
 import '@shikijs/vitepress-twoslash/style.css';
 import './src/styles/index.scss';
+import 'virtual:group-icons.css';
 
 const MildTheme: Theme = {
   extends: DefaultTheme,

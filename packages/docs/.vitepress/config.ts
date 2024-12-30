@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 import { defineThemeConfig } from 'vitepress-theme-mild/config';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Mild Theme',
+  title: 'VitePress Mild Theme',
   description: '简约风格的博客主题',
   extends: defineThemeConfig(),
   lang: 'zh',
