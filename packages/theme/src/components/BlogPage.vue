@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
-import { useData } from 'vitepress';
-import { computed, ref, watch, watchEffect } from 'vue';
+import { useData, useRouter } from 'vitepress';
+import { computed, ref, watchEffect } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 import { useArticleData } from '../hooks/useArticleData';
 import { paginate } from '../utils/client/article';
 import ArticlesList from './ArticlesList.vue';
 
+const router = useRouter();
 const { frontmatter } = useData();
 const articleTitle = ref(frontmatter.value?.article?.title);
 const pageSize = ref(frontmatter.value?.article?.pageSize || DEFAULT_PAGE_SIZE);
@@ -26,15 +27,18 @@ const posts = computed(() => {
 
 watchEffect(() => {
   if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
-    currentPage.value = 0;
-    params.pageNum = String(1);
+    currentPage.value = 1;
   }
   params.pageNum = String(currentPage.value);
-});
-
-watch(currentPage, () => {
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
+
+router.onBeforeRouteChange = to => {
+  if (to === '/') {
+    currentPage.value = 1;
+    return true;
+  }
+};
 </script>
 
 <template>
