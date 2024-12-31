@@ -17,3 +17,21 @@ export const insertDocsHeaderInfo: PluginSimple = md => {
   });
 };
 
+export const imgToImage: PluginSimple = md => {
+  const defaultRender = md.renderer.render;
+  md.renderer.rules.image = (tokens, idx) => {
+    const token = tokens[idx];
+    const srcIndex = token.attrIndex('src');
+    const altIndex = token.attrIndex('alt');
+
+    const src = token?.attrs?.[srcIndex][1];
+    const alt = altIndex >= 0 ? token?.attrs?.[altIndex][1] : '';
+
+    return `<Image src="${src}" alt="${alt}" />`;
+  };
+  md.renderer.render = (...args) => {
+    const content = defaultRender.apply(md.renderer, args);
+    return `<ImageGroup>${content}</ImageGroup>`;
+  };
+};
+

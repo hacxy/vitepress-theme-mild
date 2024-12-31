@@ -3,7 +3,7 @@ import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
-import { insertDocsHeaderInfo } from './src/utils/node/markdown';
+import { imgToImage, insertDocsHeaderInfo } from './src/utils/node/markdown';
 
 export interface ThemeConfig {
   /**
@@ -27,6 +27,7 @@ export function defineThemeConfig(config: ThemeConfig = {}) {
   return {
     markdown: {
       config(md) {
+        md.use(imgToImage);
         md.use(insertDocsHeaderInfo);
         md.use(groupIconMdPlugin);
       },

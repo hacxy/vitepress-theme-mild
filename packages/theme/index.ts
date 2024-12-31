@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress';
 import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
+import { NImage, NImageGroup } from 'naive-ui';
 import DefaultTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
 import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
@@ -36,6 +37,8 @@ const MildTheme: Theme = {
     app.component('blog', BlogPage);
     app.component('tags', Tags);
     app.component('DocsHeaderInfo', DocsHeaderInfo);
+    app.component('Image', NImage);
+    app.component('ImageGroup', NImageGroup);
   }
 };
 
