@@ -20,16 +20,14 @@ export default defineConfig({
         }
       }
     },
-    nav: [
-      { text: '主页', link: '/' },
-      { text: '标签', link: '/pages/tags' }
-    ],
+    nav: [],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
     ],
     footer: {
+      message: 'MIT Licensed',
       copyright:
-        'MIT Licensed | Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
+        'Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
     },
   }
 });

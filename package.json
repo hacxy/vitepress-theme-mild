@@ -17,6 +17,7 @@
     "cli:build": "pnpm -F create-mild-theme run build",
     "demo:build": "pnpm -F demo run build",
     "tem:build": "pnpm -F template run build",
+    "docs:build": "pnpm -F docs run build",
     "release": "pnpm -F vitepress-theme-mild run release && pnpm -F create-mild-theme run release",
     "release:cli": "pnpm -F create-mild-theme run release",
     "demo:preview": "pnpm -F demo run preview",

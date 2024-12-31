@@ -2,6 +2,7 @@
   "name": "vitepress-theme-mild",
   "type": "module",
   "version": "0.1.0",
+  "description": "Minimalist blog theme.",
   "author": {
     "name": "Hacxy",
     "email": "hacxy.js@outlook.com"
