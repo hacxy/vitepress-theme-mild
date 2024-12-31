@@ -47,8 +47,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            mkdir -p /${{secrets.TEST_SSH_USERNAME}}/Projects/vitepress-theme-mild
-            rm -rf /${{secrets.SSH_USERNAME}}/Projects/vitepress-theme-mild/*
-            cp -rf /${{secrets.SSH_USERNAME}}/Projects/.vitepress-theme-mild_temp/*  /${{secrets.SSH_USERNAME}}/Projects/vitepress-theme-mild/
-            rm -rf /${{secrets.SSH_USERNAME}}/Projects/.vitepress-theme-mild_temp
+            mkdir -p ~/Projects/vitepress-theme-mild
+            rm -rf ~/Projects/vitepress-theme-mild/*
+            cp -rf ~/Projects/.vitepress-theme-mild_temp/*  ~/Projects/vitepress-theme-mild/
+            rm -rf ~/Projects/.vitepress-theme-mild_temp
       - run: echo "部署完成！"
