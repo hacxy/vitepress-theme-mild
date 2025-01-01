@@ -65,13 +65,17 @@ router.onBeforeRouteChange = to => {
   }
   .n-pagination-item {
     color: var(--vp-c-text-2);
+    border-radius: 8px;
   }
   .n-pagination-item--active {
-    border-color: var(--vp-c-text-1) !important;
-    color: var(--vp-c-text-1) !important;
+    border-color: var(--vp-c-brand-1) !important;
+    color: var(--vp-c-brand-1) !important;
   }
   .n-pagination-item:hover {
     color: var(--vp-c-text-1);
+  }
+  .n-pagination-item--button:hover {
+    color: var(--vp-c-text-1) !important;
   }
 }
 

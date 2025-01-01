@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
-import { computed } from 'vue';
+import { useSidebar } from '../hooks/useSidebar';
 
 const { theme, frontmatter } = useData();
-const hasSidebar = computed(() => {
-  return !!frontmatter.value.category;
-});
+const { hasSidebar } = useSidebar();
 </script>
 
 <template>

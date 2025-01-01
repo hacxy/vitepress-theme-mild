@@ -6,7 +6,7 @@ name: asd
 sticky: 2
 ---
 
-# demo2
+# demo2测试分类标题换行
 
 这篇文章写的不戳
 

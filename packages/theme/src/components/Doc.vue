@@ -5,14 +5,17 @@ import VPDocFooter from 'vitepress/dist/client/theme-default/components/VPDocFoo
 import { useSidebar } from 'vitepress/theme';
 import { computed } from 'vue';
 
-const { theme, frontmatter } = useData();
+const { theme } = useData();
 
 const route = useRoute();
-const { hasAside, leftAside } = useSidebar();
+const { hasAside, leftAside, hasSidebar } = useSidebar();
+// console.log(hasAside.value, leftAside.value);
+// const hasAside = ref(true);
+// const leftAside = ref(false);
 
-const hasSidebar = computed(() => {
-  return !!frontmatter.value.category;
-});
+// const hasSidebar = computed(() => {
+//   return !!frontmatter.value.category;
+// });
 
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, '')

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
-import { NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
+import { NIcon, NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
@@ -42,7 +42,6 @@ const router = useRouter();
         >
           <n-thing
             :title="article.title"
-            :title-extra="article.category"
             :description="article.description"
           >
             <div class="VMArticleInfo">
@@ -72,6 +71,17 @@ const router = useRouter();
                   >
                     {{ tag }}
                   </n-tag>
+                  <div v-if="article.category" class="VMArticleCategory">
+                    <n-icon>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                      ><path fill="currentColor" fill-rule="evenodd" d="M4 4h5v5H4zm-2 7V2h9v9zm2 4h5v5H4zm-2 7v-9h9v9zM20 4h-5v5h5zm-7-2v9h9V2zm2 13h5v5h-5zm-2 7v-9h9v9z" /></svg>
+                    </n-icon>
+                    {{ article.category }}
+                  </div>
                 </n-space>
               </div>
             </div>
@@ -80,7 +90,7 @@ const router = useRouter();
       </template>
       <template v-else>
         <div class="VMEmpty">
-          还没有文章, 快去创作吧~
+          暂无文章...
         </div>
       </template>
     </n-list>
@@ -125,13 +135,21 @@ const router = useRouter();
       }
     }
     .VMArticleInfoRight {
+      .VMArticleCategory {
+        display: flex;
+        align-items: center;
+        color: var(--vp-c-text-2);
+        font-style: italic;
+        :deep(.n-icon) {
+          margin-right: 4px;
+        }
+      }
       :deep(.n-tag) {
         background-color: var(--vp-c-brand-1);
         color: var(--vp-c-default-1);
       }
     }
   }
-
   .VMEmpty {
     color: var(--vp-c-text-2);
     text-align: center;
@@ -159,6 +177,7 @@ const router = useRouter();
       color: var(--vp-c-text-1);
       font-style: italic;
     }
+
     .n-thing-main__description {
       color: var(--vp-c-text-2);
     }

@@ -6,6 +6,7 @@ export default linter({
     'regexp/no-unused-capturing-group': 0,
     'no-restricted-globals': 0,
     'vue/custom-event-name-casing': 0,
+    'no-undefined': 0,
     'complexity': [2, 20]
   },
   ignores: [

@@ -3,13 +3,11 @@ import { useData } from 'vitepress';
 import VPHome from 'vitepress/dist/client/theme-default/components/VPHome.vue';
 import VPPage from 'vitepress/dist/client/theme-default/components/VPPage.vue';
 import NotFound from 'vitepress/dist/client/theme-default/NotFound.vue';
-import { computed } from 'vue';
+import { useSidebar } from '../hooks/useSidebar';
 import VPDoc from './Doc.vue';
 
 const { page, frontmatter } = useData();
-const hasSidebar = computed(() => {
-  return !!frontmatter.value.category;
-});
+const { hasSidebar } = useSidebar();
 </script>
 
 <template>
