@@ -4,6 +4,13 @@ import { NOT_ARTICLE_LAYOUTS } from '../constants';
 import { getTextDescription } from '../utils/common';
 import { createArticlesListLoader } from '../utils/node/articles';
 
+export interface SidebarFrontmatter {
+  text?: string
+  collapsed?: boolean
+  order?: number
+  title?: string
+}
+
 export interface ArticlesData {
   title: string
   path: string
@@ -14,6 +21,7 @@ export interface ArticlesData {
   minutes: number
   category: string
   order: number
+  sidebar: boolean | SidebarFrontmatter
 }
 
 export default createArticlesListLoader({

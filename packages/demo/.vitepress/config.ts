@@ -17,6 +17,11 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
-    ]
+    ],
+    footer: {
+      message: 'MIT Licensed',
+      copyright:
+        'Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
+    },
   }
 });

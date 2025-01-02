@@ -7,9 +7,10 @@ import VPNavBarHamburger from 'vitepress/dist/client/theme-default/components/VP
 import VPNavBarMenu from 'vitepress/dist/client/theme-default/components/VPNavBarMenu.vue';
 import VPNavBarSearch from 'vitepress/dist/client/theme-default/components/VPNavBarSearch.vue';
 import VPNavBarSocialLinks from 'vitepress/dist/client/theme-default/components/VPNavBarSocialLinks.vue';
-import VPNavBarTitle from 'vitepress/dist/client/theme-default/components/VPNavBarTitle.vue';
 import VPNavBarTranslations from 'vitepress/dist/client/theme-default/components/VPNavBarTranslations.vue';
-import { computed, ref, watchPostEffect } from 'vue';
+import { ref, watchPostEffect } from 'vue';
+import { useSidebar } from '../hooks/useSidebar';
+import VPNavBarTitle from './NavBarTitle.vue';
 
 const props = defineProps<{
   isScreenOpen: boolean
@@ -21,10 +22,7 @@ defineEmits<{
 
 const { y } = useWindowScroll();
 const { frontmatter } = useData();
-
-const hasSidebar = computed(() => {
-  return !!frontmatter.value.category;
-});
+const { hasSidebar } = useSidebar();
 
 const classes = ref<Record<string, boolean>>({});
 

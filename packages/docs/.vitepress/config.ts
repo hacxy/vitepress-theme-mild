@@ -1,10 +1,10 @@
 import { defineConfig } from 'vitepress';
-import { defineThemeConfig } from 'vitepress-theme-mild/config';
+import { themeConfig } from 'vitepress-theme-mild/config';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'VitePress Mild Theme',
   description: '简约风格的博客主题',
-  extends: defineThemeConfig(),
+  extends: themeConfig,
   lang: 'zh',
   appearance: 'dark',
   themeConfig: {

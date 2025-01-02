@@ -2,7 +2,7 @@
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 import { useArticleData } from '../hooks/useArticleData';
 import { paginate } from '../utils/client/article';
@@ -30,6 +30,9 @@ watchEffect(() => {
     currentPage.value = 1;
   }
   params.pageNum = String(currentPage.value);
+});
+
+watch(currentPage, () => {
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
 

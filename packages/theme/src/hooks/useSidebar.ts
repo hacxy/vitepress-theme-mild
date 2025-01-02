@@ -1,6 +1,7 @@
+import type { Ref } from 'vue';
 import { useMediaQuery } from '@vueuse/core';
 import { useData } from 'vitepress';
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue';
 import { getSidebar, getSidebarGroups } from '../utils/client/sidebar';
 
 export function useSidebar() {
@@ -77,4 +78,32 @@ export function useSidebar() {
     close,
     toggle
   };
+}
+
+export function useCloseSidebarOnEscape(
+  isOpen: Ref<boolean>,
+  close: () => void
+) {
+  let triggerElement: HTMLButtonElement | undefined;
+
+  watchEffect(() => {
+    triggerElement = isOpen.value
+      ? (document.activeElement as HTMLButtonElement)
+      : undefined;
+  });
+
+  onMounted(() => {
+    window.addEventListener('keyup', onEscape);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener('keyup', onEscape);
+  });
+
+  function onEscape(e: KeyboardEvent) {
+    if (e.key === 'Escape' && isOpen.value) {
+      close();
+      triggerElement?.focus();
+    }
+  }
 }

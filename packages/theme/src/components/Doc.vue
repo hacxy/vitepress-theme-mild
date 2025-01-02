@@ -1,22 +1,14 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
 import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAside.vue';
-import VPDocFooter from 'vitepress/dist/client/theme-default/components/VPDocFooter.vue';
-import { useSidebar } from 'vitepress/theme';
 import { computed } from 'vue';
+import { useSidebar } from '../hooks/useSidebar';
+import VPDocFooter from './DocFooter.vue';
 
 const { theme } = useData();
 
 const route = useRoute();
 const { hasAside, leftAside, hasSidebar } = useSidebar();
-// console.log(hasAside.value, leftAside.value);
-// const hasAside = ref(true);
-// const leftAside = ref(false);
-
-// const hasSidebar = computed(() => {
-//   return !!frontmatter.value.category;
-// });
-
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, '')
 );

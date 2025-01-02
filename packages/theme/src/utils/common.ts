@@ -67,3 +67,28 @@ function normalize(path: string): string {
 export function ensureStartingSlash(path: string): string {
   return /^\//.test(path) ? path : `/${path}`;
 }
+
+export function isPlainObject(obj: any) {
+  // 首先排除 null 和非对象类型
+  if (obj === null || typeof obj !== 'object') {
+    return false;
+  }
+
+  // 检查对象的构造函数是否是 Object
+  if (obj.constructor !== Object) {
+    return false;
+  }
+
+  // 检查对象的原型是否是 Object.prototype
+  if (Object.getPrototypeOf(obj) !== Object.prototype) {
+    return false;
+  }
+
+  return true;
+}
+
+export function capitalizeFirstLetter(string: string) {
+  if (!string)
+    return ''; // 如果字符串为空，返回空字符串
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
