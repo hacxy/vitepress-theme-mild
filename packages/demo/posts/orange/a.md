@@ -1,4 +1,4 @@
 ---
 sidebar:
-  order: 9
+  order: 99
 ---

@@ -33,20 +33,17 @@ export function getSidebar(
   }
 
   path = ensureStartingSlash(path);
-  // console.log(path);
   const dir = Object.keys(_sidebar as DefaultTheme.SidebarMulti)
     .sort((a, b) => {
       return b.split('/').length - a.split('/').length;
     })
     .find(dir => {
-      // console.log(ensureStartingSlash(dir));
-      // make sure the multi sidebar key starts with slash too
       return path.startsWith(ensureStartingSlash(dir));
     });
 
   let sidebar = dir ? _sidebar![dir] : [];
   if (sidebar === 'auto') {
-    sidebar = handleDirSidebar(dir || '');
+    sidebar = handleDirSidebar(data, dir || '');
   }
 
   return Array.isArray(sidebar)
@@ -139,13 +136,13 @@ function addBase(items: SidebarItem[], _base?: string): SidebarItem[] {
   }
 }
 
-export function handleDirSidebar(prefix: string): SidebarItem[] {
-  let sidebar: SidebarItem[] = [];
+export function handleDirSidebar(articleData: ArticlesData[], prefix: string): SidebarItem[] {
+  let sidebar: (SidebarItem & { order: number })[] = [];
   const unstructured: ArticlesData[] = [];
   const structured: ArticlesData[] = [];
 
-  data.forEach(item => {
-    if (item.sidebar !== false && item.path.startsWith(prefix)) {
+  articleData.forEach(item => {
+    if (item.path.startsWith(prefix)) {
       if (item.path.replace(prefix, '').split('/').length === 1) {
         unstructured.push(item);
       }
@@ -155,42 +152,69 @@ export function handleDirSidebar(prefix: string): SidebarItem[] {
     }
   });
 
-  const finalUnstructured = unstructured.sort((a, b) => {
-    const aName = a.path.split('/').pop() || '';
-    const bName = b.path.split('/').pop() || '';
-    return aName.localeCompare(bName);
-  });
-
-  sidebar = finalUnstructured.map(item => {
+  unstructured.forEach(item => {
     let { sidebar: sidebarFrontmatter } = item;
-    if (typeof sidebarFrontmatter === 'boolean') {
-      sidebarFrontmatter = {};
+    if (sidebarFrontmatter !== false) {
+      if (sidebarFrontmatter === true) {
+        sidebarFrontmatter = {};
+      }
+      sidebar.push(
+        {
+          text: sidebarFrontmatter?.text || item.title,
+          link: item.path,
+          order: sidebarFrontmatter?.order || 0,
+        }
+      );
     }
-    return {
-      link: item.path,
-      text: sidebarFrontmatter?.text || item.title
-    };
   });
 
   const child = new Map<string, number>();
   structured.forEach(item => {
-    const dir = item.path.replace(prefix, '').split('/').shift();
-    if (dir && !child.has(dir)) {
-      const parts = item.path.replace(prefix, '').split('/');
-      const childPrefix = `${prefix}${parts.shift()}/`;
-      let parentInfo = structured.find(item => item.path === childPrefix)?.sidebar;
-      if (typeof parentInfo === 'boolean') {
-        parentInfo = {};
+    const { sidebar: sidebarFrontmatter } = item;
+    if (sidebarFrontmatter !== false) {
+      const dir = item.path.replace(prefix, '').split('/').shift();
+      if (dir && !child.has(dir)) {
+        const parts = item.path.replace(prefix, '').split('/');
+        const childPrefix = `${prefix}${parts.shift()}/`;
+
+        let parentInfo = structured.find(item => item.path === childPrefix)?.sidebar;
+        if (typeof parentInfo === 'boolean') {
+          parentInfo = {};
+        }
+        if (!parentInfo?.hide) {
+          sidebar.unshift({
+            ...parentInfo,
+            order: parentInfo?.order || 0,
+            text: parentInfo?.title || capitalizeFirstLetter(dir),
+            items: handleDirSidebar(structured, childPrefix)
+          });
+        }
+        child.set(dir, 1);
       }
-      sidebar.push({
-        ...parentInfo,
-        text: parentInfo?.title || capitalizeFirstLetter(dir),
-        items: handleDirSidebar(childPrefix)
-      });
-      child.set(dir, 1);
     }
   });
 
+  sidebar = sidebar.sort((a, b) => {
+    const aEndsWithHtml = a?.link?.endsWith('.html');
+    const bEndsWithHtml = b?.link?.endsWith('.html');
+
+    // 1. 先判断是否以 '.html' 结尾，将不以 '.html' 结尾的置顶
+    if (aEndsWithHtml && !bEndsWithHtml) {
+      return 1;
+    }
+    else if (!aEndsWithHtml && bEndsWithHtml) {
+      return -1;
+    }
+
+    if (a.order !== b.order) {
+      return b.order - a.order;
+    }
+    else {
+      const aName = a.text || '';
+      const bName = b.text || '';
+      return aName.localeCompare(bName);
+    }
+  });
   return sidebar;
 }
 
