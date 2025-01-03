@@ -28,7 +28,7 @@ export function getSidebar(
     return addBase(_sidebar);
   }
 
-  if (_sidebar === null) {
+  if (!_sidebar) {
     return [];
   }
 
@@ -153,7 +153,9 @@ interface FileNode {
   order: number
 }
 
-function handleSidebarFrontmatter(data: SidebarFrontmatter | boolean): SidebarFrontmatter {
+function handleSidebarFrontmatter(data?: SidebarFrontmatter | boolean): SidebarFrontmatter {
+  if (!data)
+    return {};
   if (typeof data === 'boolean') {
     return {};
   }
@@ -193,22 +195,12 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
     isRoot: !!rootInfo,
     order: rootSidebarFrontmatter?.order || 0
   };
-  // if (rootInfo) {
-  //   const text = rootSidebarFrontmatter?.text || rootInfo.title || '';
-  //   root.items?.push({
-  //     name: text,
-  //     fullPath: rootPath,
-  //     text,
-  //     link: rootPath,
-  //     order: 0
-  //   });
-  // }
   data.forEach(({ path, sidebar, title }) => {
     if (!path.startsWith(rootPath)) {
       return;
     }
     const sidebarFrontmatter = handleSidebarFrontmatter(sidebar);
-    const childName = sidebarFrontmatter?.text || title;
+    const childText = sidebarFrontmatter?.text || title;
     const relativePath = path.slice(rootPath.length);
     const segments = relativePath.split('/').filter(Boolean);
     let current = root;
@@ -223,9 +215,10 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
         const isDirectory = path.endsWith('/') || index < segments.length - 1;
         const fullPath = `${rootPath}${segments.slice(0, index + 1).join('/')}${isDirectory ? '/' : ''}`;
         const rootInfo = articleData.find(item => item.path === fullPath);
+        const rootSidebarFront = handleSidebarFrontmatter(rootInfo?.sidebar);
         const isRoot = isDirectory && !!(rootInfo);
         node = {
-          text: childName,
+          text: isRoot ? (rootSidebarFront?.title || childText) : childText,
           name: segment,
           fullPath,
           isRoot,
@@ -253,6 +246,5 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
       current = node;
     });
   });
-  // console.log(root);
   return root.isRoot ? root : root.items || [];
 }

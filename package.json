@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "pnpm -r run lint",
-    "lint:fix": "pnpm -r run lint",
+    "lint:fix": "pnpm -r run lint:fix",
     "dev": "pnpm -F vitepress-theme-mild run dev",
     "cli:dev": "pnpm -F create-mild-theme run dev",
     "demo:dev": "pnpm -F demo run dev",

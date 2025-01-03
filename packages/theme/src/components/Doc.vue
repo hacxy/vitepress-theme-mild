@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
-import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAside.vue';
 import { computed } from 'vue';
 import { useSidebar } from '../hooks/useSidebar';
+import VPDocAside from './DocAside.vue';
 import VPDocFooter from './DocFooter.vue';
 
 const { theme } = useData();
@@ -25,7 +25,7 @@ const pageName = computed(() =>
         <div class="aside-curtain" />
         <div class="aside-container">
           <div class="aside-content">
-            <v-p-doc-aside>
+            <VPDocAside>
               <template #aside-top>
                 <slot name="aside-top" />
               </template>
@@ -44,7 +44,7 @@ const pageName = computed(() =>
               <template #aside-ads-after>
                 <slot name="aside-ads-after" />
               </template>
-            </v-p-doc-aside>
+            </VPDocAside>
           </div>
         </div>
       </div>
@@ -71,11 +71,11 @@ const pageName = computed(() =>
               ]"
             />
           </main>
-          <v-p-doc-footer>
+          <VPDocFooter>
             <template #doc-footer-before>
               <slot name="doc-footer-before" />
             </template>
-          </v-p-doc-footer>
+          </VPDocFooter>
           <slot name="doc-after" />
         </div>
       </div>

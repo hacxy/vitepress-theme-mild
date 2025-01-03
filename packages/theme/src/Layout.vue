@@ -68,9 +68,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 <template>
   <div v-if="frontmatter.layout !== false" class="Layout VMLayout" :class="frontmatter.pageClass">
     <slot name="layout-top" />
-    <v-p-skip-link />
-    <v-p-backdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
-    <v-p-nav>
+    <VPSkipLink />
+    <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
+    <VPNav>
       <template #nav-bar-title-before>
         <slot name="nav-bar-title-before" />
       </template>
@@ -89,17 +89,17 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       <template #nav-screen-content-after>
         <slot name="nav-screen-content-after" />
       </template>
-    </v-p-nav>
-    <local-nav :open="isSidebarOpen" @open-menu="openSidebar" />
+    </VPNav>
+    <LocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
 
-    <sidebar :open="isSidebarOpen">
+    <Sidebar :open="isSidebarOpen">
       <template #sidebar-nav-before>
         <slot name="sidebar-nav-before" />
       </template>
       <template #sidebar-nav-after>
         <slot name="sidebar-nav-after" />
       </template>
-    </sidebar>
+    </Sidebar>
 
     <content>
       <template #page-top>
@@ -176,7 +176,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
       </template>
     </content>
 
-    <v-m-footer />
+    <VMFooter />
     <slot name="layout-bottom" />
   </div>
   <content v-else />

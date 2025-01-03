@@ -92,3 +92,21 @@ export function capitalizeFirstLetter(string: string) {
     return ''; // 如果字符串为空，返回空字符串
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function throttleAndDebounce(fn: () => void, delay: number): () => void {
+  let timeoutId: NodeJS.Timeout;
+  let called = false;
+
+  return () => {
+    if (timeoutId)
+      clearTimeout(timeoutId);
+
+    if (!called) {
+      fn()
+      ;(called = true) && setTimeout(() => (called = false), delay);
+    }
+    else {
+      timeoutId = setTimeout(fn, delay);
+    }
+  };
+}

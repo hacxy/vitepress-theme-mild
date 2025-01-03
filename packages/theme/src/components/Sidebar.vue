@@ -59,7 +59,7 @@ watch(
       </span>
 
       <slot name="sidebar-nav-before" />
-      <v-p-sidebar-group :key="key" :items="sidebarGroups" />
+      <VPSidebarGroup :key="key" :items="sidebarGroups" />
       <slot name="sidebar-nav-after" />
     </nav>
   </aside>

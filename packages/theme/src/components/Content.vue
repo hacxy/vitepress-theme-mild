@@ -20,19 +20,19 @@ const { hasSidebar } = useSidebar();
     }"
   >
     <slot v-if="page.isNotFound" name="not-found">
-      <not-found />
+      <NotFound />
     </slot>
 
-    <v-p-page v-else-if="frontmatter.layout === 'page'">
+    <VPPage v-else-if="frontmatter.layout === 'page'">
       <template #page-top>
         <slot name="page-top" />
       </template>
       <template #page-bottom>
         <slot name="page-bottom" />
       </template>
-    </v-p-page>
+    </VPPage>
 
-    <v-p-home v-else-if="frontmatter.layout === 'home'">
+    <VPHome v-else-if="frontmatter.layout === 'home'">
       <template #home-hero-before>
         <slot name="home-hero-before" />
       </template>
@@ -60,14 +60,14 @@ const { hasSidebar } = useSidebar();
       <template #home-features-after>
         <slot name="home-features-after" />
       </template>
-    </v-p-home>
+    </VPHome>
 
     <component
       :is="frontmatter.layout"
       v-else-if="frontmatter.layout && frontmatter.layout !== 'doc'"
     />
 
-    <v-p-doc v-else>
+    <VPDoc v-else>
       <template #doc-top>
         <slot name="doc-top" />
       </template>
@@ -103,7 +103,7 @@ const { hasSidebar } = useSidebar();
       <template #aside-bottom>
         <slot name="aside-bottom" />
       </template>
-    </v-p-doc>
+    </VPDoc>
   </div>
 </template>
 

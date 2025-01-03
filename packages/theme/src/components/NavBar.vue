@@ -41,27 +41,27 @@ watchPostEffect(() => {
     <div class="wrapper">
       <div class="container">
         <div class="title">
-          <v-p-nav-bar-title>
+          <VPNavBarTitle>
             <template #nav-bar-title-before>
               <slot name="nav-bar-title-before" />
             </template>
             <template #nav-bar-title-after>
               <slot name="nav-bar-title-after" />
             </template>
-          </v-p-nav-bar-title>
+          </VPNavBarTitle>
         </div>
 
         <div class="content">
           <div class="content-body">
             <slot name="nav-bar-content-before" />
-            <v-p-nav-bar-search class="search" />
-            <v-p-nav-bar-menu class="menu" />
-            <v-p-nav-bar-translations class="translations" />
-            <v-p-nav-bar-appearance class="appearance" />
-            <v-p-nav-bar-social-links class="social-links" />
-            <v-p-nav-bar-extra class="extra" />
+            <VPNavBarSearch class="search" />
+            <VPNavBarMenu class="menu" />
+            <VPNavBarTranslations class="translations" />
+            <VPNavBarAppearance class="appearance" />
+            <VPNavBarSocialLinks class="social-links" />
+            <VPNavBarExtra class="extra" />
             <slot name="nav-bar-content-after" />
-            <v-p-nav-bar-hamburger class="hamburger" :active="isScreenOpen" @click="$emit('toggle-screen')" />
+            <VPNavBarHamburger class="hamburger" :active="isScreenOpen" @click="$emit('toggle-screen')" />
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ const target = computed(() =>
       :target="target"
     >
       <slot name="nav-bar-title-before" />
-      <v-p-image v-if="theme.logo" class="logo" :image="theme.logo" />
+      <VPImage v-if="theme.logo" class="logo" :image="theme.logo" />
       <span v-if="theme.siteTitle" v-html="theme.siteTitle" />
       <span v-else-if="theme.siteTitle === undefined">{{ site.title }}</span>
       <slot name="nav-bar-title-after" />

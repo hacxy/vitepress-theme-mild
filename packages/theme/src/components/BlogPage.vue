@@ -48,9 +48,9 @@ router.onBeforeRouteChange = to => {
   <div class="VMPage">
     <div class="VMContent VMBlogWrapper">
       <div class="VMArticlesListWrapper">
-        <articles-list :list-data="posts" :title="articleTitle" />
+        <ArticlesList :list-data="posts" :title="articleTitle" />
       </div>
-      <n-pagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
+      <NPagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
     </div>
   </div>
 </template>

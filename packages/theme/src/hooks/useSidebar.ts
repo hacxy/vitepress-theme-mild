@@ -34,8 +34,9 @@ export function useSidebar() {
   const hasAside = computed(() => {
     if (frontmatter.value.layout === 'home')
       return false;
-    if (frontmatter.value.aside !== null)
+    if (frontmatter.value.aside !== undefined && frontmatter.value.aside !== null)
       return !!frontmatter.value.aside;
+
     return theme.value.aside !== false;
   });
 

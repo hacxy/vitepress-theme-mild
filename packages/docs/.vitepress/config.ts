@@ -1,7 +1,8 @@
-import { defineConfig } from 'vitepress';
+import type { ThemeConfig } from 'vitepress-theme-mild/config';
+import { defineConfigWithTheme } from 'vitepress';
 import { themeConfig } from 'vitepress-theme-mild/config';
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
   title: 'VitePress Mild Theme',
   description: '简约风格的博客主题',
   extends: themeConfig,
@@ -24,6 +25,12 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
     ],
+    outline: [
+      2, 4
+    ],
+    sidebar: {
+      '/guide/': 'auto'
+    },
     footer: {
       message: 'MIT Licensed',
       copyright:

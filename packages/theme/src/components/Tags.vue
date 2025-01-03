@@ -40,7 +40,7 @@ function toggleTag(tag: string) {
             {{ tag.name }} <strong>({{ tag.articles.length }})</strong>
           </span>
         </div>
-        <articles-list :list-data="currentArticle" :title="selectTag" />
+        <ArticlesList :list-data="currentArticle" :title="selectTag" />
       </div>
       <div v-else class="empty">
         空空如也~

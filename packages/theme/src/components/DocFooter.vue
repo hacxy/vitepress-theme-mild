@@ -30,14 +30,14 @@ const showFooter = computed(
 
     <div v-if="hasEditLink || hasLastUpdated" class="edit-info">
       <div v-if="hasEditLink" class="edit-link">
-        <v-p-link class="edit-link-button" :href="editLink.url" :no-icon="true">
+        <VPLink class="edit-link-button" :href="editLink.url" :no-icon="true">
           <span class="vpi-square-pen edit-link-icon" />
           {{ editLink.text }}
-        </v-p-link>
+        </VPLink>
       </div>
 
       <div v-if="hasLastUpdated" class="last-updated">
-        <v-p-doc-footer-last-updated />
+        <VPDocFooterLastUpdated />
       </div>
     </div>
 
@@ -49,7 +49,7 @@ const showFooter = computed(
       <span id="doc-footer-aria-label" class="visually-hidden">Pager</span>
 
       <div class="pager">
-        <v-p-link
+        <VPLink
           v-if="control.prev?.link"
           class="pager-link prev"
           :href="control.prev.link"
@@ -59,10 +59,10 @@ const showFooter = computed(
             v-html="theme.docFooter?.prev || 'Previous page'"
           />
           <span class="title" v-html="control.prev.text" />
-        </v-p-link>
+        </VPLink>
       </div>
       <div class="pager">
-        <v-p-link
+        <VPLink
           v-if="control.next?.link"
           class="pager-link next"
           :href="control.next.link"
@@ -72,7 +72,7 @@ const showFooter = computed(
             v-html="theme.docFooter?.next || 'Next page'"
           />
           <span class="title" v-html="control.next.text" />
-        </v-p-link>
+        </VPLink>
       </div>
     </nav>
   </footer>
