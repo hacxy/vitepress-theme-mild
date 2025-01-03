@@ -1,11 +1,11 @@
-import type { ThemeConfig } from 'vitepress-theme-mild/config';
+import type { ThemeConfig } from 'vitepress-theme-mild';
 import { defineConfigWithTheme } from 'vitepress';
-import { themeConfig } from 'vitepress-theme-mild/config';
+import baseConfig from 'vitepress-theme-mild/config';
 
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'Hacxy\'s blog',
   description: 'A VitePress Site',
-  extends: themeConfig,
+  extends: baseConfig,
   themeConfig: {
     logo: '/cat-typing.gif',
     nav: [

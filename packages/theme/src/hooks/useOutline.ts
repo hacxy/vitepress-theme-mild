@@ -206,7 +206,7 @@ export function useActiveAnchor(
     else {
       nextTick(() => {
         marker.value && (marker.value.style.top = '33px');
-        marker.value.style.opacity = '0';
+        marker.value && (marker.value.style.opacity = '0');
       });
     }
   }

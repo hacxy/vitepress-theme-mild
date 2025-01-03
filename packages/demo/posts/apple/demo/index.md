@@ -1,8 +1,5 @@
 ---
-sidebar:
-  title: test demo
-  text: demo index
-  collapsed: true
+sidebar: false
 ---
 
 # demo-index

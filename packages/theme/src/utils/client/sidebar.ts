@@ -137,8 +137,33 @@ function addBase(items: SidebarItem[], _base?: string): SidebarItem[] {
 }
 
 export function handleDirSidebar(articleData: ArticlesData[], prefix: string): SidebarItem[] {
-  const sidebarArticleData = articleData.filter(item => item.sidebar !== false && item.path.startsWith(prefix));
-  const fileTree = buildFileTree(sidebarArticleData, prefix);
+  const effectiveArticleData: ArticlesData[] = [];
+  const excludes: string[] = [];
+  let finalArticleData: ArticlesData[] = [];
+  articleData.forEach(item => {
+    if (item.path.startsWith(prefix)) {
+      if (item.sidebar === false && item.path.endsWith('/')) {
+        excludes.push(item.path);
+      }
+      if (item.sidebar !== false) {
+        effectiveArticleData.push({ ...item, path: appendIndexHtml(item.path) });
+      }
+    }
+  });
+
+  if (excludes.length) {
+    effectiveArticleData.forEach(item => {
+      excludes.forEach(path => {
+        if (!item.path.startsWith(path)) {
+          finalArticleData.push(item);
+        }
+      });
+    });
+  }
+  else {
+    finalArticleData = effectiveArticleData;
+  }
+  const fileTree = buildFileTree(finalArticleData, prefix);
   return Array.isArray(fileTree) ? fileTree : [fileTree];
 }
 
@@ -179,8 +204,7 @@ function restorePath(path: string): string {
 
 function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): FileNode | FileNode[] {
   rootPath = `${rootPath.replace(/\/+$/, '')}/`;
-  const data = articleData.map(item => ({ ...item, path: appendIndexHtml(item.path) }));
-  const rootInfo = articleData.find(item => item.path === rootPath);
+  const rootInfo = articleData.find(item => restorePath(item.path) === rootPath);
   let rootSidebarFrontmatter: SidebarFrontmatter = {};
   if (rootInfo) {
     rootSidebarFrontmatter = handleSidebarFrontmatter(rootInfo.sidebar);
@@ -195,7 +219,7 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
     isRoot: !!rootInfo,
     order: rootSidebarFrontmatter?.order || 0
   };
-  data.forEach(({ path, sidebar, title }) => {
+  articleData.forEach(({ path, sidebar, title }) => {
     if (!path.startsWith(rootPath)) {
       return;
     }
@@ -214,11 +238,18 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
       if (!node) {
         const isDirectory = path.endsWith('/') || index < segments.length - 1;
         const fullPath = `${rootPath}${segments.slice(0, index + 1).join('/')}${isDirectory ? '/' : ''}`;
-        const rootInfo = articleData.find(item => item.path === fullPath);
+        const rootInfo = articleData.find(item => restorePath(item.path) === fullPath);
         const rootSidebarFront = handleSidebarFrontmatter(rootInfo?.sidebar);
         const isRoot = isDirectory && !!(rootInfo);
+        let text = segment;
+        if (isRoot) {
+          text = rootSidebarFront?.title || segment;
+        }
+        if (!isRoot && !isDirectory) {
+          text = childText;
+        }
         node = {
-          text: isRoot ? (rootSidebarFront?.title || segment) : childText,
+          text,
           name: segment,
           fullPath,
           isRoot,

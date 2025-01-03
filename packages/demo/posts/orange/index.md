@@ -1,5 +1,6 @@
 ---
 sidebar:
+  title: Orange Title
   order: 99
 ---
 
