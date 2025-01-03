@@ -1,4 +1,3 @@
-import type { VitePressPluginTwoslashOptions } from '@shikijs/vitepress-twoslash';
 import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
@@ -6,26 +5,7 @@ import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-i
 import { NOT_ARTICLE_LAYOUTS } from './src/constants';
 import { imgToImage, insertDocsHeaderInfo } from './src/utils/node/markdown';
 
-export interface SidebarAutoMulti {
-  [path: string]: 'auto'
-}
-
-export interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
-  sidebar?: DefaultTheme.Sidebar | SidebarAutoMulti
-  /**
-   * Is the progress bar enabled
-   * @default true
-   */
-  progressBar?: boolean
-
-  /**
-   * Typescript Twoslash
-   * @default true
-   */
-  twoslash?: false | VitePressPluginTwoslashOptions
-}
-
-export const themeConfig: RawConfigExports<DefaultTheme.Config> = {
+const baseConfig: RawConfigExports<DefaultTheme.Config> = {
   markdown: {
     config(md) {
       md.use(imgToImage);
@@ -68,3 +48,4 @@ export const themeConfig: RawConfigExports<DefaultTheme.Config> = {
     },
   }
 };
+export default baseConfig;

@@ -1,6 +1,6 @@
 import type { DefaultTheme } from 'vitepress/theme';
 import { getScrollOffset } from 'vitepress';
-import { onMounted, onUnmounted, onUpdated, type Ref } from 'vue';
+import { nextTick, onMounted, onUnmounted, onUpdated, type Ref } from 'vue';
 import { throttleAndDebounce } from '../utils/common';
 import { useAside } from './useAside';
 
@@ -196,15 +196,18 @@ export function useActiveAnchor(
     }
 
     const activeLink = prevActiveLink;
-
     if (activeLink) {
-      activeLink.classList.add('active');
-      marker.value.style.top = `${activeLink.offsetTop + 39}px`;
-      marker.value.style.opacity = '1';
+      nextTick(() => {
+        activeLink.classList.add('active');
+        marker.value.style.top = `${activeLink.offsetTop + 39}px`;
+        marker.value.style.opacity = '1';
+      });
     }
     else {
-      marker.value.style.top = '33px';
-      marker.value.style.opacity = '0';
+      nextTick(() => {
+        marker.value && (marker.value.style.top = '33px');
+        marker.value.style.opacity = '0';
+      });
     }
   }
 }

@@ -155,9 +155,9 @@ interface FileNode {
 
 function handleSidebarFrontmatter(data?: SidebarFrontmatter | boolean): SidebarFrontmatter {
   if (!data)
-    return {};
+    return { order: 0 };
   if (typeof data === 'boolean') {
-    return {};
+    return { order: 0 };
   }
   else {
     return data;
@@ -218,11 +218,11 @@ function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): Fil
         const rootSidebarFront = handleSidebarFrontmatter(rootInfo?.sidebar);
         const isRoot = isDirectory && !!(rootInfo);
         node = {
-          text: isRoot ? (rootSidebarFront?.title || childText) : childText,
+          text: isRoot ? (rootSidebarFront?.title || segment) : childText,
           name: segment,
           fullPath,
           isRoot,
-          order: sidebarFrontmatter?.order || 0,
+          order: isRoot ? rootSidebarFront?.order || 0 : sidebarFrontmatter?.order || 0,
           link: path.endsWith(segment) ? restorePath(fullPath) : undefined,
           items: path.endsWith(segment) ? undefined : []
         };

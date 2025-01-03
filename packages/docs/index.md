@@ -4,27 +4,30 @@ layout: home
 features:
   - icon: 📦
     title: 开箱即用
-    details: 默认提供丰富的能力, 让您更专注于内容创作
+    details: 开箱即用, 扩展默认主题配置创造更多可能
   - icon: 🌈
-    title: 风格简约
-    details: 基于VitePress默认主题, 保持其简约风格
-  - icon: 💡
-    title: 配置简单
-    details: 统一配置入口, 支持热插拔
+    title: 博客布局
+    details: 提供简约风格的博客布局, 文章列表实时热更新
+  - icon: 📖
+    title: 文档能力
+    details: 更丰富的markdown能力, 例如图片预览
+  - icon: ✨
+    title: 提升效率
+    details: 提供自动扫描文件目录生成侧边栏选项, 状态实时热更新
 hero:
   name: VitePress Theme Mild
-  text: VitePress简约风格博客主题
-  tagline: 开箱即用, 三分钟快速搭建个人博客
+  text: 使用简单且能力丰富的 VitePress 主题
+  tagline: 基于默认主题并扩展增强能力
   image:
     src: /logo.png
     alt: VitePress
   actions:
     - theme: brand
-      text: 快速开始
+      text: 介绍
       link: /guide/introduction/
-    - theme: alt
-      text: 指南
-      link: https://github.com/hacxy/vitepress-theme-mild
+    - theme: brand
+      text: 快速开始
+      link: /guide/introduction/quick-start
 ---
 
 <style>

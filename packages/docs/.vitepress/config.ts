@@ -1,11 +1,11 @@
-import type { ThemeConfig } from 'vitepress-theme-mild/config';
+import type { ThemeConfig } from 'vitepress-theme-mild';
 import { defineConfigWithTheme } from 'vitepress';
-import { themeConfig } from 'vitepress-theme-mild/config';
-// https://vitepress.dev/reference/site-config
+import baseConfig from 'vitepress-theme-mild/config';
+
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'VitePress Mild Theme',
   description: '简约风格的博客主题',
-  extends: themeConfig,
+  extends: baseConfig,
   lang: 'zh',
   appearance: 'dark',
   themeConfig: {
@@ -21,12 +21,15 @@ export default defineConfigWithTheme<ThemeConfig>({
         }
       }
     },
-    nav: [],
+    nav: [
+      {
+        text: '指南',
+        link: '/guide/introduction/',
+        activeMatch: '/guide/'
+      }
+    ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
-    ],
-    outline: [
-      2, 4
     ],
     sidebar: {
       '/guide/': 'auto'
@@ -36,5 +39,5 @@ export default defineConfigWithTheme<ThemeConfig>({
       copyright:
         'Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
     },
-  }
+  },
 });
