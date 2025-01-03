@@ -13,6 +13,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       { text: 'Tags', link: '/pages/tags' }
     ],
     sidebar: {
+      '/posts/orange/': 'auto',
       '/posts/': 'auto'
     },
     socialLinks: [

@@ -1,7 +1,7 @@
 import type { DefaultTheme } from 'vitepress/theme';
-import type { ArticlesData } from '../../datas/articles.data';
+import type { ArticlesData, SidebarFrontmatter } from '../../datas/articles.data';
 import { data } from '../../datas/articles.data';
-import { capitalizeFirstLetter, ensureStartingSlash, isActive } from '../common';
+import { ensureStartingSlash, isActive } from '../common';
 
 export interface SidebarLink {
   text: string
@@ -137,84 +137,122 @@ function addBase(items: SidebarItem[], _base?: string): SidebarItem[] {
 }
 
 export function handleDirSidebar(articleData: ArticlesData[], prefix: string): SidebarItem[] {
-  let sidebar: (SidebarItem & { order: number })[] = [];
-  const unstructured: ArticlesData[] = [];
-  const structured: ArticlesData[] = [];
-
-  articleData.forEach(item => {
-    if (item.path.startsWith(prefix)) {
-      if (item.path.replace(prefix, '').split('/').length === 1) {
-        unstructured.push(item);
-      }
-      else {
-        structured.push(item);
-      }
-    }
-  });
-
-  unstructured.forEach(item => {
-    let { sidebar: sidebarFrontmatter } = item;
-    if (sidebarFrontmatter !== false) {
-      if (sidebarFrontmatter === true) {
-        sidebarFrontmatter = {};
-      }
-      sidebar.push(
-        {
-          text: sidebarFrontmatter?.text || item.title,
-          link: item.path,
-          order: sidebarFrontmatter?.order || 0,
-        }
-      );
-    }
-  });
-
-  const child = new Map<string, number>();
-  structured.forEach(item => {
-    const { sidebar: sidebarFrontmatter } = item;
-    if (sidebarFrontmatter !== false) {
-      const dir = item.path.replace(prefix, '').split('/').shift();
-      if (dir && !child.has(dir)) {
-        const parts = item.path.replace(prefix, '').split('/');
-        const childPrefix = `${prefix}${parts.shift()}/`;
-
-        let parentInfo = structured.find(item => item.path === childPrefix)?.sidebar;
-        if (typeof parentInfo === 'boolean') {
-          parentInfo = {};
-        }
-        if (!parentInfo?.hide) {
-          sidebar.unshift({
-            ...parentInfo,
-            order: parentInfo?.order || 0,
-            text: parentInfo?.title || capitalizeFirstLetter(dir),
-            items: handleDirSidebar(structured, childPrefix)
-          });
-        }
-        child.set(dir, 1);
-      }
-    }
-  });
-
-  sidebar = sidebar.sort((a, b) => {
-    const aEndsWithHtml = a?.link?.endsWith('.html');
-    const bEndsWithHtml = b?.link?.endsWith('.html');
-
-    // 1. 先判断是否以 '.html' 结尾，将不以 '.html' 结尾的置顶
-    if (aEndsWithHtml && !bEndsWithHtml) {
-      return 1;
-    }
-    else if (!aEndsWithHtml && bEndsWithHtml) {
-      return -1;
-    }
-
-    if (a.order !== b.order) {
-      return b.order - a.order;
-    }
-    else {
-      const aName = a.text || '';
-      const bName = b.text || '';
-      return aName.localeCompare(bName);
-    }
-  });
-  return sidebar;
+  const sidebarArticleData = articleData.filter(item => item.sidebar !== false && item.path.startsWith(prefix));
+  const fileTree = buildFileTree(sidebarArticleData, prefix);
+  return Array.isArray(fileTree) ? fileTree : [fileTree];
 }
 
+interface FileNode {
+  name: string
+  path?: string
+  fullPath: string
+  items?: FileNode[]
+  isRoot?: boolean
+  link?: string
+  text: string
+  order: number
+}
+
+function handleSidebarFrontmatter(data: SidebarFrontmatter | boolean): SidebarFrontmatter {
+  if (typeof data === 'boolean') {
+    return {};
+  }
+  else {
+    return data;
+  }
+}
+function appendIndexHtml(path: string): string {
+  if (path.endsWith('/')) {
+    return `${path}index.html`;
+  }
+  return path;
+}
+
+function restorePath(path: string): string {
+  if (path.endsWith('index.html')) {
+    return path.slice(0, -'index.html'.length);
+  }
+  return path;
+}
+
+function buildFileTree(articleData: ArticlesData[], rootPath: string = '/'): FileNode | FileNode[] {
+  rootPath = `${rootPath.replace(/\/+$/, '')}/`;
+  const data = articleData.map(item => ({ ...item, path: appendIndexHtml(item.path) }));
+  const rootInfo = articleData.find(item => item.path === rootPath);
+  let rootSidebarFrontmatter: SidebarFrontmatter = {};
+  if (rootInfo) {
+    rootSidebarFrontmatter = handleSidebarFrontmatter(rootInfo.sidebar);
+  }
+  const rootName = rootSidebarFrontmatter?.title || rootInfo?.title || '';
+  const root: FileNode = {
+    text: rootName,
+    name: rootName,
+    path: rootPath,
+    fullPath: rootPath,
+    items: [],
+    isRoot: !!rootInfo,
+    order: rootSidebarFrontmatter?.order || 0
+  };
+  // if (rootInfo) {
+  //   const text = rootSidebarFrontmatter?.text || rootInfo.title || '';
+  //   root.items?.push({
+  //     name: text,
+  //     fullPath: rootPath,
+  //     text,
+  //     link: rootPath,
+  //     order: 0
+  //   });
+  // }
+  data.forEach(({ path, sidebar, title }) => {
+    if (!path.startsWith(rootPath)) {
+      return;
+    }
+    const sidebarFrontmatter = handleSidebarFrontmatter(sidebar);
+    const childName = sidebarFrontmatter?.text || title;
+    const relativePath = path.slice(rootPath.length);
+    const segments = relativePath.split('/').filter(Boolean);
+    let current = root;
+
+    segments.forEach((segment, index) => {
+      if (!current.items) {
+        current.items = [];
+      }
+
+      let node = current.items.find(item => item.name === segment);
+      if (!node) {
+        const isDirectory = path.endsWith('/') || index < segments.length - 1;
+        const fullPath = `${rootPath}${segments.slice(0, index + 1).join('/')}${isDirectory ? '/' : ''}`;
+        const rootInfo = articleData.find(item => item.path === fullPath);
+        const isRoot = isDirectory && !!(rootInfo);
+        node = {
+          text: childName,
+          name: segment,
+          fullPath,
+          isRoot,
+          order: sidebarFrontmatter?.order || 0,
+          link: path.endsWith(segment) ? restorePath(fullPath) : undefined,
+          items: path.endsWith(segment) ? undefined : []
+        };
+        current.items.push(node);
+        current.items.sort((a, b) => {
+          const aIsDirectory = a.link?.endsWith('/');
+          const bIsDirectory = b.link?.endsWith('/');
+          if (bIsDirectory && !aIsDirectory) {
+            return 1;
+          }
+          else if (aIsDirectory && !bIsDirectory) {
+            return -1;
+          }
+          if (a.order !== b.order) {
+            return b.order - a.order;
+          }
+          return a.name.localeCompare(b.name);
+        });
+      }
+
+      current = node;
+    });
+  });
+  // console.log(root);
+  return root.isRoot ? root : root.items || [];
+}
