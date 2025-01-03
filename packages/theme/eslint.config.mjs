@@ -6,7 +6,11 @@ export default linter({
     'regexp/no-unused-capturing-group': 0,
     'no-restricted-globals': 0,
     'vue/custom-event-name-casing': 0,
-    'complexity': [2, 20]
+    'no-undefined': 0,
+    'complexity': [2, 20],
+    'max-params': [2, 4],
+    'vue/valid-v-slot': 0,
+    'vue/component-name-in-template-casing': ['error', 'PascalCase']
   },
   ignores: [
     'packages/demo/**/*',

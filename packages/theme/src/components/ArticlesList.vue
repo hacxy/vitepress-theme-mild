@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/articles.data.js';
-import { NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
+import { NIcon, NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
@@ -12,7 +12,7 @@ const router = useRouter();
 
 <template>
   <div class="VMListWrapper">
-    <n-list
+    <NList
       :hoverable="true"
       :clickable="true"
       :show-divider="false"
@@ -24,7 +24,7 @@ const router = useRouter();
       </template>
 
       <template v-if="props.listData">
-        <n-list-item
+        <NListItem
           v-for="(article, index) in props.listData"
           :key="article.path"
           v-motion
@@ -40,50 +40,60 @@ const router = useRouter();
           }"
           @click="router.go(article.path)"
         >
-          <n-thing
+          <NThing
             :title="article.title"
-            :title-extra="article.category"
             :description="article.description"
           >
             <div class="VMArticleInfo">
               <div class="VMArticleInfoLeft">
                 <div class="text">
-                  <icon-calendar />
+                  <IconCalendar />
                   <span>
-                    <n-time :time="article.date" format="yyyy-MM-dd" />
+                    <NTime :time="article.date" format="yyyy-MM-dd" />
                   </span>
                 </div>
                 <div class="text">
-                  <icon-words />
+                  <IconWords />
                   {{ article.words }} words
                 </div>
                 <div class="text">
-                  <icon-clock />
+                  <IconClock />
                   {{ article.minutes }} min
                 </div>
               </div>
               <div class="VMArticleInfoRight">
-                <n-space>
-                  <n-tag
+                <NSpace>
+                  <NTag
                     v-for="tag in article.tags"
                     :key="tag"
                     size="tiny"
                     :bordered="false"
                   >
                     {{ tag }}
-                  </n-tag>
-                </n-space>
+                  </NTag>
+                  <div v-if="article.category" class="VMArticleCategory">
+                    <NIcon>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                      ><path fill="currentColor" fill-rule="evenodd" d="M4 4h5v5H4zm-2 7V2h9v9zm2 4h5v5H4zm-2 7v-9h9v9zM20 4h-5v5h5zm-7-2v9h9V2zm2 13h5v5h-5zm-2 7v-9h9v9z" /></svg>
+                    </NIcon>
+                    {{ article.category }}
+                  </div>
+                </NSpace>
               </div>
             </div>
-          </n-thing>
-        </n-list-item>
+          </NThing>
+        </NListItem>
       </template>
       <template v-else>
         <div class="VMEmpty">
-          还没有文章, 快去创作吧~
+          暂无文章...
         </div>
       </template>
-    </n-list>
+    </NList>
   </div>
 </template>
 
@@ -125,13 +135,21 @@ const router = useRouter();
       }
     }
     .VMArticleInfoRight {
+      .VMArticleCategory {
+        display: flex;
+        align-items: center;
+        color: var(--vp-c-text-2);
+        font-style: italic;
+        :deep(.n-icon) {
+          margin-right: 4px;
+        }
+      }
       :deep(.n-tag) {
         background-color: var(--vp-c-brand-1);
         color: var(--vp-c-default-1);
       }
     }
   }
-
   .VMEmpty {
     color: var(--vp-c-text-2);
     text-align: center;
@@ -159,6 +177,7 @@ const router = useRouter();
       color: var(--vp-c-text-1);
       font-style: italic;
     }
+
     .n-thing-main__description {
       color: var(--vp-c-text-2);
     }

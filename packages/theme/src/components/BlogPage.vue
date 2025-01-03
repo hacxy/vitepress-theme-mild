@@ -2,7 +2,7 @@
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 import { useArticleData } from '../hooks/useArticleData';
 import { paginate } from '../utils/client/article';
@@ -30,6 +30,9 @@ watchEffect(() => {
     currentPage.value = 1;
   }
   params.pageNum = String(currentPage.value);
+});
+
+watch(currentPage, () => {
   window.scrollTo({ top: 0, behavior: 'auto' });
 });
 
@@ -45,9 +48,9 @@ router.onBeforeRouteChange = to => {
   <div class="VMPage">
     <div class="VMContent VMBlogWrapper">
       <div class="VMArticlesListWrapper">
-        <articles-list :list-data="posts" :title="articleTitle" />
+        <ArticlesList :list-data="posts" :title="articleTitle" />
       </div>
-      <n-pagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
+      <NPagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
     </div>
   </div>
 </template>
@@ -65,13 +68,17 @@ router.onBeforeRouteChange = to => {
   }
   .n-pagination-item {
     color: var(--vp-c-text-2);
+    border-radius: 8px;
   }
   .n-pagination-item--active {
-    border-color: var(--vp-c-text-1) !important;
-    color: var(--vp-c-text-1) !important;
+    border-color: var(--vp-c-brand-1) !important;
+    color: var(--vp-c-brand-1) !important;
   }
   .n-pagination-item:hover {
     color: var(--vp-c-text-1);
+  }
+  .n-pagination-item--button:hover {
+    color: var(--vp-c-text-1) !important;
   }
 }
 

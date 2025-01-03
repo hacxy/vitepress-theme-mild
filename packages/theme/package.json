@@ -14,16 +14,16 @@
   ],
   "exports": {
     ".": {
-      "types": "./index.ts",
-      "import": "./index.ts"
+      "types": "./types/index.d.ts",
+      "import": "./index.js"
     },
     "./config": {
       "types": "./dist/node.d.ts",
       "import": "./dist/node.js"
     }
   },
-  "module": "./index.ts",
-  "types": "./index.ts",
+  "module": "./index.js",
+  "types": "./types/index.d.ts",
   "files": [
     "dist",
     "index.ts",
