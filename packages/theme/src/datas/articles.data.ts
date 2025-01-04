@@ -4,6 +4,14 @@ import { NOT_ARTICLE_LAYOUTS } from '../constants';
 import { getTextDescription } from '../utils/common';
 import { createArticlesListLoader } from '../utils/node/articles';
 
+export interface SidebarFrontmatter {
+  text?: string
+  collapsed?: boolean
+  order?: number
+  title?: string
+  hide?: boolean
+}
+
 export interface ArticlesData {
   title: string
   path: string
@@ -14,6 +22,7 @@ export interface ArticlesData {
   minutes: number
   category: string
   order: number
+  sidebar: boolean | SidebarFrontmatter
 }
 
 export default createArticlesListLoader({
@@ -27,10 +36,11 @@ export default createArticlesListLoader({
       }
       return b.frontmatter.date - a.frontmatter.date;
     }).map(item => {
+      const filename = item.url.split('/')[item.url.split('/').length - 1].split('.')[0] || 'index';
       const content = matter(item.src || '').content;
       const { words, minutes } = readingTime(content, 200);
       const match = content.match(/^(#+)\s+(.+)/m);
-      const title = match?.[2] || '';
+      const title = match?.[2] || filename;
       let { date, description = content, ...frontmatter } = item.frontmatter;
 
       description = getTextDescription(description);

@@ -97,7 +97,6 @@ export function createArticlesListLoader<T = ContentData[]>(
         expandDirectories: false,
         absolute: true
       });
-
       const md = await createMarkdownRenderer(
         config.srcDir,
         config.markdown,
@@ -148,16 +147,16 @@ export function createArticlesListLoader<T = ContentData[]>(
               normalizePath(path.relative(config.srcDir, file))
                 .replace(/(^|\/)index\.md$/, '$1')
                 .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
-          // eslint-disable-next-line no-undefined
+
           const html = render ? md.render(src) : undefined;
           // const fileModifiedTime = timestamp;
           const renderedExcerpt = renderExcerpt
             ? excerpt && md.render(excerpt)
-            // eslint-disable-next-line no-undefined
+
             : undefined;
           const data: ContentData = {
             // fileModifiedTime,
-            // eslint-disable-next-line no-undefined
+
             src: includeSrc ? src : undefined,
             html,
             frontmatter,

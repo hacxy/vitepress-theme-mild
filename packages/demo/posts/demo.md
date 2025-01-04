@@ -4,7 +4,6 @@ order: 1
 tags:
 - demo
 - nginx
-sticky: true
 ---
 
 # demo

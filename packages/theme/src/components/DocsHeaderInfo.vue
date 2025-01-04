@@ -11,15 +11,15 @@ const { docsHeaderInfo } = useArticleData();
 <template>
   <div class="VMDocsHeaderInfo">
     <div class="info">
-      <icon-calendar />
-      <n-time :time="docsHeaderInfo?.date" format="yyyy-MM-dd" />
+      <IconCalendar />
+      <NTime :time="docsHeaderInfo?.date" format="yyyy-MM-dd" />
     </div>
     <div class="info">
-      <icon-words />
+      <IconWords />
       <div>{{ docsHeaderInfo?.words }} words</div>
     </div>
     <div class="info">
-      <icon-clock />
+      <IconClock />
       <div>{{ docsHeaderInfo?.minutes }} min</div>
     </div>
   </div>
