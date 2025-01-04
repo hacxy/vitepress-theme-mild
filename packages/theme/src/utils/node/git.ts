@@ -16,8 +16,7 @@ export async function getLastCommitInfo(filePath: string) {
       authorEmail: lastCommit?.author_email,
     };
   }
-  catch (error) {
-    console.error(`Error getting last commit info for file ${filePath}:`, error);
+  catch (_) {
     return null;
   }
 }

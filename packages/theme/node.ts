@@ -1,8 +1,9 @@
 import type { DefaultTheme, RawConfigExports } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
-import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { NOT_ARTICLE_LAYOUTS } from './src/constants';
+import { groupIconMdPlugin } from './src/utils/node/group-icons/markdown';
+import { groupIconVitePlugin } from './src/utils/node/group-icons/vite';
 import { imgToImage, insertDocsHeaderInfo } from './src/utils/node/markdown';
 
 const baseConfig: RawConfigExports<DefaultTheme.Config> = {

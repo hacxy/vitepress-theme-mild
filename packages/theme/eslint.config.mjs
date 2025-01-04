@@ -10,7 +10,8 @@ export default linter({
     'complexity': [2, 20],
     'max-params': [2, 4],
     'vue/valid-v-slot': 0,
-    'vue/component-name-in-template-casing': ['error', 'PascalCase']
+    'vue/component-name-in-template-casing': ['error', 'PascalCase'],
+    'unused-imports/no-unused-vars': ['error', { caughtErrorsIgnorePattern: '^_' }],
   },
   ignores: [
     'packages/demo/**/*',
