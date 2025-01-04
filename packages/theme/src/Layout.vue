@@ -10,6 +10,8 @@ import LocalNav from './components/LocalNav.vue';
 import Sidebar from './components/Sidebar.vue';
 import { useCloseSidebarOnEscape, useSidebar } from './hooks/useSidebar';
 
+import('virtual:group-icons.css');
+
 const {
   isOpen: isSidebarOpen,
   open: openSidebar,
