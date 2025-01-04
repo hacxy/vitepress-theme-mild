@@ -27,7 +27,8 @@
   "files": [
     "dist",
     "index.ts",
-    "src"
+    "src",
+    "types"
   ],
   "scripts": {
     "dev": "tsup --watch",

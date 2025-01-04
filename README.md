@@ -17,9 +17,7 @@
 - 📖 更丰富的markdown能力, 如图片预览
 - 🔥 侧边栏提供自动匹配模式, 且状态实时热更新
 
-## 示例
-
-![](https://raw.githubusercontent.com/hacxy/hacxy/main/images/Kapture%202024-12-26%20at%2015.52.02.gif)
+[查阅文档](https://theme.hacxy.cn)
 
 ## 计划&进展
 
@@ -44,7 +42,7 @@
 
 ## 快速开始
 
-### 在本地创建:
+### 使用脚手架创建:
 
 - npm:
 
@@ -68,48 +66,6 @@ yarn create mild-theme
 
 ```sh
 bun create mild-theme
-```
-
-### 在现有项目中使用:
-
-在你的现有项目中, 你只需要三步即可使用本主题的完整内容
-
-- 第一步: 安装
-
-```sh
-npm install vitepress-theme-mild@latest -D
-```
-
-- 第二步: 导入主题并聚合配置
-
-  - 在 `.vitepress` 文件夹中新建 `theme/index.ts` (注意文件后缀名取决于你的项目) 导入主题:
-
-    ```ts
-    // .vitepress/theme/config.ts
-    import MildTheme from 'vitepress-theme-mild';
-    export default MildTheme;
-    ```
-
-  - 在 `config.ts` 中聚合配置:
-    ```ts
-    // .vitepress/config.ts
-    import { defineConfig } from 'vitepress';
-    import { defineThemeConfig } from 'vitepress-theme-mild/config';
-    export default defineConfig({
-      // ...other config
-      extends: defineThemeConfig(),
-    });
-    ```
-
-- 第三步: 修改 `index.md` 中 layout 的值为: `blog` :
-
-```md
----
-layout: blog
-article:
-   title: Hacxy  # 文章列表顶部标题
-   pageSize: 5  # 每页文章的数量
----
 ```
 
 ## 案例
