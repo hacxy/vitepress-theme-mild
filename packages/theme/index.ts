@@ -16,7 +16,6 @@ const MildTheme: Theme = {
   extends: VPTheme,
   Layout,
   enhanceApp({ app, router }) {
-    import('virtual:group-icons.css');
     if ((import.meta as any).env.SSR) {
       const { collect } = setup(app);
       app.provide('css-render-collect', collect);
