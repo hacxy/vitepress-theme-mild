@@ -1,7 +1,7 @@
 {
   "name": "create-mild-theme",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create vitepress mild theme.",
   "author": "",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run build",
-    "release": "npm run sync && bumpp && pnpm publish"
+    "release": "bumpp && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",
