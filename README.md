@@ -7,12 +7,12 @@
 </h1>
 
 <h4 align="center">
-配置简单且具备丰富能力的 VitePress 主题
+用法简单且具备丰富能力的 VitePress 主题
 </h4>
 
 ![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
 
-- 📦 开箱即用, 扩展默认主题配置创造更多可能
+- 📦 基于默认主题, 开箱即用, 用法简单
 - 📃 提供简约风格的博客布局, 文章列表实时热更新
 - 📖 更丰富的markdown能力, 如图片预览
 - 🔥 侧边栏提供自动匹配模式, 且状态实时热更新
