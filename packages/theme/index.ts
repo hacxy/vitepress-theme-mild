@@ -11,12 +11,12 @@ import Layout from './src/Layout.vue';
 import NProgress from './src/utils/client/nprogress';
 import '@shikijs/vitepress-twoslash/style.css';
 import './src/styles/index.scss';
-import 'virtual:group-icons.css';
 
 const MildTheme: Theme = {
   extends: VPTheme,
   Layout,
   enhanceApp({ app, router }) {
+    import('virtual:group-icons.css');
     if ((import.meta as any).env.SSR) {
       const { collect } = setup(app);
       app.provide('css-render-collect', collect);

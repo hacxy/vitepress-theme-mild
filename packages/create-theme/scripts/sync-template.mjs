@@ -17,5 +17,7 @@ const packageData = JSON.parse(fs.readFileSync(packagePath));
 packageData.devDependencies['vitepress-theme-mild'] = packageVersion;
 fs.writeFileSync(packagePath, `${JSON.stringify(packageData, null, 2)}\n`);
 fs.removeSync(path.resolve(targetPath, 'node_modules'));
+fs.removeSync(path.resolve(targetPath, '.vitepress/cache'));
+fs.removeSync(path.resolve(targetPath, '.vitepress/dist'));
 
 console.log('模板同步完成');
