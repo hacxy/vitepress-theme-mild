@@ -41,9 +41,6 @@
   },
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",
-    "@iconify-json/logos": "^1.1.44",
-    "@iconify-json/vscode-icons": "^1.2.0",
-    "@iconify/utils": "^2.1.30",
     "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",
