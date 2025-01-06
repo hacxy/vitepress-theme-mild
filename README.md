@@ -72,6 +72,10 @@ bun create mild-theme
 
 - [hacxy.cn](https://hacxy.cn)
 
+## Changelog
+
+[CHANGELOG](./packages/docs/CHANGELOG.md)
+
 ## License
 
 [MIT](./LICENSE) License &copy; 2023-PRESENT [Hacxy](https://github.com/hacxy)
