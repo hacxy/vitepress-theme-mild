@@ -9,6 +9,7 @@ import VMFooter from './components/Footer.vue';
 import LocalNav from './components/LocalNav.vue';
 import Sidebar from './components/Sidebar.vue';
 import { useCloseSidebarOnEscape, useSidebar } from './hooks/useSidebar';
+import NProgress from './utils/client/nprogress';
 
 import('virtual:group-icons.css');
 
@@ -23,7 +24,14 @@ watch(() => route.path, closeSidebar);
 
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar);
 
-const { frontmatter, isDark } = useData();
+const { frontmatter, isDark, page } = useData();
+
+// Handle not found nprogress.
+watch(page, () => {
+  if (page.value.isNotFound) {
+    NProgress.done();
+  }
+});
 
 const slots = useSlots();
 const heroImageSlotExists = computed(() => !!slots['home-hero-image']);
