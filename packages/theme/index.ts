@@ -40,5 +40,5 @@ const MildTheme: Theme = {
     app.component('ImageGroup', NImageGroup);
   }
 };
-
+export { Layout };
 export default MildTheme;

@@ -1,0 +1,9 @@
+:root {
+  --primary-color: #3451b2;
+  --vp-c-brand: var(--primary-color);
+  /* --vp-c-brand-1: var(--primary-color); */
+}
+
+:root.dark {
+  --primary-color: #a8b1ff;
+}

@@ -1,3 +1,5 @@
+@import './variable.css';
+
 .n-image-preview-container {
   .n-image-preview-toolbar {
     .n-base-icon {
@@ -101,4 +103,16 @@
 ::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 9999;
+}
+
+#nprogress {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 9999;
+
+  .bar {
+    background: var(--vp-c-brand); /* 修改进度条的颜色 */
+  }
 }
