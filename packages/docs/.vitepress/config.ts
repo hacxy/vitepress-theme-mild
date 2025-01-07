@@ -24,7 +24,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     nav: [
       {
         text: '指南',
-        link: '/guide/introduction/',
+        link: '/guide/intro/',
         activeMatch: '/guide/'
       }
     ],
