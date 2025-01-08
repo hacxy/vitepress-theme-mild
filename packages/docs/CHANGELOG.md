@@ -1,3 +1,12 @@
+## [0.2.1-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.2.0...v0.2.1-alpha.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* fix the initial page number value as NAN causing page anomalies ([302bff2](https://github.com/hacxy/vitepress-theme-mild/commit/302bff24ead74c1c81fcf02c25d37a1f65d3bcd8))
+
+
+
 # [0.2.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.2.0-beta.6...v0.2.0) (2025-01-08)
 
 
