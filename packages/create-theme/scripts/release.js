@@ -87,7 +87,7 @@ async function main() {
   // Commit changes to the Git and create a tag.
   step('\nCommitting changes...');
   await run('git', ['add', 'package.json', 'template']);
-  await run('git', ['commit', '-m', `chore: release: v${targetVersion}`]);
+  await run('git', ['commit', '-m', `chore: release CLI version ${targetVersion}`]);
 
   // Publish the package.
   step('\nPublishing the package...');
