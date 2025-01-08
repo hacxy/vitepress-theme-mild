@@ -86,7 +86,7 @@ async function main() {
   // Generate the changelog.
   step('\nGenerating the changelog...');
   await run('pnpm', ['changelog']);
-  await run('eslint', ['CHANGELOG.md', '--fix', '--no-ignore']);
+  // await run('eslint', ['CHANGELOG.md', '--fix', '--no-ignore']);
 
   const { yes: changelogOk } = await prompts({
     type: 'confirm',
