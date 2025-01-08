@@ -24,10 +24,10 @@ hero:
   actions:
     - theme: brand
       text: 介绍
-      link: /guide/introduction/
+      link: /guide/intro/
     - theme: brand
       text: 快速开始
-      link: /guide/introduction/quick-start
+      link: /guide/intro/quick-start
 ---
 
 <style>

@@ -2,7 +2,7 @@
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 import { useArticleData } from '../hooks/useArticleData';
 import { paginate } from '../utils/client/article';
@@ -12,8 +12,8 @@ const router = useRouter();
 const { frontmatter } = useData();
 const articleTitle = ref(frontmatter.value?.article?.title);
 const pageSize = ref(frontmatter.value?.article?.pageSize || DEFAULT_PAGE_SIZE);
-const params = useUrlSearchParams();
-const currentPage = ref(Number(params.pageNum) || 1);
+const params = useUrlSearchParams<{ pageNum: string }>();
+const currentPage = ref(1);
 const { articleData } = useArticleData();
 
 const totalPages = computed(() => {
@@ -25,15 +25,18 @@ const posts = computed(() => {
   return paginate(articleData.value, pageSize.value, currentPage.value);
 });
 
-watchEffect(() => {
+onMounted(() => {
+  if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
+    currentPage.value = 1;
+  }
+  currentPage.value = Number(params.pageNum);
+});
+watch(currentPage, () => {
+  window.scrollTo({ top: 0, behavior: 'auto' });
   if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
     currentPage.value = 1;
   }
   params.pageNum = String(currentPage.value);
-});
-
-watch(currentPage, () => {
-  window.scrollTo({ top: 0, behavior: 'auto' });
 });
 
 router.onBeforeRouteChange = to => {

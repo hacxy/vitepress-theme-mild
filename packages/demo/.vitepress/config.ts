@@ -10,7 +10,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     logo: '/cat-typing.gif',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Tags', link: '/pages/tags' }
+      { text: 'Tags', link: '/pages/tagsasd' }
     ],
     sidebar: {
       '/posts/orange/': 'auto',

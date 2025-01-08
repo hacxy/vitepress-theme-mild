@@ -3,7 +3,10 @@
   "type": "module",
   "version": "0.0.9",
   "description": "Create vitepress mild theme.",
-  "author": "",
+  "author": {
+    "name": "hacxy",
+    "email": "hacxy.js@outlook.com"
+  },
   "license": "MIT",
   "keywords": [
     "cli",
@@ -32,7 +35,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run build",
-    "release": "bumpp && pnpm publish --no-git-checks"
+    "release": "npm run scripts/release.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",

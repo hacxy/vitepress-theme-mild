@@ -1,4 +1,5 @@
 import type { DefaultTheme, Theme } from 'vitepress';
+import Layout from '../src/Layout.vue';
 
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
@@ -24,4 +25,4 @@ declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
 
 declare const MildTheme: Theme;
 
-export { MildTheme as default, ThemeConfig };
+export { MildTheme as default, Layout, ThemeConfig };
