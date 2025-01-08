@@ -11,7 +11,7 @@ sidebar:
 
 ## 为什么开发这个主题
 
-[开发VitePress主题的初衷](https://hacxy.cn/docs/posts/dev-vitepress-theme/1.start.html)
+[开发VitePress主题的初衷](https://hacxy.cn/docs/posts/dev-vitepress-theme/)
 
 ## 案例
 
