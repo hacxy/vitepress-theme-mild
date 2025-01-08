@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.2.1-alpha.0...v0.3.0) (2025-01-08)
+
+
+### Performance Improvements
+
+* adjust the default page size to 5 ([4484366](https://github.com/hacxy/vitepress-theme-mild/commit/44843664880f3bdbad4f5c89527ae0979b7c6d93))
+
+
+
 ## [0.2.1-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.2.0...v0.2.1-alpha.0) (2025-01-08)
 
 
