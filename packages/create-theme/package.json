@@ -35,7 +35,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "npm run build",
-    "release": "npm run scripts/release.js"
+    "release": "node scripts/release.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",
