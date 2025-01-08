@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import type { NProgress } from 'nprogress';
 import { useData, useRoute } from 'vitepress';
 import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue';
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
-import { computed, nextTick, provide, useSlots, watch } from 'vue';
+import { computed, inject, nextTick, onMounted, provide, useSlots, watch } from 'vue';
 import Content from './components/Content.vue';
 import VMFooter from './components/Footer.vue';
 import LocalNav from './components/LocalNav.vue';
 import Sidebar from './components/Sidebar.vue';
 import { useCloseSidebarOnEscape, useSidebar } from './hooks/useSidebar';
-import NProgress from './utils/client/nprogress';
 
 import('virtual:group-icons.css');
 
@@ -21,15 +21,20 @@ const {
 
 const route = useRoute();
 watch(() => route.path, closeSidebar);
-
+const np = inject<NProgress>('progress');
 useCloseSidebarOnEscape(isSidebarOpen, closeSidebar);
 
 const { frontmatter, isDark, page } = useData();
 
 // Handle not found nprogress.
+onMounted(() => {
+  if (page.value.isNotFound) {
+    np?.done();
+  }
+});
 watch(page, () => {
   if (page.value.isNotFound) {
-    NProgress.done();
+    np?.done();
   }
 });
 

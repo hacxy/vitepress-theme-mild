@@ -29,7 +29,7 @@ onMounted(() => {
   if (currentPage.value <= 0 || currentPage.value > totalPages.value) {
     currentPage.value = 1;
   }
-  currentPage.value = Number(params.pageNum);
+  currentPage.value = Number(params.pageNum || 0);
 });
 watch(currentPage, () => {
   window.scrollTo({ top: 0, behavior: 'auto' });

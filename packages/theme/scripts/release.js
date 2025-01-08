@@ -29,7 +29,7 @@ async function main() {
   const versions = versionIncrements
     .map(i => {
       if (i === 'beta' || i === 'alpha') {
-        return `${i} (${inc('prerelease', i, 1)})`;
+        return `${i} (${inc('prerelease', i)})`;
       }
       return `${i} (${inc(i)})`;
     })

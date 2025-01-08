@@ -7,8 +7,8 @@ import VPTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
 import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
 import Tags from './src/components/Tags.vue';
+import { useProgress } from './src/hooks/useProgress';
 import Layout from './src/Layout.vue';
-import NProgress from './src/utils/client/nprogress';
 import '@shikijs/vitepress-twoslash/style.css';
 import './src/styles/index.scss';
 
@@ -48,14 +48,16 @@ const MildTheme: Theme = {
           window.scrollTo(0, scrollPosition);
         });
       }
+      const { np } = useProgress();
+      app.provide('progress', np.value);
 
       router.onBeforePageLoad = () => {
-        NProgress.start();
+        np.value.start();
         return true;
       };
 
       router.onAfterPageLoad = () => {
-        NProgress.done();
+        np.value.done();
       };
     }
     app.use(MotionPlugin);
