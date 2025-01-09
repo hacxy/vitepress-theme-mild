@@ -6,16 +6,31 @@ import { nextTick, onMounted, ref, watch } from 'vue';
 
 const show = ref(false);
 const route = useRoute();
-const { theme } = useData();
-
+const { theme, isDark } = useData();
+const commentTheme = ref();
 watch(route, () => {
   show.value = false;
   nextTick(() => {
     show.value = true;
   });
 });
+
+watch(isDark, () => {
+  if (isDark.value) {
+    commentTheme.value = theme.value.comment.darkTheme;
+  }
+  else {
+    commentTheme.value = theme.value.comment.lightTheme;
+  }
+});
 onMounted(() => {
   show.value = true;
+  if (isDark.value) {
+    commentTheme.value = theme.value.comment.darkTheme;
+  }
+  else {
+    commentTheme.value = theme.value.comment.lightTheme;
+  }
 });
 </script>
 
@@ -23,6 +38,7 @@ onMounted(() => {
   <div v-if="show && theme?.comment" class="VMComment">
     <Giscus
       v-bind="theme?.comment"
+      :theme="commentTheme"
     />
   </div>
 </template>
