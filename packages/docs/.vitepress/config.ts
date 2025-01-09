@@ -9,6 +9,18 @@ export default defineConfigWithTheme<ThemeConfig>({
   lang: 'zh',
   appearance: 'dark',
   themeConfig: {
+    comment: {
+      repo: 'hacxy/vitepress-theme-mild',
+      repoId: 'R_kgDOLdAvmA',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOLdAvmM4Cl3ba',
+      mapping: 'title',
+      strict: '1',
+      reactionsEnabled: '1',
+      inputPosition: 'bottom',
+      lang: 'zh-CN',
+      theme: 'preferred_color_scheme'
+    },
     logo: '/logo.png',
     search: {
       provider: 'local',

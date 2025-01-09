@@ -5,6 +5,7 @@ import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
 import VPTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
+import Comment from './src/components/Comment.vue';
 import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
 import Tags from './src/components/Tags.vue';
 import { useProgress } from './src/hooks/useProgress';
@@ -67,6 +68,7 @@ const MildTheme: Theme = {
     app.component('DocsHeaderInfo', DocsHeaderInfo);
     app.component('Image', NImage);
     app.component('ImageGroup', NImageGroup);
+    app.component('Comment', Comment);
   }
 };
 export { Layout };
