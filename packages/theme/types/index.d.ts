@@ -1,9 +1,14 @@
-import type { GiscusProps } from '@giscus/vue';
+import type { GiscusProps, Theme as GiscusTheme } from '@giscus/vue';
 import type { DefaultTheme, Theme } from 'vitepress';
 import Layout from '../src/Layout.vue';
 
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
+}
+
+export interface Comment extends Omit<GiscusProps, 'theme'> {
+  lightTheme: GiscusTheme
+  darkTheme: GiscusTheme
 }
 
 declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
@@ -15,7 +20,7 @@ declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
   /**
    * Giscus Comment
    */
-  comment?: GiscusProps
+  comment?: Comment
   // /**
   //  * Is the progress bar enabled
   //  * @default true

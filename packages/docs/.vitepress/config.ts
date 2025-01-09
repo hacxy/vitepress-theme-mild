@@ -19,7 +19,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       reactionsEnabled: '1',
       inputPosition: 'bottom',
       lang: 'zh-CN',
-      theme: 'preferred_color_scheme'
+      darkTheme: 'catppuccin_macchiato',
+      lightTheme: 'catppuccin_latte'
     },
     logo: '/logo.png',
     search: {
