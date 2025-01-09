@@ -1,6 +1,6 @@
 ---
 sidebar:
-  order: 9
+  order: 10
   title: 简介
   text: 概述
 ---
@@ -12,6 +12,10 @@ sidebar:
 ## 为什么开发这个主题
 
 [开发VitePress主题的初衷](https://hacxy.cn/docs/posts/dev-vitepress-theme/)
+
+## 不打算做的功能
+
+- **全局搜索**: 默认主题提供的全局搜索已经非常好用, 所以我不打算再做这个重复的功能
 
 ## 案例
 

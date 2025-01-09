@@ -54,16 +54,6 @@ const pageName = computed(() =>
           <slot name="doc-before" />
           <main class="main">
             <Content
-              v-motion
-              :initial="{
-                opacity: 0,
-              }"
-              :enter="{
-                opacity: 1,
-                transition: {
-                  delay: 100,
-                },
-              }"
               class="vp-doc"
               :class="[
                 pageName,

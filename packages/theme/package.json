@@ -8,6 +8,10 @@
     "email": "hacxy.js@outlook.com"
   },
   "license": "MIT",
+  "homepage": "https://github.com/hacxy/vitepress-theme-mild",
+  "bugs": {
+    "url": "https://github.com/hacxy/vitepress-theme-mild/issues"
+  },
   "keywords": [
     "vitepress",
     "vitepress-theme"
