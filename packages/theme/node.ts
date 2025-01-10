@@ -39,7 +39,6 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
       pageData.frontmatter.sidebar = false;
     }
   },
-
   vite: {
     ssr: {
       noExternal: ['naive-ui']
