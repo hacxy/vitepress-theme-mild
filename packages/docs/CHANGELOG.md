@@ -1,3 +1,25 @@
+## [0.3.1-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.3.0...v0.3.1-alpha.0) (2025-01-10)
+
+
+### Bug Fixes
+
+* rss plugins are not loaded when not defined ([b78c996](https://github.com/hacxy/vitepress-theme-mild/commit/b78c996119b8ce78796fb72d1265c896bde5fc6e))
+* the progress bar provides configuration options. ([a91988a](https://github.com/hacxy/vitepress-theme-mild/commit/a91988ab5fd8b7ccad8f2c81c29dc3062cf02b2c))
+
+
+### Features
+
+* add comment component and config ([58e8a9c](https://github.com/hacxy/vitepress-theme-mild/commit/58e8a9cfc61984f2c443d471f96af8337099fcac))
+* support RSS subscription ([32e042f](https://github.com/hacxy/vitepress-theme-mild/commit/32e042fc22898974a0905e300a3f02abf3b68656))
+
+
+### Performance Improvements
+
+* comment component distinguishes between dark theme and light theme ([8b86455](https://github.com/hacxy/vitepress-theme-mild/commit/8b864559d7e63ae27df6734ee4271a273b5d2bfc))
+* remove transition animation within markdown ([c43912a](https://github.com/hacxy/vitepress-theme-mild/commit/c43912aaa85d691cc047e9a787bba68a0dcb6d25))
+
+
+
 # [0.3.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.2.1-alpha.0...v0.3.0) (2025-01-08)
 
 
