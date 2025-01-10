@@ -22,6 +22,11 @@ export default defineConfigWithTheme<ThemeConfig>({
       darkTheme: 'catppuccin_macchiato',
       lightTheme: 'catppuccin_latte'
     },
+    rss: {
+      title: 'Hacxy',
+      baseUrl: 'http://localhost:4173',
+      copyright: 'Copyright (c) 2024-present, Hacxy'
+    },
     logo: '/logo.png',
     search: {
       provider: 'local',

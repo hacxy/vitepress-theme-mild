@@ -1,9 +1,27 @@
-import type { DefaultTheme, RawConfigExports } from 'vitepress';
+import type { DefaultTheme, Plugin, RawConfigExports, SiteConfig } from 'vitepress';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
+import { RssPlugin } from 'vitepress-plugin-rss';
 import { NOT_ARTICLE_LAYOUTS } from './src/constants';
 import { imgToImage, insertDocsHeaderInfo } from './src/utils/node/markdown';
+
+function rss(): Plugin {
+  let resolveConfig: any;
+  return {
+    name: 'vitepress-plugin-rss',
+    enforce: 'pre',
+    configResolved(config: any) {
+      if (resolveConfig) {
+        return;
+      }
+      resolveConfig = config;
+      // 拿到用户的主题配置, 手动调用hook
+      const VPConfig: SiteConfig = config.vitepress;
+      return RssPlugin(VPConfig.site.themeConfig.rss).configResolved(config);
+    }
+  };
+}
 
 const baseConfig: RawConfigExports<DefaultTheme.Config> = {
   markdown: {
@@ -19,6 +37,7 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
       pageData.frontmatter.sidebar = false;
     }
   },
+
   vite: {
     ssr: {
       noExternal: ['naive-ui']
@@ -35,6 +54,7 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
     },
     plugins: [
       groupIconVitePlugin(),
+      rss()
     ],
     build: {
       chunkSizeWarningLimit: 2048
