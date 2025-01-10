@@ -15,22 +15,20 @@ watch(route, () => {
   });
 });
 
-watch(isDark, () => {
+function handleSwitchTheme() {
   if (isDark.value) {
-    commentTheme.value = theme.value.comment.darkTheme;
+    commentTheme.value = theme.value?.comment?.darkTheme;
   }
   else {
-    commentTheme.value = theme.value.comment.lightTheme;
+    commentTheme.value = theme.value?.comment?.lightTheme;
   }
+}
+watch(isDark, () => {
+  handleSwitchTheme();
 });
 onMounted(() => {
   show.value = true;
-  if (isDark.value) {
-    commentTheme.value = theme.value.comment.darkTheme;
-  }
-  else {
-    commentTheme.value = theme.value.comment.lightTheme;
-  }
+  handleSwitchTheme();
 });
 </script>
 
