@@ -18,7 +18,9 @@ function rss(): Plugin {
       resolveConfig = config;
       // 拿到用户的主题配置, 手动调用hook
       const VPConfig: SiteConfig = config.vitepress;
-      return RssPlugin(VPConfig.site.themeConfig.rss).configResolved(config);
+      if (VPConfig.site?.themeConfig?.rss) {
+        return RssPlugin(VPConfig.site.themeConfig.rss).configResolved(config);
+      }
     }
   };
 }

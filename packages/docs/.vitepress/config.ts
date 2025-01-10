@@ -24,7 +24,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     rss: {
       title: 'Hacxy',
-      baseUrl: 'http://localhost:4173',
+      baseUrl: 'https"//theme.hacxy.cn',
       copyright: 'Copyright (c) 2024-present, Hacxy'
     },
     logo: '/logo.png',
