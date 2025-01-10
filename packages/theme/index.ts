@@ -1,11 +1,11 @@
 import type { Theme } from 'vitepress';
+import type { ThemeConfig } from './types';
 import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
 import VPTheme from 'vitepress/theme';
 import BlogPage from './src/components/BlogPage.vue';
-import Comment from './src/components/Comment.vue';
 import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
 import Tags from './src/components/Tags.vue';
 import { useProgress } from './src/hooks/useProgress';
@@ -16,7 +16,8 @@ import './src/styles/index.scss';
 const MildTheme: Theme = {
   extends: VPTheme,
   Layout,
-  enhanceApp({ app, router }) {
+  enhanceApp({ app, router, siteData }) {
+    const themeConfig: ThemeConfig = siteData.value.themeConfig;
     const originalConsoleError = console.error;
     // 重写 console.error 方法
     console.error = function (message, ...optionalParams) {
@@ -49,17 +50,20 @@ const MildTheme: Theme = {
           window.scrollTo(0, scrollPosition);
         });
       }
-      const { np } = useProgress();
-      app.provide('progress', np.value);
 
-      router.onBeforePageLoad = () => {
-        np.value.start();
-        return true;
-      };
+      if (themeConfig.progressBar !== false) {
+        const { np } = useProgress(themeConfig.progressBar);
+        app.provide('progress', np.value);
 
-      router.onAfterPageLoad = () => {
-        np.value.done();
-      };
+        router.onBeforePageLoad = () => {
+          np.value.start();
+          return true;
+        };
+
+        router.onAfterPageLoad = () => {
+          np.value.done();
+        };
+      }
     }
     app.use(MotionPlugin);
     app.use(TwoslashFloatingVue);
@@ -68,7 +72,6 @@ const MildTheme: Theme = {
     app.component('DocsHeaderInfo', DocsHeaderInfo);
     app.component('Image', NImage);
     app.component('ImageGroup', NImageGroup);
-    app.component('Comment', Comment);
   }
 };
 export { Layout };

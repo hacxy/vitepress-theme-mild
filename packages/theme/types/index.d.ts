@@ -1,5 +1,7 @@
 import type { GiscusProps, Theme as GiscusTheme } from '@giscus/vue';
+import type { NProgressOptions } from 'nprogress';
 import type { DefaultTheme, Theme } from 'vitepress';
+import type { RSSOptions } from 'vitepress-plugin-rss';
 import Layout from '../src/Layout.vue';
 
 export interface SidebarAutoMulti {
@@ -21,11 +23,12 @@ declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
    * Giscus Comment
    */
   comment?: Comment
-  // /**
-  //  * Is the progress bar enabled
-  //  * @default true
-  //  */
-  // progressBar?: boolean
+
+  rss?: RSSOptions
+  /**
+   * Is the progress bar config
+   */
+  progressBar?: Partial<NProgressOptions> | false
 
   // /**
   //  * Typescript Twoslash

@@ -60,6 +60,7 @@
     "tinyglobby": "^0.2.10",
     "typed.js": "^2.1.0",
     "vitepress-plugin-group-icons": "^1.3.2",
+    "vitepress-plugin-rss": "^0.3.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {

@@ -22,6 +22,14 @@ export default defineConfigWithTheme<ThemeConfig>({
       darkTheme: 'catppuccin_macchiato',
       lightTheme: 'catppuccin_latte'
     },
+    progressBar: {
+      speed: 200
+    },
+    rss: {
+      title: 'Hacxy',
+      baseUrl: 'https"//theme.hacxy.cn',
+      copyright: 'Copyright (c) 2024-present, Hacxy'
+    },
     logo: '/logo.png',
     search: {
       provider: 'local',
