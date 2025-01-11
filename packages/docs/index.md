@@ -16,8 +16,8 @@ features:
     details: 提供自动扫描文件目录生成侧边栏选项, 状态实时热更新
 hero:
   name: VitePress Theme Mild
-  text: 使用简单且能力丰富的 VitePress 主题
-  tagline: 基于默认主题并扩展增强能力
+  text: 一个具有丰富能力的 VitePress 主题
+  tagline: 完全兼容默认主题配置, 三分钟搭建个人博客
   image:
     src: /logo.png
     alt: VitePress
