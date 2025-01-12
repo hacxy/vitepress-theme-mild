@@ -6,7 +6,7 @@ sidebar:
 
 # 概述
 
-`Mild Theme` 基于默认主题扩展了一项非常实用的能力, 它由默认主题提供的 [sidebar 配置](https://vitepress.dev/zh/reference/default-theme-sidebar) 所 "进化" 而来, 保留了原有的配置规则, 并提供了一个自动扫描文件路径生成侧边栏的选项.
+`Mild Theme` 基于默认主题扩展了一项非常实用的能力, 它由默认主题提供的 [sidebar 配置](https://vitepress.dev/zh/reference/default-theme-sidebar) 所扩展, 保留了原有的配置规则, 并新增了一个自动扫描文件路径生成侧边栏的选项: `auto`.
 
 ## 自动侧边栏
 
