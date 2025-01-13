@@ -47,13 +47,18 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: '指南',
         link: '/guide/intro/',
         activeMatch: '/guide/'
+      },
+      {
+        text: '参考',
+        link: '/config/',
       }
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
     ],
     sidebar: {
-      '/guide/': 'auto'
+      // '/guide/': 'auto',
+      '/config/': 'auto'
     },
     footer: {
       message: 'MIT Licensed',

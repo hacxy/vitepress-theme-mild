@@ -1,9 +1,9 @@
 ---
 sidebar:
-  title: 扩展能力
+  order: 9
 ---
 
-# Group Icons
+# 代码分组图标
 
 主题默认集成了 [vitepress-plugin-group-icons](https://github.com/yuyinws/vitepress-plugin-group-icons), 你可以在markdwon中像这样使用代码组:
 
