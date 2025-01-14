@@ -43,7 +43,6 @@ export function getSidebar(
   let sidebar: any = dir ? _sidebar![dir] : [];
   if (sidebar === 'auto' && dir) {
     sidebar = data.autoSidebar[dir];
-    sidebar = [];
   }
 
   return Array.isArray(sidebar)

@@ -57,7 +57,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
     ],
     sidebar: {
-      // '/guide/': 'auto',
+      '/guide/': 'auto',
       '/config/': 'auto'
     },
     footer: {
