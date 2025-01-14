@@ -1,4 +1,6 @@
 import path from 'node:path';
+import { isObject } from '@vueuse/core';
+import directoryTree from 'directory-tree';
 import fs from 'fs-extra';
 import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
@@ -9,6 +11,7 @@ import { getPattern, normalizePath } from './path';
 
 export interface ContentData {
   url: string
+  path: string
   src: string | undefined
   html: string | undefined
   frontmatter: Record<string, any>
@@ -67,7 +70,115 @@ export interface ContentOptions<T = ContentData[]> {
   globOptions?: GlobOptions
 }
 
-export function createArticlesListLoader<T = ContentData[]>(
+function ensureIndexMd(path: string): string {
+  const folderEndingRegex = /\/$/;
+
+  if (folderEndingRegex.test(path) || !path.match(/\/[^/]+\.md$/)) {
+    // 确保路径以 index.md 结尾
+    return `${path.replace(folderEndingRegex, '')}/index.md`;
+  }
+
+  return path;
+}
+
+// sidebar排序, 越小越靠前
+function sortSidebar(sidebar: any[]) {
+  sidebar.forEach(item => {
+    if (item.items) {
+      item.items = sortSidebar(item.items);
+    }
+  });
+
+  // 排序函数
+  return sidebar.sort((a, b) => {
+    // 判断 path 是否以 index.md 结尾
+    const aIsIndex = a.path.endsWith('index.md');
+    const bIsIndex = b.path.endsWith('index.md');
+
+    if (aIsIndex && !bIsIndex) {
+      return -1;
+    }
+    if (!aIsIndex && bIsIndex) {
+      return 1;
+    }
+
+    // 根据 sort 排序
+    if (a.sort !== b.sort) {
+      return a.sort - b.sort;
+    }
+
+    // 根据 text 的首个字符排序
+    return a.text.localeCompare(b.text);
+  });
+}
+// Handle auto sidebar
+function formatSidebarItems(item: any, PATH: string, config: SiteConfig, data: Map<string, ContentData>) {
+  const link = `/${
+    normalizePath(path.relative(config.srcDir, PATH))
+      .replace(/(^|\/)index\.md$/, '$1')
+      .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
+  const filename = link.split('/')[link.split('/').length - 1].split('.')[0] || 'index';
+  const article = data.get(ensureIndexMd(PATH));
+  const content = matter(article?.src || '').content;
+  const match = content.match(/^(#+)\s+(.+)/m);
+  const title = match?.[2] || filename;
+  const { sidebar } = article?.frontmatter || {};
+  item.frontmatter = sidebar || {};
+
+  item.sort = sidebar?.sort ?? 999;
+
+  if (sidebar === false) {
+    item.hide = true;
+  }
+  else {
+    item.hide = false;
+  }
+
+  if (!item.children) {
+    item.link = link;
+    item.text = sidebar?.text || title;
+  }
+  else {
+    item.items = item.children;
+    item.text = sidebar?.title || title;
+    delete item.children;
+  }
+}
+
+function handleAutoSidebar(config: SiteConfig, data: Map<string, ContentData>) {
+  const sidebar: any = config.userConfig.themeConfig?.sidebar;
+  const autoPaths: string[] = [];
+  const autoSidebar: Record<string, any> = {};
+  if (isObject(sidebar)) {
+    Object.keys(sidebar).forEach(key => {
+      if (((sidebar as any)[key] as string) === 'auto') {
+        autoPaths.push(key);
+      }
+    });
+    autoPaths.forEach(item => {
+      const dirPath = path.join(config.srcDir, item);
+      const filteredTree: any = directoryTree(dirPath, {
+        exclude: /(node_modules|\.vitepress)$/,
+        extensions: /\.md/,
+        normalizePath: true
+      }, (item, PATH) => formatSidebarItems(item, PATH, config, data), (item, PATH) => formatSidebarItems(item, PATH, config, data));
+
+      if (!data.get(ensureIndexMd(filteredTree.path))) {
+        autoSidebar[item] = sortSidebar(filteredTree.items);
+      }
+      else {
+        autoSidebar[item] = sortSidebar([filteredTree]);
+      }
+    });
+  }
+
+  return autoSidebar;
+}
+
+export function createArticlesListLoader<T = {
+  list: ContentData[]
+  autoSidebar: any
+}>(
   {
     includeSrc,
     render,
@@ -88,10 +199,10 @@ export function createArticlesListLoader<T = ContentData[]>(
   }
   const pattern = getPattern(config.srcDir);
   const cache = new Map<string, { data: any, timestamp: number }>();
-
   return {
     watch: pattern,
     async load(files?: string[]) {
+      const mapData = new Map<string, ContentData>();
       files = await glob(pattern, {
         ignore: ['**/node_modules/**', '**/dist/**', '**/README.md'],
         expandDirectories: false,
@@ -112,6 +223,7 @@ export function createArticlesListLoader<T = ContentData[]>(
         const cached = cache.get(file);
         if (cached && timestamp === cached.timestamp) {
           raw.push(cached.data);
+          mapData.set(file, cached.data);
         }
         else {
           const src = fs.readFileSync(file, 'utf-8');
@@ -156,7 +268,7 @@ export function createArticlesListLoader<T = ContentData[]>(
             : undefined;
           const data: ContentData = {
             // fileModifiedTime,
-
+            path: file,
             src: includeSrc ? src : undefined,
             html,
             frontmatter,
@@ -165,9 +277,15 @@ export function createArticlesListLoader<T = ContentData[]>(
           };
           cache.set(file, { data, timestamp });
           raw.push(data);
+          mapData.set(file, data);
         }
       }
-      return (transform ? transform(raw) : raw) as any;
+
+      const autoSidebar = handleAutoSidebar(config, mapData);
+      return {
+        list: (transform ? transform(raw) : raw),
+        autoSidebar
+      } as any;
     }
   };
 }

@@ -50,6 +50,7 @@
     "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",
+    "directory-tree": "^3.5.2",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
     "naive-ui": "^2.40.4",

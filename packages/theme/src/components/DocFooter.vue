@@ -3,7 +3,6 @@ import { useData } from 'vitepress';
 import { computed } from 'vue';
 import { useEditLink } from '../utils/client/edit-link';
 import { usePrevNext } from '../utils/client/prev-next';
-import Comment from './Comment.vue';
 import VPDocFooterLastUpdated from './DocFooterLastUpdated.vue';
 import VPLink from './Link.vue';
 
@@ -78,7 +77,7 @@ const showFooter = computed(
     </nav>
   </footer>
 
-  <Comment />
+  <!-- <Comment /> -->
 </template>
 
 <style scoped lang="scss">

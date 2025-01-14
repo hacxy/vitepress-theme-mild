@@ -190,7 +190,7 @@ export function useActiveAnchor(
       prevActiveLink = null;
     }
     else {
-      prevActiveLink = container.value.querySelector(
+      prevActiveLink = container.value?.querySelector(
         `a[href="${decodeURIComponent(hash)}"]`
       );
     }

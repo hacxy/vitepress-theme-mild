@@ -12,6 +12,7 @@ export default linter({
     'vue/valid-v-slot': 0,
     'vue/component-name-in-template-casing': ['error', 'PascalCase'],
     'unused-imports/no-unused-vars': ['error', { caughtErrorsIgnorePattern: '^_' }],
+    'vue/no-v-text-v-html-on-component': 0
   },
   ignores: [
     'packages/demo/**/*',

@@ -58,5 +58,8 @@ export default createArticlesListLoader({
   }
 });
 
-declare const data: ArticlesData[];
+declare const data: {
+  list: ArticlesData[]
+  autoSidebar: Record<string, any>
+};
 export { data };

@@ -3,12 +3,12 @@ import { onMounted, ref, watchEffect } from 'vue';
 import { data } from '../datas/articles.data';
 
 export function useArticleData() {
-  const articleData = ref(data || []);
+  const articleData = ref(data?.list || []);
   const docsHeaderInfo = ref<{ words: number, minutes: number, date: number }>();
   const route = useRoute();
 
   onMounted(() => {
-    articleData.value = data;
+    articleData.value = data.list;
   });
 
   watchEffect(() => {
@@ -20,3 +20,4 @@ export function useArticleData() {
     docsHeaderInfo
   };
 }
+

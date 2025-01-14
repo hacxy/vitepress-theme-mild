@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { useScrollLock } from '@vueuse/core';
 import { inBrowser } from 'vitepress';
-import VPSidebarGroup from 'vitepress/dist/client/theme-default/components/VPSidebarGroup.vue';
 import { ref, watch } from 'vue';
 import { useSidebar } from '../hooks/useSidebar';
+import VPSidebarGroup from './SidebarGroup.vue';
 
 const props = defineProps<{
   open: boolean

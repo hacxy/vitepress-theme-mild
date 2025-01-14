@@ -1,6 +1,6 @@
 ---
 sidebar:
-  order: 10
+  sort: 1
   title: 简介
   text: 概述
 ---
