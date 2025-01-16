@@ -10,19 +10,22 @@ import VMFooter from './components/Footer.vue';
 import LocalNav from './components/LocalNav.vue';
 import Sidebar from './components/Sidebar.vue';
 import { useCloseSidebarOnEscape, useSidebar } from './hooks/useSidebar';
+import { useSidebarStore } from './stores/sidebar';
 
 import('virtual:group-icons.css');
 
-const {
-  isOpen: isSidebarOpen,
-  open: openSidebar,
-  close: closeSidebar
-} = useSidebar();
+// const {
+//   // isOpen: isSidebarOpen,
+//   open: openSidebar,
+//   close: closeSidebar
+// } = useSidebar();
+useSidebar();
+const sidebarStore = useSidebarStore();
 
 const route = useRoute();
-watch(() => route.path, closeSidebar);
+watch(() => route.path, () => sidebarStore.close());
 const np = inject<NProgress>('progress');
-useCloseSidebarOnEscape(isSidebarOpen, closeSidebar);
+useCloseSidebarOnEscape();
 
 const { frontmatter, isDark, page } = useData();
 
@@ -88,7 +91,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   >
     <slot name="layout-top" />
     <VPSkipLink />
-    <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
+    <VPBackdrop class="backdrop" :show="sidebarStore.isOpen" @click="sidebarStore.close()" />
     <VPNav>
       <template #nav-bar-title-before>
         <slot name="nav-bar-title-before" />
@@ -109,9 +112,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
         <slot name="nav-screen-content-after" />
       </template>
     </VPNav>
-    <LocalNav :open="isSidebarOpen" @open-menu="openSidebar" />
+    <LocalNav :open="sidebarStore.isOpen" @open-menu="sidebarStore.open()" />
 
-    <Sidebar :open="isSidebarOpen">
+    <Sidebar :open="sidebarStore.isOpen">
       <template #sidebar-nav-before>
         <slot name="sidebar-nav-before" />
       </template>

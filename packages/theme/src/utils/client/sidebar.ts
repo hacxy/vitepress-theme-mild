@@ -2,11 +2,11 @@ import type { DefaultTheme } from 'vitepress/theme';
 import { data } from '../../datas/articles.data';
 import { ensureStartingSlash, isActive } from '../common';
 
-export interface SidebarLink {
-  text: string
-  link: string
-  docFooterText?: string
-}
+// export interface SidebarLink {
+//   text: string
+//   link: string
+//   docFooterText?: string
+// }
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
 }
@@ -21,7 +21,7 @@ type SidebarItem = DefaultTheme.SidebarItem;
  */
 export function getSidebar(
   _sidebar: DefaultTheme.Sidebar | SidebarAutoMulti | undefined,
-  path: string
+  path: string,
 ): DefaultTheme.SidebarItem[] {
   if (Array.isArray(_sidebar)) {
     return addBase(_sidebar);
@@ -74,30 +74,6 @@ export function getSidebarGroups(sidebar: SidebarItem[]): SidebarItem[] {
   }
 
   return groups;
-}
-
-export function getFlatSideBarLinks(sidebar: SidebarItem[]): SidebarLink[] {
-  const links: SidebarLink[] = [];
-
-  function recursivelyExtractLinks(items: SidebarItem[]) {
-    for (const item of items) {
-      if (item.text && item.link) {
-        links.push({
-          text: item.text,
-          link: item.link,
-          docFooterText: item.docFooterText
-        });
-      }
-
-      if (item.items) {
-        recursivelyExtractLinks(item.items);
-      }
-    }
-  }
-
-  recursivelyExtractLinks(sidebar);
-
-  return links;
 }
 
 /**

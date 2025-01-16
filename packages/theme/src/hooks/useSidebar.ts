@@ -1,26 +1,15 @@
-import type { DefaultTheme } from 'vitepress';
-import type { ComputedRef, Ref } from 'vue';
 import { useMediaQuery } from '@vueuse/core';
+import { isEqual } from 'lodash';
 import { useData } from 'vitepress';
-import { computed, onMounted, onUnmounted, ref, watch, watchEffect, watchPostEffect } from 'vue';
-import { hasActiveLink as containsActiveLink, getSidebar, getSidebarGroups } from '../utils/client/sidebar';
-import { isActive } from '../utils/common';
-
-export interface SidebarControl {
-  collapsed: Ref<boolean>
-  collapsible: ComputedRef<boolean>
-  isLink: ComputedRef<boolean>
-  isActiveLink: Ref<boolean>
-  hasActiveLink: ComputedRef<boolean>
-  hasChildren: ComputedRef<boolean>
-  toggle: () => void
-}
+import { computed, onMounted, onUnmounted, watch, watchEffect } from 'vue';
+import { useSidebarStore } from '../stores/sidebar';
+import { getSidebar, getSidebarGroups } from '../utils/client/sidebar';
 
 export function useSidebar() {
   const { frontmatter, page, theme } = useData();
+  const sidebarStore = useSidebarStore();
   const is960 = useMediaQuery('(min-width: 960px)');
-
-  const isOpen = ref(false);
+  // const isOpen = ref(false);
 
   const _sidebar = computed(() => {
     const sidebarConfig = theme.value.sidebar;
@@ -28,20 +17,27 @@ export function useSidebar() {
     return sidebarConfig ? getSidebar(sidebarConfig, relativePath) : [];
   });
 
-  const sidebar = ref(_sidebar.value);
+  if (!(isEqual(sidebarStore.sidebar, _sidebar.value))) {
+    sidebarStore.sidebar = _sidebar.value;
+  }
 
   watch(_sidebar, (next, prev) => {
-    if (JSON.stringify(next) !== JSON.stringify(prev))
-      sidebar.value = _sidebar.value;
+    if (JSON.stringify(next) !== JSON.stringify(prev)) {
+      if (!(isEqual(sidebarStore.sidebar, _sidebar.value))) {
+        sidebarStore.sidebar = _sidebar.value;
+      }
+    }
   });
 
   const hasSidebar = computed(() => {
     return (
       frontmatter.value.sidebar !== false
-      && sidebar.value.length > 0
+      && sidebarStore.sidebar.length > 0
       && frontmatter.value.layout !== 'home'
     );
   });
+
+  sidebarStore.hasSidebar = hasSidebar.value;
 
   const hasAside = computed(() => {
     if (frontmatter.value.layout === 'home')
@@ -52,6 +48,8 @@ export function useSidebar() {
     return theme.value.aside !== false;
   });
 
+  sidebarStore.hasAside = hasAside.value;
+
   const leftAside = computed(() => {
     if (hasAside) {
       return frontmatter.value.aside === null
@@ -61,27 +59,17 @@ export function useSidebar() {
     return false;
   });
 
-  const isSidebarEnabled = computed(() => hasSidebar.value && is960.value);
+  sidebarStore.leftAside = leftAside.value;
+
+  const isSidebarEnabled = computed(() => sidebarStore.hasSidebar && is960.value);
 
   const sidebarGroups = computed(() => {
-    return hasSidebar.value ? getSidebarGroups(sidebar.value) : [];
+    return sidebarStore.hasSidebar ? getSidebarGroups(sidebarStore.sidebar) : [];
   });
-
-  function open() {
-    isOpen.value = true;
-  }
-
-  function close() {
-    isOpen.value = false;
-  }
-
-  function toggle() {
-    isOpen.value ? close() : open();
-  }
-
+  sidebarStore.sidebarGroups = sidebarGroups.value;
   return {
-    isOpen,
-    sidebar,
+    // isOpen,
+    // sidebar,
     sidebarGroups,
     hasSidebar,
     hasAside,
@@ -89,18 +77,15 @@ export function useSidebar() {
     isSidebarEnabled,
     open,
     close,
-    toggle
+    // toggle
   };
 }
 
-export function useCloseSidebarOnEscape(
-  isOpen: Ref<boolean>,
-  close: () => void
-) {
+export function useCloseSidebarOnEscape() {
   let triggerElement: HTMLButtonElement | undefined;
-
+  const sidebarStore = useSidebarStore();
   watchEffect(() => {
-    triggerElement = isOpen.value
+    triggerElement = sidebarStore.isOpen
       ? (document.activeElement as HTMLButtonElement)
       : undefined;
   });
@@ -114,71 +99,10 @@ export function useCloseSidebarOnEscape(
   });
 
   function onEscape(e: KeyboardEvent) {
-    if (e.key === 'Escape' && isOpen.value) {
-      close();
+    if (e.key === 'Escape' && sidebarStore.isOpen) {
+      sidebarStore.close();
       triggerElement?.focus();
     }
   }
 }
 
-export function useSidebarControl(
-  item: ComputedRef<DefaultTheme.SidebarItem>
-): SidebarControl {
-  const { page, hash } = useData();
-
-  const collapsed = ref(false);
-
-  const collapsible = computed(() => {
-    return item.value.collapsed !== null;
-  });
-
-  const isLink = computed(() => {
-    return !!item.value.link;
-  });
-
-  const isActiveLink = ref(false);
-  const updateIsActiveLink = () => {
-    isActiveLink.value = isActive(page.value.relativePath, item.value.link);
-  };
-
-  watch([page, item, hash], updateIsActiveLink);
-  onMounted(updateIsActiveLink);
-
-  const hasActiveLink = computed(() => {
-    if (isActiveLink.value) {
-      return true;
-    }
-
-    return item.value.items
-      ? containsActiveLink(page.value.relativePath, item.value.items)
-      : false;
-  });
-
-  const hasChildren = computed(() => {
-    return !!(item.value.items && item.value.items.length);
-  });
-
-  watchEffect(() => {
-    collapsed.value = !!(collapsible.value && item.value.collapsed);
-  });
-
-  watchPostEffect(() => {
-    ;(isActiveLink.value || hasActiveLink.value) && (collapsed.value = false);
-  });
-
-  function toggle() {
-    if (collapsible.value) {
-      collapsed.value = !collapsed.value;
-    }
-  }
-
-  return {
-    collapsed,
-    collapsible,
-    isLink,
-    isActiveLink,
-    hasActiveLink,
-    hasChildren,
-    toggle
-  };
-}

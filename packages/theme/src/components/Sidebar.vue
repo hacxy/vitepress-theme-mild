@@ -2,14 +2,15 @@
 import { useScrollLock } from '@vueuse/core';
 import { inBrowser } from 'vitepress';
 import { ref, watch } from 'vue';
-import { useSidebar } from '../hooks/useSidebar';
+import { useSidebarStore } from '../stores/sidebar';
 import VPSidebarGroup from './SidebarGroup.vue';
 
 const props = defineProps<{
   open: boolean
 }>();
 
-const { sidebarGroups, hasSidebar } = useSidebar();
+// const { sidebarGroups, hasSidebar } = useSidebar();
+const sidebarStore = useSidebarStore();
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null);
 const isLocked = useScrollLock(inBrowser ? document.body : null);
@@ -30,7 +31,7 @@ watch(
 
 const key = ref(0);
 watch(
-  sidebarGroups,
+  sidebarStore.sidebarGroups,
   () => {
     key.value += 1;
   },
@@ -40,10 +41,10 @@ watch(
 
 <template>
   <aside
-    v-if="hasSidebar"
+    v-if="sidebarStore.hasSidebar"
     ref="navEl"
     class="VPSidebar"
-    :class="{ open: open && hasSidebar }"
+    :class="{ open: open && sidebarStore.hasSidebar }"
     @click.stop
   >
     <div class="curtain" />
@@ -59,7 +60,7 @@ watch(
       </span>
 
       <slot name="sidebar-nav-before" />
-      <VPSidebarGroup :key="key" :items="sidebarGroups" />
+      <VPSidebarGroup :key="key" :items="sidebarStore.sidebarGroups" />
       <slot name="sidebar-nav-after" />
     </nav>
   </aside>

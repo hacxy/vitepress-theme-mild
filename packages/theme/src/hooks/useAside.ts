@@ -1,9 +1,9 @@
 import { useMediaQuery } from '@vueuse/core';
 import { computed } from 'vue';
-import { useSidebar } from './useSidebar';
+import { useSidebarStore } from '../stores/sidebar';
 
 export function useAside() {
-  const { hasSidebar } = useSidebar();
+  const sidebarStore = useSidebarStore();
   const is960 = useMediaQuery('(min-width: 960px)');
   const is1280 = useMediaQuery('(min-width: 1280px)');
 
@@ -12,7 +12,7 @@ export function useAside() {
       return false;
     }
 
-    return hasSidebar.value ? is1280.value : is960.value;
+    return sidebarStore.hasSidebar ? is1280.value : is960.value;
   });
 
   return {

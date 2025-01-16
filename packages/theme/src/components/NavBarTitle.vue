@@ -3,12 +3,12 @@ import { useData } from 'vitepress';
 import VPImage from 'vitepress/dist/client/theme-default/components/VPImage.vue';
 import { computed } from 'vue';
 import { useLangs } from '../hooks/useLangs';
-import { useSidebar } from '../hooks/useSidebar';
+import { useSidebarStore } from '../stores/sidebar';
 import { normalizeLink } from '../utils/shared';
 
 const { site, theme } = useData();
-const { hasSidebar } = useSidebar();
 const { currentLang } = useLangs();
+const sidebarStore = useSidebarStore();
 
 const link = computed(() =>
   typeof theme.value.logoLink === 'string'
@@ -30,7 +30,7 @@ const target = computed(() =>
 </script>
 
 <template>
-  <div class="VPNavBarTitle" :class="{ 'has-sidebar': hasSidebar }">
+  <div class="VPNavBarTitle" :class="{ 'has-sidebar': sidebarStore.hasSidebar }">
     <a
       class="title"
       :href="link ?? normalizeLink(currentLang.link)"

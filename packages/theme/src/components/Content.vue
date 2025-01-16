@@ -3,11 +3,11 @@ import { useData } from 'vitepress';
 import VPHome from 'vitepress/dist/client/theme-default/components/VPHome.vue';
 import VPPage from 'vitepress/dist/client/theme-default/components/VPPage.vue';
 import NotFound from 'vitepress/dist/client/theme-default/NotFound.vue';
-import { useSidebar } from '../hooks/useSidebar';
+import { useSidebarStore } from '../stores/sidebar';
 import VPDoc from './Doc.vue';
 
+const sidebarStore = useSidebarStore();
 const { page, frontmatter } = useData();
-const { hasSidebar } = useSidebar();
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const { hasSidebar } = useSidebar();
     id="VPContent"
     class="VPContent"
     :class="{
-      'has-sidebar': hasSidebar,
+      'has-sidebar': sidebarStore.hasSidebar,
       'is-home': frontmatter.layout === 'home',
     }"
   >
