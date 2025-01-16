@@ -23,7 +23,9 @@ useSidebar();
 const sidebarStore = useSidebarStore();
 
 const route = useRoute();
-watch(() => route.path, () => sidebarStore.close());
+watch(() => route.path, () => {
+  sidebarStore.close();
+});
 const np = inject<NProgress>('progress');
 useCloseSidebarOnEscape();
 

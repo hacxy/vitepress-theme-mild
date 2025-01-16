@@ -5,6 +5,7 @@ import { useData, useRouter } from 'vitepress';
 import { computed, onMounted, ref, watch } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../constants';
 import { data } from '../datas/articles.data';
+import { useSidebar } from '../hooks/useSidebar';
 import { paginate } from '../utils/client/article';
 import ArticlesList from './ArticlesList.vue';
 
@@ -40,6 +41,7 @@ watch(currentPage, () => {
 });
 
 router.onBeforeRouteChange = to => {
+  useSidebar();
   if (to === '/') {
     currentPage.value = 1;
     return true;

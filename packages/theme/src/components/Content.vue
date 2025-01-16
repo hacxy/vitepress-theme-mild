@@ -6,6 +6,8 @@ import NotFound from 'vitepress/dist/client/theme-default/NotFound.vue';
 import { useSidebarStore } from '../stores/sidebar';
 import VPDoc from './Doc.vue';
 
+// onMounted(() => {
+// });
 const sidebarStore = useSidebarStore();
 const { page, frontmatter } = useData();
 </script>
