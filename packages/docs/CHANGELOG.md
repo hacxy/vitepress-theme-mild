@@ -1,3 +1,23 @@
+## [0.4.1-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.0...v0.4.1-alpha.0) (2025-01-17)
+
+
+### Bug Fixes
+
+* fix the sidebar status not updated causing the page display error ([4ee2c74](https://github.com/hacxy/vitepress-theme-mild/commit/4ee2c7485caa3a44f00646d1a6d92dbde1929871))
+
+
+### Features
+
+* sidebar frontmatter add collapsed. ([dcbe73b](https://github.com/hacxy/vitepress-theme-mild/commit/dcbe73b4a1105f3f584d636bda58b7a7ec121967))
+
+
+### Performance Improvements
+
+* optimize the auto sidebar calculation method ([315d57b](https://github.com/hacxy/vitepress-theme-mild/commit/315d57bcf6f6ff8be615caac3a335ea7f099a497))
+* optimize the issue of hot update memory leak causing browser crash during article editing. ([5dd0f1d](https://github.com/hacxy/vitepress-theme-mild/commit/5dd0f1d0a1005d129020ccec6a8c58de28deaa40))
+
+
+
 # [0.4.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.3.1-alpha.1...v0.4.0) (2025-01-10)
 
 
