@@ -82,11 +82,10 @@ export function useSidebar() {
 
 export function useCloseSidebarOnEscape() {
   let triggerElement: HTMLButtonElement | undefined;
-  // const sidebarStore = useSidebarStore();
   const { isOpen, close } = useSidebar();
 
   watchEffect(() => {
-    triggerElement = isOpen
+    triggerElement = isOpen.value
       ? (document.activeElement as HTMLButtonElement)
       : undefined;
   });
@@ -100,7 +99,7 @@ export function useCloseSidebarOnEscape() {
   });
 
   function onEscape(e: KeyboardEvent) {
-    if (e.key === 'Escape' && isOpen) {
+    if (e.key === 'Escape' && isOpen.value) {
       close();
       triggerElement?.focus();
     }
