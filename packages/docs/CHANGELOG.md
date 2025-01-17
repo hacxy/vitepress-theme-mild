@@ -1,3 +1,12 @@
+## [0.4.1-alpha.3](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.2...v0.4.1-alpha.3) (2025-01-17)
+
+
+### Bug Fixes
+
+* remove pinia global state management and use provide and inject instead. ([551df09](https://github.com/hacxy/vitepress-theme-mild/commit/551df09018b0ee707afd12d500f6344bf3474b25))
+
+
+
 ## [0.4.1-alpha.2](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.1...v0.4.1-alpha.2) (2025-01-17)
 
 
