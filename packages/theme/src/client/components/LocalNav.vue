@@ -4,22 +4,15 @@ import { onContentUpdated, useData } from 'vitepress';
 import VPLocalNavOutlineDropdown from 'vitepress/dist/client/theme-default/components/VPLocalNavOutlineDropdown.vue';
 import { useLocalNav } from 'vitepress/theme';
 import { computed, onMounted, ref } from 'vue';
+import { useSidebar } from '../hooks/useSidebar';
 import { getHeaders } from '../utils/client/outline';
 
-defineProps<{
-  open: boolean
-}>();
-
-defineEmits<{
-  (e: 'open-menu'): void
-}>();
+const { isOpen, open, hasSidebar } = useSidebar();
 
 const { theme, frontmatter } = useData();
 const { headers } = useLocalNav();
 const { y } = useWindowScroll();
-const hasSidebar = computed(() => {
-  return !!frontmatter.value.category;
-});
+
 const navHeight = ref(0);
 
 onMounted(() => {
@@ -61,9 +54,9 @@ const classes = computed(() => {
       <button
         v-if="hasSidebar"
         class="menu"
-        :aria-expanded="open"
+        :aria-expanded="isOpen"
         aria-controls="VPSidebarNav"
-        @click="$emit('open-menu')"
+        @click="open()"
       >
         <span class="vpi-align-left menu-icon" />
         <span class="menu-text">

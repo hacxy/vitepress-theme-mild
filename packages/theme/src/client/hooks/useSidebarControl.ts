@@ -23,7 +23,7 @@ export function useSidebarControl(
   const collapsed = ref(false);
 
   const collapsible = computed(() => {
-    return item.value.collapsed !== null;
+    return item.value.collapsed !== undefined;
   });
 
   const isLink = computed(() => {

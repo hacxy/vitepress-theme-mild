@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
-import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue';
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
 import { computed, nextTick, onMounted, provide, useSlots, watch } from 'vue';
 import { useInitData } from '../hooks/useInitData';
-import { useCloseSidebarOnEscape, useSidebar } from '../hooks/useSidebar';
+import VPBackdrop from './Backdrop.vue';
 import Content from './Content.vue';
 import VMFooter from './Footer.vue';
 import LocalNav from './LocalNav.vue';
@@ -16,13 +15,11 @@ import('virtual:group-icons.css');
 // Init data 不要在其他任何地方调用这个hook 否则会存在性能浪费问题
 const { np } = useInitData();
 
-const { isOpen, open, close } = useSidebar();
+// const { isOpen, open, close } = useSidebar();
 
 const route = useRoute();
 
 watch(() => route.path, close);
-
-useCloseSidebarOnEscape();
 
 const { frontmatter, isDark, page } = useData();
 
@@ -88,7 +85,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   >
     <slot name="layout-top" />
     <VPSkipLink />
-    <VPBackdrop class="backdrop" :show="isOpen" @click="close()" />
+    <VPBackdrop class="backdrop" />
     <VPNav>
       <template #nav-bar-title-before>
         <slot name="nav-bar-title-before" />
@@ -109,9 +106,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
         <slot name="nav-screen-content-after" />
       </template>
     </VPNav>
-    <LocalNav :open="isOpen" @open-menu="open()" />
+    <LocalNav />
 
-    <Sidebar :open="isOpen">
+    <Sidebar>
       <template #sidebar-nav-before>
         <slot name="sidebar-nav-before" />
       </template>

@@ -2,7 +2,6 @@
 import type { DefaultTheme } from 'vitepress/theme';
 import { computed } from 'vue';
 import { useSidebarControl } from '../hooks/useSidebarControl';
-// import { useSidebarControl } from '../hooks/useSidebar';
 import VPLink from './Link.vue';
 
 const props = defineProps<{

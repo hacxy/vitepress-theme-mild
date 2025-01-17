@@ -4,7 +4,6 @@ import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
-import { createPinia } from 'pinia';
 import VPTheme from 'vitepress/theme';
 import BlogPage from './src/client/components/BlogPage.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
@@ -20,9 +19,6 @@ const MildTheme: Theme = {
   enhanceApp({ app, router, siteData }) {
     const themeConfig: ThemeConfig = siteData.value.themeConfig;
     const originalConsoleError = console.error;
-
-    const pinia = createPinia();
-    app.use(pinia);
 
     // 重写 console.error 方法
     console.error = function (message, ...optionalParams) {

@@ -18,7 +18,6 @@ export function getSidebar(
   path: string,
   autoSidebar: any
 ): DefaultTheme.SidebarItem[] {
-  // const baseStore = useBaseStore();
   if (Array.isArray(_sidebar)) {
     return addBase(_sidebar);
   }
