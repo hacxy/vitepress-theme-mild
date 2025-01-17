@@ -1,3 +1,12 @@
+## [0.4.1-alpha.2](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.1...v0.4.1-alpha.2) (2025-01-17)
+
+
+### Bug Fixes
+
+* adjust the call timing of useBaseStore ([0907873](https://github.com/hacxy/vitepress-theme-mild/commit/09078732df3771e02ab00ef13df280958e681714))
+
+
+
 ## [0.4.1-alpha.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.0...v0.4.1-alpha.1) (2025-01-17)
 
 
