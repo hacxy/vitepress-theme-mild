@@ -2,7 +2,7 @@ import matter from 'gray-matter';
 import { readingTime } from 'reading-time-estimator';
 import { NOT_ARTICLE_LAYOUTS } from '../../shared/constants';
 import { getTextDescription } from '../utils/common';
-import { createArticlesListLoader } from '../utils/node/articles';
+import { createBaseDataLoader } from '../utils/node/loader';
 
 export interface SidebarFrontmatter {
   text?: string
@@ -25,7 +25,7 @@ export interface ArticlesData {
   sidebar: boolean | SidebarFrontmatter
 }
 
-export default createArticlesListLoader({
+export default createBaseDataLoader({
   includeSrc: true,
   render: true,
   excerpt: true,

@@ -1,12 +1,7 @@
 import type { DefaultTheme } from 'vitepress/theme';
-import { data } from '../../datas/articles.data';
+import { useBaseStore } from '../../stores/base';
 import { ensureStartingSlash, isActive } from '../common';
 
-// export interface SidebarLink {
-//   text: string
-//   link: string
-//   docFooterText?: string
-// }
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
 }
@@ -23,6 +18,7 @@ export function getSidebar(
   _sidebar: DefaultTheme.Sidebar | SidebarAutoMulti | undefined,
   path: string,
 ): DefaultTheme.SidebarItem[] {
+  const baseStore = useBaseStore();
   if (Array.isArray(_sidebar)) {
     return addBase(_sidebar);
   }
@@ -42,7 +38,7 @@ export function getSidebar(
 
   let sidebar: any = dir ? _sidebar![dir] : [];
   if (sidebar === 'auto' && dir) {
-    sidebar = data.autoSidebar[dir];
+    sidebar = baseStore.autoSidebar[dir];
   }
 
   return Array.isArray(sidebar)

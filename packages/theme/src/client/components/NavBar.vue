@@ -9,7 +9,7 @@ import VPNavBarSearch from 'vitepress/dist/client/theme-default/components/VPNav
 import VPNavBarSocialLinks from 'vitepress/dist/client/theme-default/components/VPNavBarSocialLinks.vue';
 import VPNavBarTranslations from 'vitepress/dist/client/theme-default/components/VPNavBarTranslations.vue';
 import { ref, watchPostEffect } from 'vue';
-import { useSidebarStore } from '../stores/sidebar';
+import { useSidebar } from '../hooks/useSidebar';
 import VPNavBarTitle from './NavBarTitle.vue';
 
 const props = defineProps<{
@@ -22,12 +22,13 @@ defineEmits<{
 
 const { y } = useWindowScroll();
 const { frontmatter } = useData();
-const sidebarStore = useSidebarStore();
+// const sidebarStore = useSidebarStore();
+const { hasSidebar } = useSidebar();
 const classes = ref<Record<string, boolean>>({});
 
 watchPostEffect(() => {
   classes.value = {
-    'has-sidebar': sidebarStore.hasSidebar,
+    'has-sidebar': hasSidebar.value,
     'home': frontmatter.value.layout === 'home',
     'top': y.value === 0,
     'screen-open': props.isScreenOpen

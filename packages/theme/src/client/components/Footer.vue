@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { useData } from 'vitepress';
-import { useSidebarStore } from '../stores/sidebar';
+import { useSidebar } from '../hooks/useSidebar';
 
 const { theme, frontmatter } = useData();
-
-const sidebarStore = useSidebarStore();
+const { hasSidebar } = useSidebar();
 </script>
 
 <template>
-  <footer v-if="theme.footer && frontmatter.footer !== false" class="VPFooter" :class="{ 'has-sidebar': sidebarStore.hasSidebar }">
+  <footer v-if="theme.footer && frontmatter.footer !== false" class="VPFooter" :class="{ 'has-sidebar': hasSidebar }">
     <div class="container">
       <p v-if="theme.footer.message" class="message" v-html="theme.footer.message" />
       <p v-if="theme.footer.copyright" class="copyright" v-html="theme.footer.copyright" />
+      <!-- {{ data }} -->
     </div>
   </footer>
 </template>

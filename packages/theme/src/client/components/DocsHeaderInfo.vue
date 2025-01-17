@@ -1,11 +1,18 @@
 <script lang="ts" setup>
 import { NTime } from 'naive-ui';
-import { useArticleData } from '../hooks/useArticleData';
+import { useRoute } from 'vitepress';
+import { ref, watchEffect } from 'vue';
+import { useBaseStore } from '../stores/base';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
 import IconWords from './icons/IconWords.vue';
 
-const { docsHeaderInfo } = useArticleData();
+const docsHeaderInfo = ref<{ words: number, minutes: number, date: number }>();
+const route = useRoute();
+const baseStore = useBaseStore();
+watchEffect(() => {
+  docsHeaderInfo.value = baseStore.articleList.find(item => route.path === item.path);
+});
 </script>
 
 <template>

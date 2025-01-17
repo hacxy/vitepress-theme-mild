@@ -175,7 +175,7 @@ function handleAutoSidebar(config: SiteConfig, data: Map<string, ContentData>) {
   return autoSidebar;
 }
 
-export function createArticlesListLoader<T = {
+export function createBaseDataLoader<T = {
   list: ContentData[]
   autoSidebar: any
 }>(

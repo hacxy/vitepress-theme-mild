@@ -4,25 +4,26 @@ import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
 import { computed, onMounted, ref, watch } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../../shared/constants';
-import { data } from '../datas/articles.data';
+import { useBaseStore } from '../stores/base';
+// import { data } from '../datas/base.data';
 import { paginate } from '../utils/client/article';
 import ArticlesList from './ArticlesList.vue';
 
+const baseStore = useBaseStore();
 const router = useRouter();
 const { frontmatter } = useData();
 const articleTitle = ref(frontmatter.value?.article?.title);
 const pageSize = ref(frontmatter.value?.article?.pageSize || DEFAULT_PAGE_SIZE);
 const params = useUrlSearchParams<{ pageNum: string }>();
 const currentPage = ref(1);
-// const { articleData: data } = useArticleData();
 
 const totalPages = computed(() => {
-  const total = data.list.length || 0;
+  const total = baseStore.articleList.length || 0;
   return Math.ceil(total / pageSize.value);
 });
 
 const posts = computed(() => {
-  return paginate(data.list, pageSize.value, currentPage.value);
+  return paginate(baseStore.articleList, pageSize.value, currentPage.value);
 });
 
 onMounted(() => {

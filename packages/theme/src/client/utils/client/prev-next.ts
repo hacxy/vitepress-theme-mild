@@ -1,16 +1,16 @@
 import { useData } from 'vitepress';
 import { computed } from 'vue';
-import { useSidebarStore } from '../../stores/sidebar';
+import { useSidebar } from '../../hooks/useSidebar';
 import { isActive } from '../common';
 import { getFlatSideBarLinks } from './common';
 
 export function usePrevNext() {
   const { page, theme, frontmatter } = useData();
-  const sidebarStore = useSidebarStore();
+  const { sidebar } = useSidebar();
   // eslint-disable-next-line complexity
   return computed(() => {
     // const sidebar = getSidebar(theme.value.sidebar, page.value.relativePath);
-    const links = getFlatSideBarLinks(sidebarStore.sidebar);
+    const links = getFlatSideBarLinks(sidebar.value);
 
     // ignore inner-page links with hashes
     const candidates = uniqBy(links, link => link.link.replace(/[?#].*$/, ''));

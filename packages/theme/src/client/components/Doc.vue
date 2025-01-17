@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
 import { computed } from 'vue';
-import { useSidebarStore } from '../stores/sidebar';
+import { useSidebar } from '../hooks/useSidebar';
 import VPDocAside from './DocAside.vue';
 import VPDocFooter from './DocFooter.vue';
 
 const { theme } = useData();
 
 const route = useRoute();
-// const { hasAside, leftAside, hasSidebar } = useSidebar();
-const sidebarStore = useSidebarStore();
+const { hasAside, leftAside, hasSidebar } = useSidebar();
+
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, '')
 );
@@ -18,11 +18,11 @@ const pageName = computed(() =>
 <template>
   <div
     class="VPDoc"
-    :class="{ 'has-sidebar': sidebarStore.hasSidebar, 'has-aside': sidebarStore.hasAside }"
+    :class="{ 'has-sidebar': hasSidebar, 'has-aside': hasAside }"
   >
     <slot name="doc-top" />
     <div class="container">
-      <div v-if="sidebarStore.hasAside" class="aside" :class="{ 'left-aside': sidebarStore.leftAside }">
+      <div v-if="hasAside" class="aside" :class="{ 'left-aside': leftAside }">
         <div class="aside-curtain" />
         <div class="aside-container">
           <div class="aside-content">

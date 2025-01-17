@@ -1,4 +1,4 @@
-import type { ArticlesData } from '../../datas/articles.data';
+import type { ArticlesData } from '../../datas/base.data';
 
 export function handleTagsData(data: ArticlesData[]) {
   const tagsMap = new Map<string, ArticlesData[]>();

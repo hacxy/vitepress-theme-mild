@@ -1,6 +1,6 @@
 import { useRoute } from 'vitepress';
 import { onMounted, ref, watchEffect } from 'vue';
-import { data } from '../datas/articles.data';
+import { data } from '../datas/base.data';
 
 export function useArticleData() {
   const articleData = ref(data?.list || []);

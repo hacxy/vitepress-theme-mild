@@ -1,15 +1,17 @@
 <script lang="ts" setup>
-import type { ArticlesData } from 'src/client/datas/articles.data';
+import type { ArticlesData } from 'src/client/datas/base.data';
 import { useUrlSearchParams } from '@vueuse/core';
 import { computed, nextTick, ref, watchEffect } from 'vue';
-import { useArticleData } from '../hooks/useArticleData';
+import { useBaseStore } from '../stores/base';
 import { handleTagsData } from '../utils/client/tags';
 import ArticlesList from './ArticlesList.vue';
 
-const { articleData } = useArticleData();
+const baseStore = useBaseStore();
+
 const tagsData = computed(() => {
-  return handleTagsData(articleData.value);
+  return handleTagsData(baseStore.articleList);
 });
+
 const params = useUrlSearchParams<{ tag: string }>();
 const selectTag = ref<string>(params.tag);
 const currentArticle = ref<ArticlesData[]>([]);

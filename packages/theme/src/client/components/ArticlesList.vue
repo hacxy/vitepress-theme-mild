@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ArticlesData } from '../datas/articles.data.js';
+import type { ArticlesData } from '../datas/base.data.js';
 import { NIcon, NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
 import IconCalendar from './icons/IconCalendar.vue';

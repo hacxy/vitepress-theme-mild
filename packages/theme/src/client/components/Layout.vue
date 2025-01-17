@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import type { NProgress } from 'nprogress';
 import { useData, useRoute } from 'vitepress';
 import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue';
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
-import { computed, inject, nextTick, onMounted, provide, useSlots, watch } from 'vue';
+import { computed, nextTick, onMounted, provide, useSlots, watch } from 'vue';
+import { useInitData } from '../hooks/useInitData';
 import { useCloseSidebarOnEscape, useSidebar } from '../hooks/useSidebar';
-import { useSidebarStore } from '../stores/sidebar';
 import Content from './Content.vue';
 import VMFooter from './Footer.vue';
 import LocalNav from './LocalNav.vue';
@@ -14,19 +13,15 @@ import Sidebar from './Sidebar.vue';
 
 import('virtual:group-icons.css');
 
-// const {
-//   // isOpen: isSidebarOpen,
-//   open: openSidebar,
-//   close: closeSidebar
-// } = useSidebar();
-useSidebar();
-const sidebarStore = useSidebarStore();
+// Init data 不要在其他任何地方调用这个hook 否则会存在性能浪费问题
+const { np } = useInitData();
+
+const { isOpen, open, close } = useSidebar();
 
 const route = useRoute();
-watch(() => route.path, () => {
-  sidebarStore.close();
-});
-const np = inject<NProgress>('progress');
+
+watch(() => route.path, close);
+
 useCloseSidebarOnEscape();
 
 const { frontmatter, isDark, page } = useData();
@@ -93,7 +88,7 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   >
     <slot name="layout-top" />
     <VPSkipLink />
-    <VPBackdrop class="backdrop" :show="sidebarStore.isOpen" @click="sidebarStore.close()" />
+    <VPBackdrop class="backdrop" :show="isOpen" @click="close()" />
     <VPNav>
       <template #nav-bar-title-before>
         <slot name="nav-bar-title-before" />
@@ -114,9 +109,9 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
         <slot name="nav-screen-content-after" />
       </template>
     </VPNav>
-    <LocalNav :open="sidebarStore.isOpen" @open-menu="sidebarStore.open()" />
+    <LocalNav :open="isOpen" @open-menu="open()" />
 
-    <Sidebar :open="sidebarStore.isOpen">
+    <Sidebar :open="isOpen">
       <template #sidebar-nav-before>
         <slot name="sidebar-nav-before" />
       </template>
