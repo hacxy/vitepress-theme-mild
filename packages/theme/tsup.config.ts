@@ -1,8 +1,9 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['node.ts'],
+  entry: ['./src/node/index.ts'],
   format: ['esm'],
+  outDir: 'config',
   target: 'node18',
   platform: 'node',
   bundle: true,

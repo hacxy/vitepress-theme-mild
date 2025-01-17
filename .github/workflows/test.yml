@@ -23,11 +23,8 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build Theme
-        run: pnpm build
-
-      - name: Build Demo
-        run: pnpm demo:build
+      - name: Build All
+        run: pnpm -r build
 
       - name: Linter
-        run: pnpm lint
+        run: pnpm -r lint

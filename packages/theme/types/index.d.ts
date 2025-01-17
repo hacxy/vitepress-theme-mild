@@ -2,7 +2,7 @@ import type { GiscusProps, Theme as GiscusTheme } from '@giscus/vue';
 import type { NProgressOptions } from 'nprogress';
 import type { DefaultTheme, Theme } from 'vitepress';
 import type { RSSOptions } from 'vitepress-plugin-rss';
-import Layout from '../src/Layout.vue';
+import type Layout from '../src/Layout.vue';
 
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
