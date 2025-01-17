@@ -2,7 +2,7 @@ import matter from 'gray-matter';
 import { readingTime } from 'reading-time-estimator';
 import { NOT_ARTICLE_LAYOUTS } from '../../shared/constants';
 import { getTextDescription } from '../utils/common';
-import { createBaseDataLoader } from '../utils/node/loader';
+import { createBaseDataLoader } from './base';
 
 export interface SidebarFrontmatter {
   text?: string

@@ -31,4 +31,4 @@ sidebar:
 
 ## 快速开始
 
-[下一章: 快速开始](./quick-start.md)
+请阅读下一节: [快速开始](./quick-start.md)

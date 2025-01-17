@@ -19,3 +19,13 @@ export function getPattern(srcDir: string) {
   return normalizePath(path.join(srcDir, './**/*.md'));
 }
 
+export function ensureIndexMd(path: string): string {
+  const folderEndingRegex = /\/$/;
+
+  if (folderEndingRegex.test(path) || !path.match(/\/[^/]+\.md$/)) {
+    // 确保路径以 index.md 结尾
+    return `${path.replace(folderEndingRegex, '')}/index.md`;
+  }
+
+  return path;
+}

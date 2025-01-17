@@ -5,9 +5,9 @@ import fs from 'fs-extra';
 import matter from 'gray-matter';
 import { glob, type GlobOptions } from 'tinyglobby';
 import { createMarkdownRenderer, type SiteConfig } from 'vitepress';
-import { dateToUnixTimestamp } from './date';
-import { getLastCommitInfo } from './git';
-import { getPattern, normalizePath } from './path';
+import { dateToUnixTimestamp } from '../utils/node/date';
+import { getLastCommitInfo } from '../utils/node/git';
+import { ensureIndexMd, getPattern, normalizePath } from '../utils/node/path';
 
 export interface ContentData {
   url: string
@@ -70,17 +70,6 @@ export interface ContentOptions<T = ContentData[]> {
   globOptions?: GlobOptions
 }
 
-function ensureIndexMd(path: string): string {
-  const folderEndingRegex = /\/$/;
-
-  if (folderEndingRegex.test(path) || !path.match(/\/[^/]+\.md$/)) {
-    // 确保路径以 index.md 结尾
-    return `${path.replace(folderEndingRegex, '')}/index.md`;
-  }
-
-  return path;
-}
-
 // sidebar排序, 越小越靠前
 function sortSidebar(sidebar: any[]) {
   sidebar.forEach(item => {
@@ -100,6 +89,13 @@ function sortSidebar(sidebar: any[]) {
     }
     if (!aIsIndex && bIsIndex) {
       return 1;
+    }
+
+    if (a.sort === undefined && b.sort !== undefined) {
+      return 1;
+    }
+    else if (a.sort !== undefined && b.sort === undefined) {
+      return -1;
     }
 
     // 根据 sort 排序
@@ -125,7 +121,7 @@ function formatSidebarItems(item: any, PATH: string, config: SiteConfig, data: M
   const { sidebar } = article?.frontmatter || {};
   item.frontmatter = sidebar || {};
 
-  item.sort = sidebar?.sort ?? 999;
+  item.sort = sidebar?.sort;
 
   if (sidebar === false) {
     item.hide = true;
@@ -141,6 +137,7 @@ function formatSidebarItems(item: any, PATH: string, config: SiteConfig, data: M
   else {
     item.items = item.children;
     item.text = sidebar?.title || title;
+    item.collapsed = sidebar?.collapsed;
     delete item.children;
   }
 }

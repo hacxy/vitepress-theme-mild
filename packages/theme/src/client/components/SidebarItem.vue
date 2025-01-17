@@ -86,7 +86,7 @@ function onCaretClick() {
       />
 
       <div
-        v-if="item.collapsed != null && item.items && item.items.length"
+        v-if="item.collapsed !== undefined && item.items && item.items.length"
         class="caret"
         role="button"
         aria-label="toggle section"

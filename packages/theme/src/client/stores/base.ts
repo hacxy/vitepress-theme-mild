@@ -7,7 +7,6 @@ interface baseStore {
 }
 
 export const useBaseStore = defineStore('baseData', {
-
   state: (): baseStore => {
     return {
       autoSidebar: {},
