@@ -1,3 +1,12 @@
+## [0.4.1-alpha.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.0...v0.4.1-alpha.1) (2025-01-17)
+
+
+### Bug Fixes
+
+* fix the issue where the pinia store is called before the instance is created. ([3e07cf5](https://github.com/hacxy/vitepress-theme-mild/commit/3e07cf58581df6af1b09b26c63394344115d8cef))
+
+
+
 ## [0.4.1-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.0...v0.4.1-alpha.0) (2025-01-17)
 
 
