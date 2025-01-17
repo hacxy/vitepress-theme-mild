@@ -1,3 +1,7 @@
+# [0.5.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.3...v0.5.0) (2025-01-17)
+
+
+
 ## [0.4.1-alpha.3](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.2...v0.4.1-alpha.3) (2025-01-17)
 
 
