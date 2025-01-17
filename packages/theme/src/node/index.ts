@@ -3,8 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { RssPlugin } from 'vitepress-plugin-rss';
-import { NOT_ARTICLE_LAYOUTS } from './src/constants';
-import { imgToImage, insertDocsHeaderInfo } from './src/utils/node/markdown';
+import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
+import { imgToImage, insertDocsHeaderInfo } from './plugins/markdown';
 
 function rss(): Plugin {
   let resolveConfig: any;
@@ -48,7 +48,7 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
         {
           find: /^.*\/VPNavBar\.vue$/,
           replacement: fileURLToPath(
-            new URL('../src/components/NavBar.vue', import.meta.url)
+            new URL('../src/client/components/NavBar.vue', import.meta.url)
           )
         },
       ]

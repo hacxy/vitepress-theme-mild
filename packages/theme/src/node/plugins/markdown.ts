@@ -1,5 +1,5 @@
 import type { PluginSimple } from 'markdown-it';
-import { NOT_ARTICLE_LAYOUTS } from '../../constants';
+import { NOT_ARTICLE_LAYOUTS } from '../../shared/constants';
 
 export const insertDocsHeaderInfo: PluginSimple = md => {
   md.core.ruler.push('insert_docs_header_info', state => {

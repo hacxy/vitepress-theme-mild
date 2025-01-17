@@ -16,20 +16,10 @@
     "vitepress",
     "vitepress-theme"
   ],
-  "exports": {
-    ".": {
-      "types": "./types/index.d.ts",
-      "import": "./index.js"
-    },
-    "./config": {
-      "types": "./dist/node.d.ts",
-      "import": "./dist/node.js"
-    }
-  },
   "module": "./index.js",
   "types": "./types/index.d.ts",
   "files": [
-    "dist",
+    "config",
     "index.ts",
     "src",
     "types"

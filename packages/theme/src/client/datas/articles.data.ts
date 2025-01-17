@@ -1,6 +1,6 @@
 import matter from 'gray-matter';
 import { readingTime } from 'reading-time-estimator';
-import { NOT_ARTICLE_LAYOUTS } from '../constants';
+import { NOT_ARTICLE_LAYOUTS } from '../../shared/constants';
 import { getTextDescription } from '../utils/common';
 import { createArticlesListLoader } from '../utils/node/articles';
 

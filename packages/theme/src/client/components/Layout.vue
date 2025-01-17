@@ -5,12 +5,12 @@ import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdro
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
 import { computed, inject, nextTick, onMounted, provide, useSlots, watch } from 'vue';
-import Content from './components/Content.vue';
-import VMFooter from './components/Footer.vue';
-import LocalNav from './components/LocalNav.vue';
-import Sidebar from './components/Sidebar.vue';
-import { useCloseSidebarOnEscape, useSidebar } from './hooks/useSidebar';
-import { useSidebarStore } from './stores/sidebar';
+import { useCloseSidebarOnEscape, useSidebar } from '../hooks/useSidebar';
+import { useSidebarStore } from '../stores/sidebar';
+import Content from './Content.vue';
+import VMFooter from './Footer.vue';
+import LocalNav from './LocalNav.vue';
+import Sidebar from './Sidebar.vue';
 
 import('virtual:group-icons.css');
 

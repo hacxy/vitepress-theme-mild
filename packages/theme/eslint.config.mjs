@@ -15,7 +15,6 @@ export default linter({
     'vue/no-v-text-v-html-on-component': 0
   },
   ignores: [
-    'packages/demo/**/*',
-    'packages/theme/node.js'
+    'config'
   ],
 });

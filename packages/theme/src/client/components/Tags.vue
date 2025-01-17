@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ArticlesData } from 'src/datas/articles.data';
+import type { ArticlesData } from 'src/client/datas/articles.data';
 import { useUrlSearchParams } from '@vueuse/core';
 import { computed, nextTick, ref, watchEffect } from 'vue';
 import { useArticleData } from '../hooks/useArticleData';

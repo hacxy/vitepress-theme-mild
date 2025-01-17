@@ -6,13 +6,13 @@ import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
 import { createPinia } from 'pinia';
 import VPTheme from 'vitepress/theme';
-import BlogPage from './src/components/BlogPage.vue';
-import DocsHeaderInfo from './src/components/DocsHeaderInfo.vue';
-import Tags from './src/components/Tags.vue';
-import { useProgress } from './src/hooks/useProgress';
-import Layout from './src/Layout.vue';
+import BlogPage from './src/client/components/BlogPage.vue';
+import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
+import Layout from './src/client/components/Layout.vue';
+import Tags from './src/client/components/Tags.vue';
+import { useProgress } from './src/client/hooks/useProgress';
 import '@shikijs/vitepress-twoslash/style.css';
-import './src/styles/index.scss';
+import './src/client/styles/index.scss';
 
 const MildTheme: Theme = {
   extends: VPTheme,
