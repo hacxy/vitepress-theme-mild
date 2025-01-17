@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.0...v0.5.1) (2025-01-17)
+
+
+### Bug Fixes
+
+* fix the error caused by the incorrect call to window.close resulting in abnormal window closure ([2f25375](https://github.com/hacxy/vitepress-theme-mild/commit/2f25375c33dfd6b885983e15ee659eb07943fd55))
+
+
+
 # [0.5.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.4.1-alpha.3...v0.5.0) (2025-01-17)
 
 
