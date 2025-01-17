@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData, useRoute } from 'vitepress';
+import { useData } from 'vitepress';
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
 import { computed, nextTick, onMounted, provide, useSlots, watch } from 'vue';
@@ -14,12 +14,6 @@ import('virtual:group-icons.css');
 
 // Init data 不要在其他任何地方调用这个hook 否则会存在性能浪费问题
 const { np } = useInitData();
-
-// const { isOpen, open, close } = useSidebar();
-
-const route = useRoute();
-
-watch(() => route.path, close);
 
 const { frontmatter, isDark, page } = useData();
 
