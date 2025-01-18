@@ -1,3 +1,12 @@
+## [0.5.2-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.1...v0.5.2-alpha.0) (2025-01-18)
+
+
+### Bug Fixes
+
+* fix the issue of the mobile menu not being able to open. ([a304c37](https://github.com/hacxy/vitepress-theme-mild/commit/a304c3741ba200bd1e9121b33df8eb3c853f04dc))
+
+
+
 ## [0.5.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.0...v0.5.1) (2025-01-17)
 
 
