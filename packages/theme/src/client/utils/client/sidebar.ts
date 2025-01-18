@@ -16,7 +16,7 @@ type SidebarItem = DefaultTheme.SidebarItem;
 export function getSidebar(
   _sidebar: DefaultTheme.Sidebar | SidebarAutoMulti | undefined,
   path: string,
-  autoSidebar: any
+  autoSidbar: any
 ): DefaultTheme.SidebarItem[] {
   if (Array.isArray(_sidebar)) {
     return addBase(_sidebar);
@@ -37,7 +37,7 @@ export function getSidebar(
 
   let sidebar: any = dir ? _sidebar![dir] : [];
   if (sidebar === 'auto' && dir) {
-    sidebar = autoSidebar[dir];
+    sidebar = autoSidbar[dir];
   }
 
   return Array.isArray(sidebar)

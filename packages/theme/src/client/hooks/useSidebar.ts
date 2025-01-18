@@ -1,18 +1,18 @@
 import { useMediaQuery } from '@vueuse/core';
 import { useData } from 'vitepress';
-import { computed, inject, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue';
+import { useAutoSidebarStore } from '../store/sidebar';
 import { getSidebar, getSidebarGroups } from '../utils/client/sidebar';
 
 export function useSidebar() {
   const { frontmatter, page, theme } = useData();
   const is960 = useMediaQuery('(min-width: 960px)');
-  const baseData = inject<any>('baseData');
+  const { autoSidebar } = useAutoSidebarStore();
   const isOpen = ref(false);
-
   const _sidebar = computed(() => {
     const sidebarConfig = theme.value.sidebar;
     const relativePath = page.value.relativePath;
-    return sidebarConfig ? getSidebar(sidebarConfig, relativePath, baseData.autoSidebar) : [];
+    return sidebarConfig ? getSidebar(sidebarConfig, relativePath, autoSidebar.value) : [];
   });
 
   const sidebar = ref(_sidebar.value);

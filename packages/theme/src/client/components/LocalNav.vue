@@ -7,8 +7,15 @@ import { computed, onMounted, ref } from 'vue';
 import { useSidebar } from '../hooks/useSidebar';
 import { getHeaders } from '../utils/client/outline';
 
-const { isOpen, open, hasSidebar } = useSidebar();
+defineProps<{
+  open: boolean
+}>();
 
+defineEmits<{
+  (e: 'open-menu'): void
+}>();
+
+const { hasSidebar } = useSidebar();
 const { theme, frontmatter } = useData();
 const { headers } = useLocalNav();
 const { y } = useWindowScroll();
@@ -54,9 +61,9 @@ const classes = computed(() => {
       <button
         v-if="hasSidebar"
         class="menu"
-        :aria-expanded="isOpen"
+        :aria-expanded="open"
         aria-controls="VPSidebarNav"
-        @click="open()"
+        @click="$emit('open-menu')"
       >
         <span class="vpi-align-left menu-icon" />
         <span class="menu-text">

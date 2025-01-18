@@ -1,6 +1,4 @@
-import type { ArticlesData } from '../../datas/base.data';
-
-export function paginate(data: ArticlesData[], pageSize: number, currentPage: number) {
+export function paginate(data: any, pageSize: number, currentPage: number) {
   // 参数校验，如果数据不是数组或者没有数据，直接返回空数组
   if (!Array.isArray(data) || data?.length === 0) {
     return [];

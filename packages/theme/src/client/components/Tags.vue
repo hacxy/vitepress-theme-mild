@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import type { ArticlesData } from 'src/client/datas/base.data';
 import { useUrlSearchParams } from '@vueuse/core';
-import { computed, inject, nextTick, ref, watchEffect } from 'vue';
+import { computed, nextTick, ref, watchEffect } from 'vue';
+import { useArticleListStore } from '../store/article';
 import { handleTagsData } from '../utils/client/tags';
 import ArticlesList from './ArticlesList.vue';
 
-const baseData = inject<any>('baseData');
-
+const { articleList } = useArticleListStore();
 const tagsData = computed(() => {
-  return handleTagsData(baseData.list);
+  return handleTagsData(articleList.value);
 });
 
 const params = useUrlSearchParams<{ tag: string }>();

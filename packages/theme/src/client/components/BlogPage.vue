@@ -2,8 +2,9 @@
 import { useUrlSearchParams } from '@vueuse/core';
 import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
-import { computed, inject, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../../shared/constants';
+import { useArticleListStore } from '../store/article';
 import { paginate } from '../utils/client/article';
 import ArticlesList from './ArticlesList.vue';
 
@@ -13,15 +14,14 @@ const articleTitle = ref(frontmatter.value?.article?.title);
 const pageSize = ref(frontmatter.value?.article?.pageSize || DEFAULT_PAGE_SIZE);
 const params = useUrlSearchParams<{ pageNum: string }>();
 const currentPage = ref(1);
-const baseData = inject<any>('baseData');
-
+const { articleList } = useArticleListStore();
 const totalPages = computed(() => {
-  const total = baseData.list.length || 0;
+  const total = articleList.value.length || 0;
   return Math.ceil(total / pageSize.value);
 });
 
 const posts = computed(() => {
-  return paginate(baseData.list, pageSize.value, currentPage.value);
+  return paginate(articleList.value, pageSize.value, currentPage.value);
 });
 
 onMounted(() => {

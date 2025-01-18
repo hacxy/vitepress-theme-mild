@@ -1,16 +1,18 @@
 <script lang="ts" setup>
 import { NTime } from 'naive-ui';
 import { useRoute } from 'vitepress';
-import { inject, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
+import { useArticleListStore } from '../store/article';
 import IconCalendar from './icons/IconCalendar.vue';
 import IconClock from './icons/IconClock.vue';
 import IconWords from './icons/IconWords.vue';
 
+const { articleList } = useArticleListStore();
 const docsHeaderInfo = ref<{ words: number, minutes: number, date: number }>();
 const route = useRoute();
-const baseData = inject<any>('baseData');
+
 watchEffect(() => {
-  docsHeaderInfo.value = baseData.list.find((item: any) => route.path === item.path);
+  docsHeaderInfo.value = articleList.value.find((item: any) => route.path === item.path);
 });
 </script>
 

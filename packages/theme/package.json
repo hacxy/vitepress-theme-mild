@@ -37,6 +37,7 @@
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",
     "@giscus/vue": "^3.1.1",
+    "@nanostores/vue": "^0.11.0",
     "@shikijs/vitepress-twoslash": "^1.24.3",
     "@vueuse/core": "^12.0.0",
     "@vueuse/motion": "^2.2.6",
@@ -45,6 +46,7 @@
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "naive-ui": "^2.40.4",
+    "nanostores": "^0.11.3",
     "nprogress": "^0.2.0",
     "reading-time-estimator": "^1.11.0",
     "sass": "^1.78.0",
