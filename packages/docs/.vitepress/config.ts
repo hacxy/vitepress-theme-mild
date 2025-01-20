@@ -1,6 +1,7 @@
 import type { ThemeConfig } from 'vitepress-theme-mild';
 import { defineConfigWithTheme } from 'vitepress';
 import baseConfig from 'vitepress-theme-mild/config';
+import pkg from '../../theme/package.json';
 
 export default defineConfigWithTheme<ThemeConfig>({
   title: 'VitePress Mild Theme',
@@ -51,6 +52,15 @@ export default defineConfigWithTheme<ThemeConfig>({
       {
         text: '参考',
         link: '/config/',
+      },
+      {
+        text: `v${pkg.version}`,
+        items: [
+          {
+            text: '更新日志',
+            link: 'CHANGELOG.md'
+          }
+        ]
       }
     ],
     socialLinks: [
