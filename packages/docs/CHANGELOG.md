@@ -1,3 +1,12 @@
+## [0.5.3](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.2...v0.5.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* fixed the issue where the sidebar status was not synchronized when the config file was modified. ([8b1b346](https://github.com/hacxy/vitepress-theme-mild/commit/8b1b34659b45b8ec515fe55061985b8ca1490c20))
+
+
+
 ## [0.5.2](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.2-alpha.0...v0.5.2) (2025-01-18)
 
 
