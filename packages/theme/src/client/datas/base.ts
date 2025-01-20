@@ -143,7 +143,7 @@ function formatSidebarItems(item: any, PATH: string, config: SiteConfig, data: M
 }
 
 function handleAutoSidebar(config: SiteConfig, data: Map<string, ContentData>) {
-  const sidebar: any = config.userConfig.themeConfig?.sidebar;
+  const sidebar: any = (global as any).VITEPRESS_CONFIG.userConfig.themeConfig?.sidebar;
   const autoPaths: string[] = [];
   const autoSidebar: Record<string, any> = {};
   if (isObject(sidebar)) {
