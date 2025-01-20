@@ -45,7 +45,7 @@ bun create mild-theme
 
 ### 使用
 
-在默认主题的基础上做了进一步提升, 现在只需要定义一个对象, key 为路径, value 为固定值 `auto` 即可开启自动侧边栏 🚀.
+在默认主题的基础上做了进一步提升, 现在只需要定义一个对象, key 为路径, value 为固定值: `auto`, 即可开启自动侧边栏 🚀.
 
 ```js
 export default {
