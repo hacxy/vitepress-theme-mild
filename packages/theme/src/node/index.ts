@@ -33,7 +33,7 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
       md.use(insertDocsHeaderInfo);
       md.use(groupIconMdPlugin);
     },
-    codeTransformers: [transformerTwoslash()]
+    codeTransformers: [transformerTwoslash() as any]
   },
   transformPageData(pageData) {
     if (NOT_ARTICLE_LAYOUTS.includes(pageData.frontmatter.layout)) {
