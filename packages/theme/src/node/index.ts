@@ -57,7 +57,7 @@ const baseConfig: RawConfigExports<DefaultTheme.Config> = {
     plugins: [
       groupIconVitePlugin(),
       rss(),
-      UnoCSS()
+      UnoCSS() as any
     ],
     build: {
       chunkSizeWarningLimit: 2048
