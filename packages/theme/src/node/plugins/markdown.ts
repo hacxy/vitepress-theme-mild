@@ -31,7 +31,7 @@ export const imgToImage: PluginSimple = md => {
   };
   md.renderer.render = (...args) => {
     const content = defaultRender.apply(md.renderer, args);
-    return `<ImageGroup>${content}</ImageGroup>`;
+    return `<ImageGroup><ContentWrapper>${content}</ContentWrapper></ImageGroup>`;
   };
 };
 

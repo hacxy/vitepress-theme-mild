@@ -52,7 +52,22 @@ router.onBeforeRouteChange = to => {
       <div class="VMArticlesListWrapper">
         <ArticlesList :list-data="posts" :title="articleTitle" />
       </div>
-      <NPagination v-if="totalPages" v-model:page="currentPage" :page-count="totalPages" />
+      <NPagination
+        v-if="totalPages"
+        v-model:page="currentPage"
+        v-motion
+        :initial="{
+          opacity: 0,
+        }"
+        :enter="{
+          opacity: 1,
+          transition: {
+            duration: 500,
+            delay: pageSize * 200,
+          },
+        }"
+        :page-count="totalPages"
+      />
     </div>
   </div>
 </template>

@@ -6,6 +6,7 @@ import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
 import VPTheme from 'vitepress/theme';
 import BlogPage from './src/client/components/BlogPage.vue';
+import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
 import Layout from './src/client/components/Layout.vue';
 import Tags from './src/client/components/Tags.vue';
@@ -37,6 +38,11 @@ const MildTheme: Theme = {
     }
 
     if (!(import.meta as any).env.SSR) {
+      if (!(import.meta as any).env.DEV) {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 300);
+      }
       if ((import.meta as any).hot) {
         let scrollPosition = 0;
         // 监听热模块替换之前的事件
@@ -73,6 +79,7 @@ const MildTheme: Theme = {
     app.component('DocsHeaderInfo', DocsHeaderInfo);
     app.component('Image', NImage);
     app.component('ImageGroup', NImageGroup);
+    app.component('ContentWrapper', ContentWrapper);
   }
 };
 export { Layout };
