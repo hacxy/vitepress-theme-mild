@@ -5,6 +5,7 @@ import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import { NImage, NImageGroup } from 'naive-ui';
 import VPTheme from 'vitepress/theme';
+import Bili from './src/client/components/Bili.vue';
 import BlogPage from './src/client/components/BlogPage.vue';
 import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
@@ -87,6 +88,7 @@ const MildTheme: Theme = {
     app.component('Image', NImage);
     app.component('ImageGroup', NImageGroup);
     app.component('ContentWrapper', ContentWrapper);
+    app.component('Bili', Bili);
   }
 };
 export { Layout };
