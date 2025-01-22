@@ -38,11 +38,18 @@ const MildTheme: Theme = {
     }
 
     if (!(import.meta as any).env.SSR) {
-      if (!(import.meta as any).env.DEV) {
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-        }, 300);
+      if (!themeConfig.scrollRestoration) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
       }
+
+      else {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'auto';
+        }
+      }
+
       if ((import.meta as any).hot) {
         let scrollPosition = 0;
         // 监听热模块替换之前的事件

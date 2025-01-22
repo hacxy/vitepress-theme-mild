@@ -1,4 +1,5 @@
-import type { DefaultTheme, Plugin, RawConfigExports, SiteConfig } from 'vitepress';
+import type { Plugin, RawConfigExports, SiteConfig } from 'vitepress';
+import type { ThemeConfig } from '../../types';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import UnoCSS from 'unocss/vite';
@@ -26,7 +27,7 @@ function rss(): Plugin {
   };
 }
 
-const baseConfig: RawConfigExports<DefaultTheme.Config> = {
+const baseConfig: RawConfigExports<ThemeConfig> = {
   markdown: {
     config(md) {
       md.use(imgToImage);

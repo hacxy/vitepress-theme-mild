@@ -91,8 +91,8 @@ importers:
   packages/docs:
     devDependencies:
       vitepress:
-        specifier: ^1.5.0
-        version: 1.5.0(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.7.2)
+        specifier: ^1.6.1
+        version: 1.6.1(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.7.2)
       vitepress-theme-mild:
         specifier: workspace:*
         version: link:../theme
@@ -1167,9 +1167,6 @@ packages:
   '@iconify-json/logos@1.2.4':
     resolution: {integrity: sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==}
 
-  '@iconify-json/simple-icons@1.2.16':
-    resolution: {integrity: sha512-mnQ0Ih8CDIgOqbi0qz01AJNOeFVuGFRimelg3JmJtD0y5EpZVw+enPPcpcxJKipsRZ/oqhcP3AhYkF1kM7yomg==}
-
   '@iconify-json/simple-icons@1.2.21':
     resolution: {integrity: sha512-aqbIuVshMZ2fNEhm25//9DoKudboXF3CpoEQJJlHl9gVSVNOTr4cgaCIZvgSEYmys2HHEfmhcpoZIhoEFZS8SQ==}
 
@@ -1957,20 +1954,11 @@ packages:
   '@vue/compiler-vue2@2.7.16':
     resolution: {integrity: sha512-qYC3Psj9S/mfu9uVi5WvNZIzq+xnXMhOwbTFKKDD7b1lhpnn71jXSFdTQ+WsIEk0ONCd7VV2IMm7ONl6tbQ86A==}
 
-  '@vue/devtools-api@7.6.8':
-    resolution: {integrity: sha512-ma6dY/sZR36zALVsV1W7eC57c6IJPXsy8SNgZn1PLVWU4z4dPn5TIBmnF4stmdJ4sQcixqKaQ8pwjbMPzEZwiA==}
-
   '@vue/devtools-api@7.7.0':
     resolution: {integrity: sha512-bHEv6kT85BHtyGgDhE07bAUMAy7zpv6nnR004nSTd0wWMrAOtcrYoXO5iyr20Hkf5jR8obQOfS3byW+I3l2CCA==}
 
-  '@vue/devtools-kit@7.6.8':
-    resolution: {integrity: sha512-JhJ8M3sPU+v0P2iZBF2DkdmR9L0dnT5RXJabJqX6o8KtFs3tebdvfoXV2Dm3BFuqeECuMJIfF1aCzSt+WQ4wrw==}
-
   '@vue/devtools-kit@7.7.0':
     resolution: {integrity: sha512-5cvZ+6SA88zKC8XiuxUfqpdTwVjJbvYnQZY5NReh7qlSGPvVDjjzyEtW+gdzLXNSd8tStgOjAdMCpvDQamUXtA==}
-
-  '@vue/devtools-shared@7.6.8':
-    resolution: {integrity: sha512-9MBPO5Z3X1nYGFqTJyohl6Gmf/J7UNN1oicHdyzBVZP4jnhZ4c20MgtaHDIzWmHDHCMYVS5bwKxT3jxh7gOOKA==}
 
   '@vue/devtools-shared@7.7.0':
     resolution: {integrity: sha512-jtlQY26R5thQxW9YQTpXbI0HoK0Wf9Rd4ekidOkRvSy7ChfK0kIU6vvcBtjj87/EcpeOSK49fZAicaFNJcoTcQ==}
@@ -3299,9 +3287,6 @@ packages:
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
-
-  focus-trap@7.6.2:
-    resolution: {integrity: sha512-9FhUxK1hVju2+AiQIDJ5Dd//9R2n2RAfJ0qfhF4IHGHgcoEUTMpbTeG/zbEuwaiYXfuAH6XE0/aCyxDdRM+W5w==}
 
   focus-trap@7.6.4:
     resolution: {integrity: sha512-xx560wGBk7seZ6y933idtjJQc1l+ck+pI3sKvhKozdBV1dRZoKhkW5xoCaFv9tQiX5RH1xfSxjuNu6g+lmN/gw==}
@@ -6163,7 +6148,7 @@ snapshots:
       '@eslint-community/eslint-plugin-eslint-comments': 4.4.1(eslint@9.17.0(jiti@2.4.2))
       '@eslint/markdown': 6.2.1
       '@stylistic/eslint-plugin': 2.12.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
-      '@typescript-eslint/eslint-plugin': 8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
+      '@typescript-eslint/eslint-plugin': 8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
       '@typescript-eslint/parser': 8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
       '@vitest/eslint-plugin': 1.1.20(@typescript-eslint/utils@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)(vitest@2.1.8(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))
       eslint: 9.17.0(jiti@2.4.2)
@@ -6181,7 +6166,7 @@ snapshots:
       eslint-plugin-regexp: 2.7.0(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-toml: 0.12.0(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-unicorn: 56.0.1(eslint@9.17.0(jiti@2.4.2))
-      eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3))(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3))(eslint@9.17.0(jiti@2.4.2))
+      eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-vue: 9.32.0(eslint@9.17.0(jiti@2.4.2))
       eslint-plugin-yml: 1.16.0(eslint@9.17.0(jiti@2.4.2))
       eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.5.13)(eslint@9.17.0(jiti@2.4.2))
@@ -6854,10 +6839,6 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.16':
-    dependencies:
-      '@iconify/types': 2.0.0
-
   '@iconify-json/simple-icons@1.2.21':
     dependencies:
       '@iconify/types': 2.0.0
@@ -7517,10 +7498,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/eslint-plugin@8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)':
+  '@typescript-eslint/eslint-plugin@8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
-      '@typescript-eslint/parser': 8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3)
+      '@typescript-eslint/parser': 8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
       '@typescript-eslint/scope-manager': 8.18.1
       '@typescript-eslint/type-utils': 8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
       '@typescript-eslint/utils': 8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
@@ -7803,15 +7784,15 @@ snapshots:
       - supports-color
       - vue
 
-  '@vitejs/plugin-vue@5.2.1(vite@5.4.11(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.7.2))':
-    dependencies:
-      vite: 5.4.11(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
-      vue: 3.5.13(typescript@5.7.2)
-
   '@vitejs/plugin-vue@5.2.1(vite@5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.4.3))':
     dependencies:
       vite: 5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
       vue: 3.5.13(typescript@5.4.3)
+
+  '@vitejs/plugin-vue@5.2.1(vite@5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.7.2))':
+    dependencies:
+      vite: 5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
+      vue: 3.5.13(typescript@5.7.2)
 
   '@vitest/coverage-istanbul@2.1.8(vitest@2.1.8(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))':
     dependencies:
@@ -7926,23 +7907,9 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  '@vue/devtools-api@7.6.8':
-    dependencies:
-      '@vue/devtools-kit': 7.6.8
-
   '@vue/devtools-api@7.7.0':
     dependencies:
       '@vue/devtools-kit': 7.7.0
-
-  '@vue/devtools-kit@7.6.8':
-    dependencies:
-      '@vue/devtools-shared': 7.6.8
-      birpc: 0.2.19
-      hookable: 5.5.3
-      mitt: 3.0.1
-      perfect-debounce: 1.0.0
-      speakingurl: 14.0.1
-      superjson: 2.2.2
 
   '@vue/devtools-kit@7.7.0':
     dependencies:
@@ -7953,10 +7920,6 @@ snapshots:
       perfect-debounce: 1.0.0
       speakingurl: 14.0.1
       superjson: 2.2.2
-
-  '@vue/devtools-shared@7.6.8':
-    dependencies:
-      rfdc: 1.4.1
 
   '@vue/devtools-shared@7.7.0':
     dependencies:
@@ -8043,14 +8006,23 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vueuse/integrations@11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(nprogress@0.2.0)(vue@3.5.13(typescript@5.7.2))':
+  '@vueuse/core@12.4.0(typescript@5.7.2)':
+    dependencies:
+      '@types/web-bluetooth': 0.0.20
+      '@vueuse/metadata': 12.4.0
+      '@vueuse/shared': 12.4.0(typescript@5.7.2)
+      vue: 3.5.13(typescript@5.7.2)
+    transitivePeerDependencies:
+      - typescript
+
+  '@vueuse/integrations@11.3.0(async-validator@4.2.5)(focus-trap@7.6.4)(nprogress@0.2.0)(vue@3.5.13(typescript@5.7.2))':
     dependencies:
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.7.2))
       '@vueuse/shared': 11.3.0(vue@3.5.13(typescript@5.7.2))
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.7.2))
     optionalDependencies:
       async-validator: 4.2.5
-      focus-trap: 7.6.2
+      focus-trap: 7.6.4
       nprogress: 0.2.0
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -8061,6 +8033,18 @@ snapshots:
       '@vueuse/core': 12.4.0(typescript@5.4.3)
       '@vueuse/shared': 12.4.0(typescript@5.4.3)
       vue: 3.5.13(typescript@5.4.3)
+    optionalDependencies:
+      async-validator: 4.2.5
+      focus-trap: 7.6.4
+      nprogress: 0.2.0
+    transitivePeerDependencies:
+      - typescript
+
+  '@vueuse/integrations@12.4.0(async-validator@4.2.5)(focus-trap@7.6.4)(nprogress@0.2.0)(typescript@5.7.2)':
+    dependencies:
+      '@vueuse/core': 12.4.0(typescript@5.7.2)
+      '@vueuse/shared': 12.4.0(typescript@5.7.2)
+      vue: 3.5.13(typescript@5.7.2)
     optionalDependencies:
       async-validator: 4.2.5
       focus-trap: 7.6.4
@@ -8116,6 +8100,12 @@ snapshots:
   '@vueuse/shared@12.4.0(typescript@5.4.3)':
     dependencies:
       vue: 3.5.13(typescript@5.4.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@vueuse/shared@12.4.0(typescript@5.7.2)':
+    dependencies:
+      vue: 3.5.13(typescript@5.7.2)
     transitivePeerDependencies:
       - typescript
 
@@ -9281,6 +9271,12 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3))(eslint@9.17.0(jiti@2.4.2))(typescript@5.4.3)
 
+  eslint-plugin-unused-imports@4.1.4(@typescript-eslint/eslint-plugin@8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2)):
+    dependencies:
+      eslint: 9.17.0(jiti@2.4.2)
+    optionalDependencies:
+      '@typescript-eslint/eslint-plugin': 8.18.1(@typescript-eslint/parser@8.18.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2)
+
   eslint-plugin-vue@9.32.0(eslint@9.17.0(jiti@2.4.2)):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.1(eslint@9.17.0(jiti@2.4.2))
@@ -9547,10 +9543,6 @@ snapshots:
       vue-resize: 2.0.0-alpha.1(vue@3.5.13(typescript@5.4.3))
     optionalDependencies:
       '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
-
-  focus-trap@7.6.2:
-    dependencies:
-      tabbable: 6.2.0
 
   focus-trap@7.6.4:
     dependencies:
@@ -12310,21 +12302,21 @@ snapshots:
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.18.0)(search-insights@2.13.0)
-      '@iconify-json/simple-icons': 1.2.16
+      '@iconify-json/simple-icons': 1.2.21
       '@shikijs/core': 1.24.3
       '@shikijs/transformers': 1.24.3
       '@shikijs/types': 1.24.3
       '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 5.2.1(vite@5.4.11(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.7.2))
-      '@vue/devtools-api': 7.6.8
+      '@vitejs/plugin-vue': 5.2.1(vite@5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.7.2))
+      '@vue/devtools-api': 7.7.0
       '@vue/shared': 3.5.13
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.7.2))
-      '@vueuse/integrations': 11.3.0(async-validator@4.2.5)(focus-trap@7.6.2)(nprogress@0.2.0)(vue@3.5.13(typescript@5.7.2))
-      focus-trap: 7.6.2
+      '@vueuse/integrations': 11.3.0(async-validator@4.2.5)(focus-trap@7.6.4)(nprogress@0.2.0)(vue@3.5.13(typescript@5.7.2))
+      focus-trap: 7.6.4
       mark.js: 8.11.1
       minisearch: 7.1.1
       shiki: 1.24.3
-      vite: 5.4.11(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
+      vite: 5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
       vue: 3.5.13(typescript@5.7.2)
     optionalDependencies:
       postcss: 8.4.49
@@ -12376,6 +12368,55 @@ snapshots:
       shiki: 2.0.3
       vite: 5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
       vue: 3.5.13(typescript@5.4.3)
+    optionalDependencies:
+      postcss: 8.4.49
+    transitivePeerDependencies:
+      - '@algolia/client-search'
+      - '@types/node'
+      - '@types/react'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - less
+      - lightningcss
+      - nprogress
+      - qrcode
+      - react
+      - react-dom
+      - sass
+      - sass-embedded
+      - search-insights
+      - sortablejs
+      - stylus
+      - sugarss
+      - terser
+      - typescript
+      - universal-cookie
+
+  vitepress@1.6.1(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.7.2):
+    dependencies:
+      '@docsearch/css': 3.8.2
+      '@docsearch/js': 3.8.2(@algolia/client-search@5.18.0)(search-insights@2.13.0)
+      '@iconify-json/simple-icons': 1.2.21
+      '@shikijs/core': 2.0.3
+      '@shikijs/transformers': 2.0.3
+      '@shikijs/types': 2.0.3
+      '@types/markdown-it': 14.1.2
+      '@vitejs/plugin-vue': 5.2.1(vite@5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4))(vue@3.5.13(typescript@5.7.2))
+      '@vue/devtools-api': 7.7.0
+      '@vue/shared': 3.5.13
+      '@vueuse/core': 12.4.0(typescript@5.7.2)
+      '@vueuse/integrations': 12.4.0(async-validator@4.2.5)(focus-trap@7.6.4)(nprogress@0.2.0)(typescript@5.7.2)
+      focus-trap: 7.6.4
+      mark.js: 8.11.1
+      minisearch: 7.1.1
+      shiki: 2.0.3
+      vite: 5.4.13(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
+      vue: 3.5.13(typescript@5.7.2)
     optionalDependencies:
       postcss: 8.4.49
     transitivePeerDependencies:

@@ -2,7 +2,6 @@ import type { GiscusProps, Theme as GiscusTheme } from '@giscus/vue';
 import type { NProgressOptions } from 'nprogress';
 import type { DefaultTheme, Theme } from 'vitepress';
 import type { RSSOptions } from 'vitepress-plugin-rss';
-import type Layout from '../src/Layout.vue';
 
 export interface SidebarAutoMulti {
   [path: string]: 'auto'
@@ -30,6 +29,7 @@ declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
    */
   progressBar?: Partial<NProgressOptions> | false
 
+  scrollRestoration?: boolean
   // /**
   //  * Typescript Twoslash
   //  * @default true
@@ -39,4 +39,4 @@ declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
 
 declare const MildTheme: Theme;
 
-export { MildTheme as default, Layout, ThemeConfig };
+export { MildTheme as default, ThemeConfig };
