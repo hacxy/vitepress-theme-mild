@@ -72,7 +72,7 @@ export default {
 
 为了满足上述需求, 我花费了大量时间重写了部分组件, 并结合构建时数据加载, 最终效果达到了我的预期, 现在侧边栏的配置是更灵活的, 更智能的, 也是我目前最喜欢的功能之一.
 
-更多细节请参考: [自动侧边栏](http://localhost:5173/guide/support/sidebar.html)
+更多细节请参考: [自动侧边栏](https://theme.hacxy.cn/guide/support/sidebar.html)
 
 ## Changelog
 

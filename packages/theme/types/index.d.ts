@@ -12,7 +12,9 @@ export interface Comment extends Omit<GiscusProps, 'theme'> {
   darkTheme: GiscusTheme
 }
 
-declare interface ThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {
+declare interface DefaultThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {}
+
+declare interface ThemeConfig extends DefaultThemeConfig {
   /**
    * The sidebar items.
    */
