@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import type { DefaultTheme } from 'vitepress/theme';
+import type { DefaultTheme } from 'vitepress';
 import { computed } from 'vue';
 import { useSidebarControl } from '../hooks/useSidebarControl';
 import VPLink from './Link.vue';
 
 const props = defineProps<{
-  item: DefaultTheme.SidebarItem & { hide?: boolean }
+  item: DefaultTheme.SidebarItem & {
+    hide?: boolean
+    icon?: string
+  }
   depth: number
 }>();
 const {

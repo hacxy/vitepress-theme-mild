@@ -3,9 +3,15 @@ import type { NProgressOptions } from 'nprogress';
 import type { DefaultTheme, Theme } from 'vitepress';
 import type { RSSOptions } from 'vitepress-plugin-rss';
 
-export interface SidebarAutoMulti {
-  [path: string]: 'auto'
+export interface SidebarItem extends DefaultTheme.SidebarItem {
+  icon?: string
 }
+
+export interface SidebarMulti {
+  [path: string]: SidebarItem[] | { items: SidebarItem[], base: string } | 'auto'
+}
+
+export type Sidebar = SidebarItem[] | SidebarMulti;
 
 export interface Comment extends Omit<GiscusProps, 'theme'> {
   lightTheme: GiscusTheme
@@ -18,7 +24,7 @@ declare interface ThemeConfig extends DefaultThemeConfig {
   /**
    * The sidebar items.
    */
-  sidebar?: DefaultTheme.Sidebar | SidebarAutoMulti
+  sidebar?: Sidebar
 
   /**
    * Giscus Comment

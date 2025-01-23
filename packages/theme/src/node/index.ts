@@ -2,7 +2,6 @@ import type { Plugin, RawConfigExports, SiteConfig } from 'vitepress';
 import type { ThemeConfig } from '../../types';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
-import UnoCSS from 'unocss/vite';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { RssPlugin } from 'vitepress-plugin-rss';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
@@ -58,7 +57,6 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
     plugins: [
       groupIconVitePlugin(),
       rss(),
-      UnoCSS() as any
     ],
     build: {
       chunkSizeWarningLimit: 2048

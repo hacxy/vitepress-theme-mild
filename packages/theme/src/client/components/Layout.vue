@@ -12,7 +12,6 @@ import LocalNav from './LocalNav.vue';
 import Sidebar from './Sidebar.vue';
 
 import('virtual:group-icons.css');
-import('virtual:uno.css');
 
 // Init data 不要在其他任何地方调用这个hook 否则会存在性能浪费问题
 const { np } = useInitData();

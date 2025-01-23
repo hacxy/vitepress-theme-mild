@@ -16,7 +16,14 @@ export default defineConfigWithTheme<ThemeConfig>({
       '/posts/orange/': 'auto',
       '/posts/': 'auto',
       '/config/': 'auto',
-      '/guide/': 'auto'
+      '/guide/': 'auto',
+      '/guide/apple/': [
+        {
+          text: 'apple-1',
+          link: '/guide/apple/1.md',
+          icon: 'i-vscode-icons-file-type-vite'
+        }
+      ]
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }

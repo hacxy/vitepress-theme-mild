@@ -13,6 +13,7 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
+    "@iconify-json/vscode-icons": "^1.2.10",
     "vitepress": "^1.6.1",
     "vitepress-theme-mild": "workspace:*"
   }
