@@ -1,7 +1,7 @@
 {
   "name": "vitepress-theme-mild",
   "type": "module",
-  "version": "0.5.4-alpha.0",
+  "version": "0.5.4-alpha.1",
   "description": "A VitePress theme with rich capabilities.",
   "author": {
     "name": "Hacxy",

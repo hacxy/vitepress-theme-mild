@@ -1,3 +1,12 @@
+## [0.5.4-alpha.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.4-alpha.0...v0.5.4-alpha.1) (2025-01-24)
+
+
+### Bug Fixes
+
+* remove lodash ([5d4fa2c](https://github.com/hacxy/vitepress-theme-mild/commit/5d4fa2c95269db80ae6f93e7ea7c24e19fa904a2))
+
+
+
 ## [0.5.4-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.3...v0.5.4-alpha.0) (2025-01-24)
 
 
