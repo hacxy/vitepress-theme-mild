@@ -68,7 +68,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
     sidebar: {
       '/guide/': 'auto',
-      '/config/': 'auto'
+      '/config/': 'auto',
     },
     footer: {
       message: 'MIT Licensed',

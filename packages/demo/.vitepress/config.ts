@@ -16,7 +16,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       '/posts/orange/': 'auto',
       '/posts/': 'auto',
       '/config/': 'auto',
-      '/guide/': 'auto'
+      '/guide/': 'auto',
+      '/guide/apple/': 'auto'
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }

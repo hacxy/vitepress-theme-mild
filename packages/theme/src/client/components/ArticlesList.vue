@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import type { ArticlesData } from '../datas/base.data.js';
+import { Icon } from '@iconify/vue';
 import { NIcon, NList, NListItem, NSpace, NTag, NThing, NTime } from 'naive-ui';
 import { useRouter } from 'vitepress';
-import IconCalendar from './icons/IconCalendar.vue';
-import IconClock from './icons/IconClock.vue';
-import IconWords from './icons/IconWords.vue';
 
 const props = defineProps<{ listData: ArticlesData[], title?: string }>();
 const router = useRouter();
@@ -47,17 +45,17 @@ const router = useRouter();
             <div class="VMArticleInfo">
               <div class="VMArticleInfoLeft">
                 <div class="text">
-                  <IconCalendar />
+                  <Icon icon="mdi:calendar-edit-outline" />
                   <span>
                     <NTime :time="article.date" format="yyyy-MM-dd" />
                   </span>
                 </div>
                 <div class="text">
-                  <IconWords />
+                  <Icon icon="tabler:pencil-minus" />
                   {{ article.words }} words
                 </div>
                 <div class="text">
-                  <IconClock />
+                  <Icon icon="ic:sharp-access-time" />
                   {{ article.minutes }} min
                 </div>
               </div>
