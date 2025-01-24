@@ -7,13 +7,13 @@
 </h1>
 
 <h4 align="center">
-具有丰富能力的 VitePress 主题
+能力丰富的 VitePress 主题, 适用于博客和文档
 </h4>
 
 ![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
 
 - 📦 基于默认主题, 开箱即用
-- 📃 提供简约风格的博客布局, 文章列表实时热更新
+- 📃 简约风格的博客布局, 文章列表实时热更新
 - 📖 更丰富的markdown能力, 如图片预览
 - 🔥 更灵活的自动侧边栏, 根据目录结构自动生成侧边栏
 
