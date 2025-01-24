@@ -1,7 +1,7 @@
 {
   "name": "create-mild-theme",
   "type": "module",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Create vitepress mild theme.",
   "author": {
     "name": "hacxy",
