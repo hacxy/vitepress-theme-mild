@@ -55,8 +55,8 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       ]
     },
     plugins: [
-      groupIconVitePlugin(),
-      rss(),
+      groupIconVitePlugin() as any,
+      rss() as any,
     ],
     build: {
       chunkSizeWarningLimit: 2048
