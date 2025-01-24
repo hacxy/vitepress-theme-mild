@@ -55,7 +55,8 @@
     "typed.js": "^2.1.0",
     "vitepress-plugin-group-icons": "^1.3.2",
     "vitepress-plugin-rss": "^0.3.0",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-easy-lightbox": "^1.19.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

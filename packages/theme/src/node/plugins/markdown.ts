@@ -19,19 +19,39 @@ export const insertDocsHeaderInfo: PluginSimple = md => {
 
 export const imgToImage: PluginSimple = md => {
   const defaultRender = md.renderer.render;
-  md.renderer.rules.image = (tokens, idx) => {
+  let imgs: string[] = [];
+
+  // Add a rule to collect image src attributes
+  md.core.ruler.push('collect_image_src', state => {
+    imgs = [];
+    state.tokens.forEach(token => {
+      if (token.type === 'inline' && token.children) {
+        token.children.forEach(child => {
+          if (child.type === 'image') {
+            const src = child.attrGet('src');
+            if (src) {
+              imgs.push(src);
+            }
+          }
+        });
+      }
+    });
+  });
+
+  md.renderer.rules.image = (tokens, idx, _opt, env) => {
     const token = tokens[idx];
-    const srcIndex = token.attrIndex('src');
-    const altIndex = token.attrIndex('alt');
-
-    const src = token?.attrs?.[srcIndex][1];
-    const alt = altIndex >= 0 ? token?.attrs?.[altIndex][1] : '';
-
-    return `<Image src="${src}" alt="${alt}" />`;
+    const src = token.attrGet('src');
+    const alt = token.attrGet('alt');
+    if (!env.imgs) {
+      env.imgs = [];
+    }
+    env.imgs.push({ src, index: env.imgs.length });
+    return `<Image src="${src}" alt="${alt}" index="${env.imgs.length - 1}"/>`;
   };
+
   md.renderer.render = (...args) => {
     const content = defaultRender.apply(md.renderer, args);
-    return `<ImageGroup><ContentWrapper>${content}</ContentWrapper></ImageGroup>`;
+    return `<ContentWrapper imgsStr="${imgs.join(',')}">${content}</ContentWrapper>`;
   };
 };
 
