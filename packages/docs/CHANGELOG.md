@@ -1,3 +1,12 @@
+## [0.5.4-alpha.2](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.4-alpha.1...v0.5.4-alpha.2) (2025-01-24)
+
+
+### Bug Fixes
+
+* fix the custom image component causing element positioning disorder ([7569068](https://github.com/hacxy/vitepress-theme-mild/commit/7569068dd99d6277800439bac1ea8367709c8545))
+
+
+
 ## [0.5.4-alpha.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.4-alpha.0...v0.5.4-alpha.1) (2025-01-24)
 
 
