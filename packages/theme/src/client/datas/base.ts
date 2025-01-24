@@ -70,6 +70,21 @@ export interface ContentOptions<T = ContentData[]> {
   globOptions?: GlobOptions
 }
 
+function filterHiddenItems(items: any[]): any[] {
+  return items
+    .filter(item => !item.hide) // 过滤掉 hide 为 true 的对象
+    .map((item: any) => {
+      if (item.items) {
+        // 如果有子项，递归过滤子项
+        return {
+          ...item,
+          items: filterHiddenItems(item.items),
+        };
+      }
+      return item;
+    });
+}
+
 // sidebar排序, 越小越靠前
 function sortSidebar(sidebar: any[]) {
   sidebar.forEach(item => {
@@ -118,21 +133,15 @@ function formatSidebarItems(item: any, PATH: string, config: SiteConfig, data: M
   const content = matter(article?.src || '').content;
   const match = content.match(/^(#+)\s+(.+)/m);
   const title = match?.[2] || filename;
-  const { sidebar } = article?.frontmatter || {};
-  item.frontmatter = sidebar || {};
+  const { sidebar, publish } = article?.frontmatter || {};
 
   item.sort = sidebar?.sort;
-
-  if (sidebar === false) {
-    item.hide = true;
-  }
-  else {
-    item.hide = false;
-  }
+  item.hide = sidebar === false;
 
   if (!item.children) {
     item.link = link;
     item.text = sidebar?.text || title;
+    item.hide = publish === false;
   }
   else {
     item.items = item.children;
@@ -161,10 +170,10 @@ function handleAutoSidebar(config: SiteConfig, data: Map<string, ContentData>) {
       }, (item, PATH) => formatSidebarItems(item, PATH, config, data), (item, PATH) => formatSidebarItems(item, PATH, config, data));
 
       if (!data.get(ensureIndexMd(filteredTree.path))) {
-        autoSidebar[item] = sortSidebar(filteredTree.items);
+        autoSidebar[item] = sortSidebar(filterHiddenItems(filteredTree.items));
       }
       else {
-        autoSidebar[item] = sortSidebar([filteredTree]);
+        autoSidebar[item] = sortSidebar(filterHiddenItems([filteredTree]));
       }
     });
   }
@@ -199,12 +208,8 @@ export function createBaseDataLoader<T = {
   return {
     watch: pattern,
     async load(files?: string[]) {
-      const mapData = new Map<string, ContentData>();
-      files = await glob(pattern, {
-        ignore: ['**/node_modules/**', '**/dist/**', '**/README.md'],
-        expandDirectories: false,
-        absolute: true
-      });
+      const sidebarMapData = new Map<string, ContentData>();
+      files = await glob(pattern, { ignore: ['**/node_modules/**', '**/dist/**', '**/README.md'], expandDirectories: false, absolute: true });
       const md = await createMarkdownRenderer(
         config.srcDir,
         config.markdown,
@@ -219,8 +224,11 @@ export function createBaseDataLoader<T = {
         const timestamp = fs.statSync(file).mtimeMs;
         const cached = cache.get(file);
         if (cached && timestamp === cached.timestamp) {
-          raw.push(cached.data);
-          mapData.set(file, cached.data);
+          if (cached.data.frontmatter.publish !== false) {
+            raw.push(cached.data);
+          }
+
+          sidebarMapData.set(file, cached.data);
         }
         else {
           const src = fs.readFileSync(file, 'utf-8');
@@ -240,16 +248,11 @@ export function createBaseDataLoader<T = {
             const lastCommitDate = lastCommitInfo?.date ? dateToUnixTimestamp(new Date(lastCommitInfo.date)) : null;
             frontmatter.date = lastCommitDate || timestamp;
           }
-
           if (typeof frontmatter.sticky === 'boolean' || typeof frontmatter.sticky === 'number') {
             frontmatter.sticky = Number(frontmatter.sticky);
           }
           else {
             frontmatter.sticky = 0;
-          }
-
-          if (typeof frontmatter.order !== 'number') {
-            frontmatter.order = 0;
           }
           const url
             = `/${
@@ -273,12 +276,14 @@ export function createBaseDataLoader<T = {
             url
           };
           cache.set(file, { data, timestamp });
-          raw.push(data);
-          mapData.set(file, data);
+          if (frontmatter.publish !== false) {
+            raw.push(data);
+          }
+          sidebarMapData.set(file, data);
         }
       }
 
-      const autoSidebar = handleAutoSidebar(config, mapData);
+      const autoSidebar = handleAutoSidebar(config, sidebarMapData);
       return {
         list: (transform ? transform(raw) : raw),
         autoSidebar

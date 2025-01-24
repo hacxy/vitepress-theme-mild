@@ -1,4 +1,6 @@
 ---
-sidebar:
-  sort: 1
+# publish: false
+# sidebar: false
 ---
+
+# one
