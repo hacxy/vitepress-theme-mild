@@ -1,3 +1,26 @@
+## [0.5.4-alpha.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.3...v0.5.4-alpha.0) (2025-01-24)
+
+
+### Bug Fixes
+
+* adjust the unocss plugin type assertion ([a5f3213](https://github.com/hacxy/vitepress-theme-mild/commit/a5f32130560f9286ab53f6dfd84e39e0162c12fd))
+* handle transformerTwoslash type assertions ([0327858](https://github.com/hacxy/vitepress-theme-mild/commit/032785885119d52031a105264fd6b0b7547b1513))
+
+
+### Features
+
+* add frontmatter.publish to control whether to display the article. ([4dff7f3](https://github.com/hacxy/vitepress-theme-mild/commit/4dff7f33c27db3ad4f8a362c0bb3b9f453912909))
+* add the scrollRestoration option to control whether the page returns to the last scroll position after refreshing. ([d2c7615](https://github.com/hacxy/vitepress-theme-mild/commit/d2c76153ff3ca9855418abd9a3098c0f26c400ab))
+* bilibili video playback component ([85ba483](https://github.com/hacxy/vitepress-theme-mild/commit/85ba48309174146363d5226b4d02262d1b8e75a2))
+
+
+### Performance Improvements
+
+* optimize the animation effects of the document content ([774d563](https://github.com/hacxy/vitepress-theme-mild/commit/774d563edf8d8aadbd3b0f4d6df248de471f0f87))
+* use Iconify for Vue ([8b14f29](https://github.com/hacxy/vitepress-theme-mild/commit/8b14f29b242c1961225d2118b94206430f8b3343))
+
+
+
 ## [0.5.3](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.2...v0.5.3) (2025-01-20)
 
 
