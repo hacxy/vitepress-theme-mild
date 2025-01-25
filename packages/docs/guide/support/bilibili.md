@@ -1,6 +1,6 @@
 # BiliBili 视频播放
 
-`Mild Theme` 提供了BiliBili视频播放的能力, 你可以在markdown文章中使用全局组件 `<Bili/>`, 在文档中加入一个视频播放器.
+`Mild Theme` 提供了BiliBili视频播放的能力, 你可以在 markdown 文档中使用全局组件 `<Bili/>`, 这将会在文档中加入一个B站视频播放器.
 
 之后你只需要在这个组件中传递`bvid`:
 
