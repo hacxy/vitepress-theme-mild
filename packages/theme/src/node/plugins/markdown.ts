@@ -19,25 +19,6 @@ export const insertDocsHeaderInfo: PluginSimple = md => {
 
 export const imgToImage: PluginSimple = md => {
   const defaultRender = md.renderer.render;
-  let imgs: string[] = [];
-
-  // Add a rule to collect image src attributes
-  md.core.ruler.push('collect_image_src', state => {
-    imgs = [];
-    state.tokens.forEach(token => {
-      if (token.type === 'inline' && token.children) {
-        token.children.forEach(child => {
-          if (child.type === 'image') {
-            const src = child.attrGet('src');
-            if (src) {
-              imgs.push(src);
-            }
-          }
-        });
-      }
-    });
-  });
-
   md.renderer.rules.image = (tokens, idx, _opt, env) => {
     const token = tokens[idx];
     const src = token.attrGet('src');
@@ -48,10 +29,9 @@ export const imgToImage: PluginSimple = md => {
     env.imgs.push({ src, index: env.imgs.length });
     return `<Image src="${src}" alt="${alt}" index="${env.imgs.length - 1}"/>`;
   };
-
   md.renderer.render = (...args) => {
     const content = defaultRender.apply(md.renderer, args);
-    return `<ContentWrapper imgsStr="${imgs.join(',')}">${content}</ContentWrapper>`;
+    return `<ContentWrapper>${content}</ContentWrapper>`;
   };
 };
 

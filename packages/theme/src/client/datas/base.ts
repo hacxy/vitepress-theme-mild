@@ -16,6 +16,7 @@ export interface ContentData {
   html: string | undefined
   frontmatter: Record<string, any>
   excerpt: string | undefined
+  imgs: string[]
   // fileModifiedTime: number
 }
 export interface ContentOptions<T = ContentData[]> {
@@ -177,7 +178,6 @@ function handleAutoSidebar(config: SiteConfig, data: Map<string, ContentData>) {
       }
     });
   }
-
   return autoSidebar;
 }
 
@@ -199,8 +199,7 @@ export function createBaseDataLoader<T = {
 
   if (!config) {
     throw new Error(
-      'content loader invoked without an active vitepress process, '
-      + 'or before vitepress config is resolved.'
+      'content loader invoked without an active vitepress process, ' + 'or before vitepress config is resolved.'
     );
   }
   const pattern = getPattern(config.srcDir);
@@ -227,7 +226,6 @@ export function createBaseDataLoader<T = {
           if (cached.data.frontmatter.publish !== false) {
             raw.push(cached.data);
           }
-
           sidebarMapData.set(file, cached.data);
         }
         else {
@@ -254,23 +252,31 @@ export function createBaseDataLoader<T = {
           else {
             frontmatter.sticky = 0;
           }
-          const url
-            = `/${
-              normalizePath(path.relative(config.srcDir, file))
-                .replace(/(^|\/)index\.md$/, '$1')
-                .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
+          const url = `/${normalizePath(path.relative(config.srcDir, file))
+            .replace(/(^|\/)index\.md$/, '$1')
+            .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
 
           const html = render ? md.render(src) : undefined;
-          // const fileModifiedTime = timestamp;
-          const renderedExcerpt = renderExcerpt
-            ? excerpt && md.render(excerpt)
-
-            : undefined;
+          const tokens = md.parse(src, {});
+          const imgs: string[] = [];
+          tokens.forEach(token => {
+            if (token.type === 'inline' && token.children) {
+              token.children.forEach(child => {
+                if (child.type === 'image') {
+                  const src = child.attrGet('src');
+                  if (src) {
+                    imgs.push(src);
+                  }
+                }
+              });
+            }
+          });
+          const renderedExcerpt = renderExcerpt ? excerpt && md.render(excerpt) : undefined;
           const data: ContentData = {
-            // fileModifiedTime,
             path: file,
             src: includeSrc ? src : undefined,
             html,
+            imgs,
             frontmatter,
             excerpt: renderedExcerpt,
             url

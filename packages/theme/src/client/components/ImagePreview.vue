@@ -2,14 +2,14 @@
 import VueEaseLightBox from 'vue-easy-lightbox';
 import { useImagePreview } from '../hooks/useImagePreview';
 
-const { visible, hide, currentIndex, images } = useImagePreview();
+const { visible, hide, currentIndex, imgs } = useImagePreview();
 </script>
 
 <template>
   <VueEaseLightBox
     move-disabled
     loop
-    :imgs="images"
+    :imgs="imgs"
     :visible="visible"
     :index="currentIndex"
     @hide="hide"

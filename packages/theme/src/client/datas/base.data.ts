@@ -23,6 +23,7 @@ export interface ArticlesData {
   category: string
   order: number
   sidebar: boolean | SidebarFrontmatter
+  imgs: string[]
 }
 
 export default createBaseDataLoader({
@@ -48,6 +49,7 @@ export default createBaseDataLoader({
         path: item.url,
         description,
         title,
+        imgs: item.imgs,
         words,
         minutes,
         date,
