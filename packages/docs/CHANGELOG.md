@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.6.0...v0.6.1) (2025-01-25)
+
+
+### Bug Fixes
+
+* fixed the issue where the image preview function could not be used on some pages. ([12d6493](https://github.com/hacxy/vitepress-theme-mild/commit/12d6493495cc65a80e74b5cf7e70ed24880a347b))
+
+
+
 # [0.6.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.5.4-alpha.2...v0.6.0) (2025-01-24)
 
 
