@@ -8,7 +8,8 @@ jobs:
     steps:
       - name: 拉取代码 # 步骤名字
         uses: actions/checkout@master # 使用 actions/checkout 库拉取最新源码
-
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
