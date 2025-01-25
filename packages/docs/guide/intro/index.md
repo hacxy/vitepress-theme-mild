@@ -30,9 +30,9 @@ sidebar:
 
 - [x] 图片预览
 - [x] BiliBili视频播放器
+- [x] Github Task Checkbox, 与Github用法一致的任务列表复选框
 - [ ] Youtube视频播放器
 - [ ] 内置视频播放器
-- [ ] Github Task Checkbox, 与Github用法一致的任务列表复选框
 
 ### 扩展能力
 
