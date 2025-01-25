@@ -2,17 +2,47 @@
 import { computed, ref } from 'vue';
 import { useSize } from '../hooks/useSize';
 
-const props = defineProps<{
+interface Props {
+  /**
+   * aid
+   */
   aid?: string
+  /**
+   * bvid
+   */
   bvid?: string
+  /**
+   * cid
+   */
   cid?: string
+  /**
+   * 是否开启自动播放
+   */
   autoplay?: boolean
-  time?: number
+  /**
+   * 指定播放时间
+   */
+  time?: number | string
+  /**
+   * 指定视频分p
+   */
   page?: number
+  /**
+   * 宽度
+   */
   width?: number
+  /**
+   * 高度
+   */
   height?: number
+  /**
+   * 尺寸比例
+   */
   ratio?: number
-}>();
+}
+const props = withDefaults(defineProps<Props>(), {
+  ratio: 16 / 9
+});
 
 const VIDEO_LINK = 'https://player.bilibili.com/player.html';
 const { el, width, height, resize } = useSize<HTMLIFrameElement>(props);

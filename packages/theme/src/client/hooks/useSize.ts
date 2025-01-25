@@ -21,8 +21,7 @@ export interface SizeInfo<E extends HTMLElement> {
   resize: () => void
 }
 
-export function useSize<E extends HTMLElement>(options: SizeOptions,
-  extraHeight: MaybeRef<number> = 0): SizeInfo<E> {
+export function useSize<E extends HTMLElement>(options: SizeOptions, extraHeight: MaybeRef<number> = 0): SizeInfo<E> {
   const el = shallowRef<E>();
   const width = computed(() => getValue(unref(options.width) ?? '100%'));
   const height = ref('auto');

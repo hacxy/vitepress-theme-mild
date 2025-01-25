@@ -9,3 +9,4 @@ declare module '*.vue' {
 declare module '*.svg';
 declare module 'virtual:group-icons.css'
 declare module 'virtual:uno.css'
+declare module 'markdown-it-task-checkbox'

@@ -5,7 +5,7 @@ import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { RssPlugin } from 'vitepress-plugin-rss';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
-import { imgToImage, insertDocsHeaderInfo } from './plugins/markdown';
+import { imgToImage, insertDocsHeaderInfo, taskCheckbox } from './plugins/markdown';
 
 function rss(): Plugin {
   let resolveConfig: any;
@@ -32,6 +32,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       md.use(imgToImage);
       md.use(insertDocsHeaderInfo);
       md.use(groupIconMdPlugin);
+      md.use(taskCheckbox);
     },
     codeTransformers: [transformerTwoslash() as any]
   },
