@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/hacxy/vitepress-theme-mild/compare/v0.6.1...v0.7.0) (2025-01-25)
+
+
+### Features
+
+* github task checkbox ([629a782](https://github.com/hacxy/vitepress-theme-mild/commit/629a782870f475c19b965ef56e1b362b26612305))
+
+
+
 ## [0.6.1](https://github.com/hacxy/vitepress-theme-mild/compare/v0.6.0...v0.6.1) (2025-01-25)
 
 
