@@ -70,5 +70,11 @@ interface Props {
    * 尺寸比例
    */
   ratio?: number
+
+  /**
+   * 是否展示封面
+   * @default true
+   */
+  poster: boolean
 }
 ```

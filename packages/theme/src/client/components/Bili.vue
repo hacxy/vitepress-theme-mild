@@ -39,9 +39,16 @@ interface Props {
    * 尺寸比例
    */
   ratio?: number
+
+  /**
+   * 是否展示封面
+   * @default true
+   */
+  poster: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
-  ratio: 16 / 9
+  ratio: 16 / 9,
+  poster: true
 });
 
 const VIDEO_LINK = 'https://player.bilibili.com/player.html';
@@ -49,14 +56,14 @@ const { el, width, height, resize } = useSize<HTMLIFrameElement>(props);
 const loaded = ref(false);
 
 const videoLink = computed(() => {
-  const { aid, bvid, cid, autoplay, time, page } = props;
+  const { aid, bvid, cid, autoplay, time, page, poster } = props;
 
   return aid && cid
     ? `${VIDEO_LINK}?aid=${aid}&cid=${cid}&t=${time}&autoplay=${
       autoplay ? 1 : 0
-    }&p=${page}`
+    }&p=${page}&poster=${poster ? 1 : 0}`
     : bvid
-      ? `${VIDEO_LINK}?bvid=${bvid}&t=${time}&autoplay=${autoplay ? 1 : 0}`
+      ? `${VIDEO_LINK}?bvid=${bvid}&t=${time}&autoplay=${autoplay ? 1 : 0}&poster=${poster ? 1 : 0}`
       : '';
 });
 
