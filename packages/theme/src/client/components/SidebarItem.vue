@@ -70,7 +70,12 @@ function onCaretClick() {
       "
     >
       <div class="indicator" />
-      <Icon v-if="item.icon && item.items" :icon="item.icon" style="margin-right: 5px;" />
+      <Icon
+        v-if="item.icon && item.items"
+        :icon="item.icon"
+        style="margin-right: 5px;"
+        ssr
+      />
       <VPLink
         v-if="item.link"
         :tag="linkTag"
@@ -83,6 +88,7 @@ function onCaretClick() {
           v-if="item.icon && item.link"
           :icon="item.icon"
           class="text text-icon"
+          ssr
         />
         <component :is="textTag" class="text" v-html="item.text" />
       </VPLink>

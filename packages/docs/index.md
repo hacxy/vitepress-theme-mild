@@ -14,7 +14,7 @@ hero:
       link: /guide/intro/
     - theme: alt
       text: 参考配置
-      link: /guide/intro/quick-start
+      link: /config/
 features:
   - icon: 📦
     title: 开箱即用

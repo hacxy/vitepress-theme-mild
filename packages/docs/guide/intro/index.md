@@ -36,18 +36,20 @@ sidebar:
 - [x] Tabs 面板
 - [ ] Youtube视频播放器
 - [ ] 内置视频播放器
+- [ ] 文档内支持[iconify](https://iconify.design/)图标
 
 ### 扩展能力
 
 - [x] 文章列表
 - [x] 文章基础信息: 发表时间、字数、阅读时间
 - [x] 自动侧边栏
-- [x] 侧边栏支持展示图标
+- [x] 侧边栏支持[iconify](https://iconify.design/)图标
 - [x] 页面加载进度条
 - [x] RSS订阅
 - [x] 文章评论
-- [ ] Live2D
+- [ ] Live2D: [oml2d](https://oml2d.hacxy.cn/)
 - [ ] 文章智能总结
+- [ ] 公告通知弹窗
 
 ## 不打算做的功能
 

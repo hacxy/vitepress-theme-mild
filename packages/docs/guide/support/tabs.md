@@ -5,7 +5,7 @@ sidebar:
 
 # Tabs 面板
 
-内置了插件: [vitepress-plugin-tabs](https://www.npmjs.com/package/vitepress-plugin-tabs)
+Tabs能力由 [vitepress-plugin-tabs](https://www.npmjs.com/package/vitepress-plugin-tabs) 提供.
 
 ## 状态不共享
 

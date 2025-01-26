@@ -1,6 +1,6 @@
 ---
-sidebar:
-  title: 参考
+group:
+  text: 参考
 ---
 
 # 概述

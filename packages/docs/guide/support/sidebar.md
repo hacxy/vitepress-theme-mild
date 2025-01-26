@@ -204,9 +204,12 @@ export default {
 sidebar:
   text: 概述
   sort: 1
-  title: 简介
 ---
 ```
+
+#### sidebar
+
+用于定义侧边栏属性
 
 ##### `text`:
 
@@ -216,10 +219,26 @@ sidebar:
 
 - 定义侧边栏的顺序, 数字越小越靠前. `index.md` 文件将始终保持在当前分组的最顶部, 当 `sort` 属性在 `index.md` 中定义时, 将直接影响整个分组的排序.
 
-##### `title`:
+##### `icon`:
 
-- 仅 `index.md` 中生效, 用于定义分组的标题
+- 定义侧边栏图标
+
+#### group
+
+用于定义侧边栏分组
+
+##### `text`:
+
+- 定义分组名称
+
+##### `sort`:
+
+- 定义分组排序
 
 ##### `collapsed`:
 
 - 仅 `index.md` 中生效, 用于决定侧边栏分组是否可折叠, 作用与 [sidebar 可折叠的侧边栏组](https://vitepress.dev/zh/reference/default-theme-sidebar#collapsible-sidebar-groups) 相同
+
+#### `icon`
+
+- 定义分组的图标

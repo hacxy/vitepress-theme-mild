@@ -82,6 +82,6 @@ interface Props {
    * 是否展示封面
    * @default true
    */
-  poster: boolean
+  poster?: boolean
 }
 ```

@@ -1,31 +1,14 @@
-import type { Plugin, RawConfigExports, SiteConfig } from 'vitepress';
+import type { RawConfigExports } from 'vitepress';
 import type { ThemeConfig } from '../../types';
 import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
-import { RssPlugin } from 'vitepress-plugin-rss';
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
-import { imgToImage, insertDocsHeaderInfo, taskCheckbox } from './plugins/markdown';
-
-function rss(): Plugin {
-  let resolveConfig: any;
-  return {
-    name: 'vitepress-plugin-rss',
-    enforce: 'pre',
-    configResolved(config: any) {
-      if (resolveConfig) {
-        return;
-      }
-      resolveConfig = config;
-      // 拿到用户的主题配置, 手动调用hook
-      const VPConfig: SiteConfig = config.vitepress;
-      if (VPConfig.site?.themeConfig?.rss) {
-        return RssPlugin(VPConfig.site.themeConfig.rss).configResolved(config);
-      }
-    }
-  };
-}
+import { imgToImage } from './markdown/imgToImage';
+import { insertDocsHeaderInfo } from './markdown/insertDocsHeaderInfo';
+import { rss } from './markdown/rss';
+import { taskCheckbox } from './markdown/taskCheckbox';
 
 const baseConfig: RawConfigExports<ThemeConfig> = {
   markdown: {
@@ -59,7 +42,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
     },
     plugins: [
       groupIconVitePlugin() as any,
-      rss() as any,
+      rss(),
     ],
     build: {
       chunkSizeWarningLimit: 2048
