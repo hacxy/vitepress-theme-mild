@@ -26,6 +26,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     progressBar: {
       speed: 200
     },
+
     rss: {
       title: 'Hacxy',
       baseUrl: 'https://theme.hacxy.cn',
@@ -58,7 +59,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         items: [
           {
             text: '更新日志',
-            link: 'CHANGELOG.md'
+            link: 'https://github.com/hacxy/vitepress-theme-mild/releases'
           }
         ]
       }

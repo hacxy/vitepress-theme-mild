@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@vueuse/core';
 import { useData } from 'vitepress';
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue';
+import { NOT_ARTICLE_LAYOUTS } from '../../shared/constants';
 import { useAutoSidebarStore } from '../store/sidebar';
 import { getSidebar, getSidebarGroups } from '../utils/client/sidebar';
 
@@ -31,8 +32,9 @@ export function useSidebar() {
   });
 
   const hasAside = computed(() => {
-    if (frontmatter.value.layout === 'home')
+    if (NOT_ARTICLE_LAYOUTS.includes(frontmatter.value.layout)) {
       return false;
+    }
     if (frontmatter.value.aside !== undefined && frontmatter.value.aside !== null)
       return !!frontmatter.value.aside;
 
