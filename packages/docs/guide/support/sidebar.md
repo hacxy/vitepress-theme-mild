@@ -1,6 +1,7 @@
 ---
 sidebar:
   sort: 1
+  icon: pajamas:sidebar
 ---
 
 # 自动侧边栏

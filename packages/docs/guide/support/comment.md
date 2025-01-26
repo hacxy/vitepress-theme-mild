@@ -1,3 +1,8 @@
+---
+sidebar:
+  icon: meteor-icons:comment
+---
+
 # 评论
 
 `Mild Theme` 使用 [giscus](https://giscus.app/zh-CN) 评论系统, 用于让阅读者能够对文章进行评论.

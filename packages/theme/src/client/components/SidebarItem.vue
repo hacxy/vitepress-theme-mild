@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DefaultTheme } from 'vitepress';
+import { Icon } from '@iconify/vue';
 import { computed } from 'vue';
 import { useSidebarControl } from '../hooks/useSidebarControl';
 import VPLink from './Link.vue';
@@ -69,7 +70,7 @@ function onCaretClick() {
       "
     >
       <div class="indicator" />
-
+      <Icon v-if="item.icon && item.items" :icon="item.icon" style="margin-right: 5px;" />
       <VPLink
         v-if="item.link"
         :tag="linkTag"
@@ -78,6 +79,11 @@ function onCaretClick() {
         :rel="item.rel"
         :target="item.target"
       >
+        <Icon
+          v-if="item.icon && item.link"
+          :icon="item.icon"
+          class="text text-icon"
+        />
         <component :is="textTag" class="text" v-html="item.text" />
       </VPLink>
       <component
@@ -126,6 +132,8 @@ function onCaretClick() {
   position: relative;
   display: flex;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .VPSidebarItem.collapsible > .item {
@@ -162,7 +170,11 @@ function onCaretClick() {
   font-size: 14px;
   transition: color 0.25s;
 }
-
+.text-icon {
+  flex-grow: 0;
+  padding: 0;
+  margin-right: 4px;
+}
 .VPSidebarItem.level-0 .text {
   font-weight: 700;
   color: var(--vp-c-text-1);

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { RssPlugin } from 'vitepress-plugin-rss';
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
 import { imgToImage, insertDocsHeaderInfo, taskCheckbox } from './plugins/markdown';
 
@@ -33,6 +34,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       md.use(insertDocsHeaderInfo);
       md.use(groupIconMdPlugin);
       md.use(taskCheckbox);
+      md.use(tabsMarkdownPlugin);
     },
     codeTransformers: [transformerTwoslash() as any]
   },

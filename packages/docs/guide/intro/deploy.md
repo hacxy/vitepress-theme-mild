@@ -1,4 +1,7 @@
 ---
+sidebar:
+  sort: 3
+  icon: meteor-icons:laptop
 ---
 
 # 部署

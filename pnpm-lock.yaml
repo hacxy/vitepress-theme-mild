@@ -174,6 +174,9 @@ importers:
       vitepress-plugin-rss:
         specifier: ^0.3.0
         version: 0.3.0(vitepress@1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.4.3))
+      vitepress-plugin-tabs:
+        specifier: ^0.5.0
+        version: 0.5.0(vitepress@1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.4.3))(vue@3.5.13(typescript@5.4.3))
       vue:
         specifier: ^3.4.21
         version: 3.5.13(typescript@5.4.3)
@@ -5620,6 +5623,12 @@ packages:
     resolution: {integrity: sha512-pK8HepzkfB9RnA+KMFKIs1XxA4EMcDxXgiZ86mJitqb41LS/dWcleOXYmjCFP7sCUgitDFrBt74+rQgkceer4g==}
     peerDependencies:
       vitepress: ^1
+
+  vitepress-plugin-tabs@0.5.0:
+    resolution: {integrity: sha512-SIhFWwGsUkTByfc2b279ray/E0Jt8vDTsM1LiHxmCOBAEMmvzIBZSuYYT1DpdDTiS3SuJieBheJkYnwCq/yD9A==}
+    peerDependencies:
+      vitepress: ^1.0.0-rc.27
+      vue: ^3.3.8
 
   vitepress@1.6.1:
     resolution: {integrity: sha512-n41KBL08aonxaWMnk5V+TkpZ29rZF4sgYjvIqU2k0foteNhgms5BmbVWw9xTqD5hps12H1W+EZUwc7NlHh1s3g==}
@@ -11930,6 +11939,11 @@ snapshots:
       '@sugarat/theme-shared': 0.0.3
       feed: 4.2.2
       vitepress: 1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.4.3)
+
+  vitepress-plugin-tabs@0.5.0(vitepress@1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.4.3))(vue@3.5.13(typescript@5.4.3)):
+    dependencies:
+      vitepress: 1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.4.3)
+      vue: 3.5.13(typescript@5.4.3)
 
   vitepress@1.6.1(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.7.2):
     dependencies:

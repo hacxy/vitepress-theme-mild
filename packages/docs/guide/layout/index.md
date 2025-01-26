@@ -1,7 +1,10 @@
 ---
-sidebar:
+group:
   sort: 2
-  title: 布局
+  text: 布局
+  icon: meteor-icons:layout
+sidebar:
+  icon: meteor-icons:grid
 ---
 
 # 概述

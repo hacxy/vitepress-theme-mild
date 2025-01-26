@@ -1,3 +1,8 @@
+---
+sidebar:
+  icon: simple-icons:bilibili
+---
+
 # BiliBili 视频播放
 
 `Mild Theme` 提供了BiliBili视频播放的能力, 你可以在 markdown 文档中使用全局组件 `<Bili/>`, 这将会在文档中加入一个B站视频播放器.

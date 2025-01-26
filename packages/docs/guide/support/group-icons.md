@@ -1,5 +1,6 @@
 ---
 sidebar:
+  icon: meteor-icons:hexagon
   order: 9
 ---
 

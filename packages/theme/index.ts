@@ -4,6 +4,7 @@ import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
 import { NImageGroup } from 'naive-ui';
+import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client';
 import VPTheme from 'vitepress/theme';
 import Bili from './src/client/components/Bili.vue';
 import BlogPage from './src/client/components/BlogPage.vue';
@@ -20,6 +21,8 @@ const MildTheme: Theme = {
   extends: VPTheme,
   Layout,
   enhanceApp({ app, router, siteData }) {
+    enhanceAppWithTabs(app);
+
     const themeConfig: ThemeConfig = siteData.value.themeConfig;
     const originalConsoleError = console.error;
 

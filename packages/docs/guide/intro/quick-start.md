@@ -1,6 +1,7 @@
 ---
 sidebar:
   sort: 1
+  icon: meteor-icons:coffee
 ---
 
 # 快速开始

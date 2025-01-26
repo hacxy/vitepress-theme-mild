@@ -1,6 +1,7 @@
 ---
-sidebar:
-  title: 主题能力
+group:
+  icon: meteor-icons:microchip
+  text: 主题能力
   sort: 3
-publish: false
+  collapsed: true
 ---

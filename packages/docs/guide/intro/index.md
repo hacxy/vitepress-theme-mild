@@ -1,8 +1,10 @@
 ---
-sidebar:
+group:
+  icon: meteor-icons:sparkles
+  text: 简介
   sort: 1
-  title: 简介
-  text: 概述
+sidebar:
+  icon: meteor-icons:grid
 ---
 
 # 概述
@@ -31,6 +33,7 @@ sidebar:
 - [x] 图片预览
 - [x] BiliBili视频播放器
 - [x] Github Task Checkbox, 与Github用法一致的任务列表复选框
+- [x] Tabs 面板
 - [ ] Youtube视频播放器
 - [ ] 内置视频播放器
 
@@ -39,6 +42,7 @@ sidebar:
 - [x] 文章列表
 - [x] 文章基础信息: 发表时间、字数、阅读时间
 - [x] 自动侧边栏
+- [x] 侧边栏支持展示图标
 - [x] 页面加载进度条
 - [x] RSS订阅
 - [x] 文章评论
