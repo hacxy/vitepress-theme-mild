@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "node/*": ["../src/node/*"],
+      "client/*": ["../src/client/*"]
+    },
+    "types": ["vitest/globals"],
+    "isolatedModules": false
+  }
+}

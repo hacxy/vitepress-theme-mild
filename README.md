@@ -14,7 +14,11 @@ A feature-rich VitePress theme for blogs and documentation
  English | <a href=''/>简体中文</a>
 </p>
 
-![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
+<p align="center">
+  <a href="https://www.npmjs.com/package/vuepress-theme-plume" target="_blank">
+   <img alt="NPM Version" src="https://img.shields.io/npm/v/vitepress-theme-mild?color=32A9C3&labelColor=1B3C4A&label=npm">
+  </a>
+</p>
 
 - 📦 Ready to use, based on the default theme, with simple configuration and compatibility with default theme configuration
 

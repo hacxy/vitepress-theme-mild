@@ -30,11 +30,8 @@
     "build:out": "tsc -p tsconfig.build.json",
     "sync": "node scripts/sync-template.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "coverage": "vitest run --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepublishOnly": "npm run build",
     "release": "node scripts/release.js"
   },
   "dependencies": {
