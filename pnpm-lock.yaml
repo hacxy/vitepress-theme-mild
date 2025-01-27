@@ -63,11 +63,20 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@20.14.9)(lightningcss@1.29.1)(sass@1.83.4)
 
+  __tests__/create:
+    devDependencies:
+      vitepress-theme-mild:
+        specifier: workspace:*
+        version: link:../../packages/theme
+
   __tests__/e2e:
     devDependencies:
-      vitepress:
-        specifier: ^1.6.3
-        version: 1.6.3(@algolia/client-search@5.18.0)(@types/node@20.14.9)(async-validator@4.2.5)(lightningcss@1.29.1)(nprogress@0.2.0)(postcss@8.4.49)(sass@1.83.4)(search-insights@2.13.0)(typescript@5.7.2)
+      vitepress-theme-mild:
+        specifier: workspace:*
+        version: link:../../packages/theme
+
+  __tests__/unit:
+    devDependencies:
       vitepress-theme-mild:
         specifier: workspace:*
         version: link:../../packages/theme

@@ -1,0 +1,12 @@
+{
+  "name": "test-create",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "watch": "DEBUG=1 vitest"
+  },
+  "devDependencies": {
+    "vitepress-theme-mild": "workspace:*"
+  }
+}

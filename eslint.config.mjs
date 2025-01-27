@@ -7,5 +7,5 @@ export default linter({
     'no-undefined': 0,
     'max-lines': [2, 500],
     'max-params': [2, 5]
-  }
+  },
 });
