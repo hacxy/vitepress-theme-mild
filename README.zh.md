@@ -10,14 +10,8 @@
 能力丰富的 VitePress 主题, 适用于博客和文档
 </h4>
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/vitepress-theme-mild" target="_blank">
-   <img alt="NPM Version" src="https://img.shields.io/npm/v/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=npm">
-  </a>
-    <a href="https://www.npmjs.com/package/vitepress-theme-mild" target="_blank">
-    <img src="https://img.shields.io/npm/dm/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=downloads" alt="npm download">
-  </a>
-</p>
+[![npm](https://img.shields.io/npm/v/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/vitepress-theme-mild)
+[![downloads](https://img.shields.io/npm/dm/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=downloads)](https://www.npmjs.com/package/vitepress-theme-mild)
 
 - 📦 开箱即用, 基于默认主题, 配置简单且兼容默认主题配置
 - 📃 丰富的布局, 适用于个人博客和技术文档站
