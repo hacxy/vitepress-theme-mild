@@ -75,12 +75,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/theme
 
-  __tests__/unit:
-    devDependencies:
-      vitepress-theme-mild:
-        specifier: workspace:*
-        version: link:../../packages/theme
-
   packages/create-theme:
     dependencies:
       '@inquirer/prompts':

@@ -31,7 +31,8 @@
     "lint:fix": "eslint . --fix",
     "lint:staged": "eslint --fix",
     "release": "node scripts/release.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",

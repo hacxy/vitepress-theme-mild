@@ -10,6 +10,7 @@
 能力丰富的 VitePress 主题, 适用于博客和文档
 </h4>
 
+[![test](https://github.com/hacxy/vitepress-theme-mild/workflows/Test/badge.svg?color=8187ff&labelColor=1b1b1f)](https://github.com/hacxy/vitepress-theme-mild/actions)
 [![npm](https://img.shields.io/npm/v/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/vitepress-theme-mild)
 [![downloads](https://img.shields.io/npm/dm/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=downloads)](https://www.npmjs.com/package/vitepress-theme-mild)
 

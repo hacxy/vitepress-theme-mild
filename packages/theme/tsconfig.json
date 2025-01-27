@@ -9,6 +9,7 @@
     /* Bundler mode */
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
+    "types": ["vitest/globals"],
     "allowImportingTsExtensions": true,
     /* Linting */
     "strict": true,
