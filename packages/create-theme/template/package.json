@@ -13,7 +13,7 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vitepress": "^1.6.1",
-    "vitepress-theme-mild": "0.7.0"
+    "vitepress": "^1.6.3",
+    "vitepress-theme-mild": "^0.7.0"
   }
 }

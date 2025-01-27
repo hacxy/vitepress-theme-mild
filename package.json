@@ -3,7 +3,10 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "author": "Hacxy",
+  "author": {
+    "name": "Hacxy",
+    "email": "hacxy.js@outlook.com"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "pnpm -r run lint",
@@ -19,9 +22,11 @@
     "cli:dev": "pnpm -F create-mild-theme run dev",
     "cli:build": "pnpm -F create-mild-theme run build",
     "release": "pnpm -F vitepress-theme-mild run release && pnpm -F create-mild-theme run release",
+    "release:theme": "pnpm -F vitepress-theme-mild run release",
     "release:cli": "pnpm -F create-mild-theme run release",
     "prepare": "simple-git-hooks",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "sync:temp": "pnpm -F create-mild-theme run sync"
   },
   "devDependencies": {
     "@hacxy/eslint-config": "^0.0.6",
@@ -36,6 +41,7 @@
     "semver": "^7.6.3",
     "simple-git-hooks": "^2.11.1",
     "typescript": "^5.3.3",
+    "vitepress": "^1.6.3",
     "vitest": "^2.1.8"
   },
   "simple-git-hooks": {

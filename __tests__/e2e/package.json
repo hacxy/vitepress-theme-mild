@@ -1,0 +1,18 @@
+{
+  "name": "tests-e2e",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "vitest run",
+    "watch": "DEBUG=1 vitest",
+    "site:dev": "vitepress",
+    "site:build": "vitepress build",
+    "site:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.3",
+    "vitepress-theme-mild": "workspace:*"
+  }
+}

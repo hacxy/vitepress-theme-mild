@@ -5,5 +5,5 @@ export default linter({
   rules: {
     'no-console': 0
   },
-  ignores: ['template']
+  ignores: ['template/*']
 });

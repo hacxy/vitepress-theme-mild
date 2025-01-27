@@ -1,6 +1,6 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
+import path, { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execa } from 'execa';
 import c from 'picocolors';
@@ -21,6 +21,7 @@ const inc = (i, type, identifier) => _inc(currentVersion, i, type, identifier);
 function run(bin, args, opts = {}) {
   return execa(bin, args, { stdio: 'inherit', ...opts });
 }
+
 // eslint-disable-next-line no-console
 const step = msg => console.log(c.cyan(msg));
 
@@ -84,23 +85,27 @@ async function main() {
   await run('pnpm', ['build']);
 
   // Generate the changelog.
-  step('\nGenerating the changelog...');
-  await run('pnpm', ['changelog']);
+  // step('\nGenerating the changelog...');
+  // await run('pnpm', ['changelog']);
   // await run('eslint', ['CHANGELOG.md', '--fix', '--no-ignore']);
 
-  const { yes: changelogOk } = await prompts({
-    type: 'confirm',
-    name: 'yes',
-    message: 'Changelog generated. Does it look good?',
-  });
+  // const { yes: changelogOk } = await prompts({
+  //   type: 'confirm',
+  //   name: 'yes',
+  //   message: 'Changelog generated. Does it look good?',
+  // });
 
-  if (!changelogOk) {
-    return;
-  }
+  // if (!changelogOk) {
+  //   return;
+  // }
+
+  // Copy readme
+  step('\nCopying README.md...');
+  copyFileSync(path.resolve(dir, '../../../README.md'), path.resolve(dir, '../README.md'));
 
   // Commit changes to the Git and create a tag.
   step('\nCommitting changes...');
-  await run('git', ['add', '../docs/CHANGELOG.md', 'package.json']);
+  await run('git', ['add', 'README.md', 'package.json']);
   await run('git', ['commit', '-m', `chore: release: v${targetVersion}`]);
   await run('git', ['tag', `v${targetVersion}`]);
 
