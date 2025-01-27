@@ -15,8 +15,11 @@ A feature-rich VitePress theme for blogs and documentation
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/vuepress-theme-plume" target="_blank">
-   <img alt="NPM Version" src="https://img.shields.io/npm/v/vitepress-theme-mild?color=32A9C3&labelColor=1B3C4A&label=npm">
+  <a href="https://www.npmjs.com/package/vitepress-theme-mild" target="_blank">
+   <img alt="NPM Version" src="https://img.shields.io/npm/v/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=npm">
+  </a>
+    <a href="https://www.npmjs.com/package/vitepress-theme-mild" target="_blank">
+    <img src="https://img.shields.io/npm/dm/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=downloads" alt="npm download">
   </a>
 </p>
 
