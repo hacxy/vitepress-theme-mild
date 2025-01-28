@@ -24,7 +24,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build theme and docs
-        run: pnpm build:cos
+        run: pnpm build:docs
 
       - name: Linter
         run: pnpm lint
