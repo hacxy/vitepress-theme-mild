@@ -154,6 +154,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@20.17.16)(sass@1.83.4)
 
+  __tests__/e2e: {}
+
   create:
     dependencies:
       '@inquirer/prompts':
