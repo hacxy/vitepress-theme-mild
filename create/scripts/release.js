@@ -76,9 +76,9 @@ async function main() {
   step('\nUpdating the package version...');
   updatePackage(targetVersion);
 
-  // sync template
-  step('\nSync template');
-  await run('pnpm', ['sync']);
+  // // sync template
+  // step('\nSync template');
+  // await run('pnpm', ['sync']);
 
   // Build the package.
   step('\nBuilding the package...');
