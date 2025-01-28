@@ -31,3 +31,6 @@ jobs:
 
       - name: Unit test
         run: pnpm test:unit
+
+      - name: E2E test
+        run: pnpm test:e2e
