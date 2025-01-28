@@ -96,6 +96,9 @@ importers:
       '@types/nprogress':
         specifier: ^0.2.3
         version: 0.2.3
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.1
+        version: 5.2.1(vite@5.4.14(@types/node@20.17.16)(sass@1.83.4))(vue@3.5.13(typescript@5.7.3))
       '@vitest/coverage-istanbul':
         specifier: 2.1.8
         version: 2.1.8(vitest@2.1.8(@types/node@20.17.16)(sass@1.83.4))
@@ -162,6 +165,9 @@ importers:
 
   create:
     dependencies:
+      '@clack/prompts':
+        specifier: ^0.9.1
+        version: 0.9.1
       '@inquirer/prompts':
         specifier: ^7.2.1
         version: 7.2.3(@types/node@20.17.16)
@@ -175,6 +181,9 @@ importers:
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
+      '@types/lodash.template':
+        specifier: ^4.5.3
+        version: 4.5.3
       '@types/node':
         specifier: ^20.12.5
         version: 20.17.16
@@ -1525,6 +1534,9 @@ packages:
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+
+  '@types/lodash.template@4.5.3':
+    resolution: {integrity: sha512-Mo0UYKLu1oXgkV9TVoXZLlXXjyIXlW7ZQRxi/4gQJmzJr63dmicE8gG0OkPjYTKBrBic852q0JzqrtNUWLBIyA==}
 
   '@types/lodash@4.17.14':
     resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
@@ -6278,6 +6290,10 @@ snapshots:
   '@types/linkify-it@5.0.0': {}
 
   '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.17.14
+
+  '@types/lodash.template@4.5.3':
     dependencies:
       '@types/lodash': 4.17.14
 
