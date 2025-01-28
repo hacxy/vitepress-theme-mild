@@ -35,10 +35,10 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: packages/docs/.vitepress/dist/
-          target: '/${{secrets.SSH_USERNAME}}/Projects/.vitepress-theme-mild_temp/'
+          source: docs/.vitepress/dist/
+          target: ~/Projects/.vitepress-theme-mild_temp/
           rm: true
-          strip_components: 4
+          strip_components: 3
 
       - name: 执行远程脚本命令
         uses: appleboy/ssh-action@master
@@ -51,4 +51,3 @@ jobs:
             rm -rf ~/Projects/vitepress-theme-mild/*
             cp -rf ~/Projects/.vitepress-theme-mild_temp/*  ~/Projects/vitepress-theme-mild/
             rm -rf ~/Projects/.vitepress-theme-mild_temp
-      - run: echo "部署完成！"

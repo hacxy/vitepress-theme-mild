@@ -1,0 +1,47 @@
+{
+  "name": "create-mild-theme",
+  "type": "module",
+  "version": "0.2.8",
+  "description": "Create vitepress mild theme.",
+  "author": {
+    "name": "hacxy",
+    "email": "hacxy.js@outlook.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "create-vitepress-theme"
+  ],
+  "bin": {
+    "create-mild-theme": "index.js"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "template"
+  ],
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "unbuild --stub && npm link",
+    "build": "unbuild",
+    "build:out": "tsc -p tsconfig.build.json",
+    "sync": "node scripts/sync-template.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "release": "node scripts/release.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.1",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.12.5",
+    "typescript": "^5.7.2",
+    "unbuild": "^2.0.0"
+  }
+}

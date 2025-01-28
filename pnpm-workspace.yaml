@@ -1,4 +1,4 @@
 packages:
-  - 'packages/**'
-  - '__tests__/*'
-  - '!packages/create-theme/template'
+  - "docs"
+  - "__tests__/*"
+  - "create"

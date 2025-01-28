@@ -28,3 +28,6 @@ jobs:
 
       - name: Linter
         run: pnpm -r lint
+
+      - name: Unit test
+        run: pnpm test
