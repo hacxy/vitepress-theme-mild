@@ -1,4 +1,4 @@
-import { resolveHeaders } from 'src/client/utils/client/outline.ts';
+import { resolveHeaders } from 'client/utils/client/outline.ts';
 
 const element = {
   classList: {

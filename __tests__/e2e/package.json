@@ -11,5 +11,8 @@
     "site:dev": "vitepress",
     "site:build": "vitepress build",
     "site:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress-theme-mild": "workspace:*"
   }
 }

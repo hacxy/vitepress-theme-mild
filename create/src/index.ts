@@ -22,7 +22,7 @@ export async function bootstrap() {
   );
   pkg.name = packageName;
 
-  fs.writeFileSync(path.resolve(targetPath, 'package.json'), `${JSON.stringify(pkg, null, 2)}\n`);
+  // fs.writeFileSync(path.resolve(targetPath, 'package.json'), `${JSON.stringify(pkg, null, 2)}\n`);
 
   console.log(`\ncd ${targetPath}\nnpm run install\nnpm run dev`);
 }
