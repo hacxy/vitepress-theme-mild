@@ -8,10 +8,11 @@ export default defineConfig({
     hookTimeout: timeout,
     teardownTimeout: timeout,
     globals: true,
+    include: ['__tests__/unit/**'],
     coverage: {
       provider: 'istanbul', // or 'v8'
       reporter: ['text-summary', 'html'],
-      include: ['src/**/*.ts'],
+      include: ['__tests__/unit/**', 'src/**/*.ts'],
     },
   }
 });

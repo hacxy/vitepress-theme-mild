@@ -36,6 +36,7 @@
     "lint:staged": "eslint --fix",
     "release": "node scripts/release.js",
     "test:unit": "vitest run --coverage",
+    "test:unit:watch": "vitest",
     "test:e2e": "pnpm test:e2e-dev && pnpm test:e2e-build",
     "test:e2e:site:dev": "pnpm -F=tests-e2e site:dev",
     "test:e2e:site:build": "pnpm -F=tests-e2e site:build",
