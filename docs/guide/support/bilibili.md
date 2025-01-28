@@ -12,7 +12,7 @@ sidebar:
 之后你只需要在这个组件中传递`bvid`:
 
 ```vue
-<Bili bvid='BV15C41187cx'/>
+<Bili bvid='BV15C41187cx' />
 ```
 
  <Bili bvid='BV1oH4y1c7Kk'/>
@@ -22,7 +22,7 @@ sidebar:
 - 指定播放时间
 
 ```vue
-<Bili bvid='BV15C41187cx' time='3456'/>
+<Bili bvid='BV15C41187cx' time='3456' />
 ```
 
 <Bili bvid='BV15C41187cx' time='3456'/>
@@ -30,7 +30,7 @@ sidebar:
 - 自动播放
 
 ```vue
-<Bili bvid='BV15C41187cx' time='3456' autoplay/>
+<Bili bvid='BV15C41187cx' time='3456' autoplay />
 ```
 
 <Bili bvid='BV15C41187cx' time='3456' autoplay/>

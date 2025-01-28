@@ -21,11 +21,11 @@ export function usePrevNext() {
 
     const hidePrev
       = (theme.value.docFooter?.prev === false && !frontmatter.value.prev)
-      || frontmatter.value.prev === false;
+        || frontmatter.value.prev === false;
 
     const hideNext
       = (theme.value.docFooter?.next === false && !frontmatter.value.next)
-      || frontmatter.value.next === false;
+        || frontmatter.value.next === false;
 
     return {
       prev: hidePrev

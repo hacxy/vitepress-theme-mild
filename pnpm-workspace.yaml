@@ -1,4 +1,4 @@
 packages:
-  - "docs"
-  - "__tests__/*"
-  - "create"
+  - docs
+  - '__tests__/*'
+  - create
