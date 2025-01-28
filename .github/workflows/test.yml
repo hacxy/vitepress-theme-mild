@@ -24,10 +24,10 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build All
-        run: pnpm -r build
+        run: pnpm build
 
       - name: Linter
-        run: pnpm -r lint
+        run: pnpm lint
 
       - name: Unit test
         run: pnpm test

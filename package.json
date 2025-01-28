@@ -29,7 +29,7 @@
     "docs:dev": "pnpm -F docs run dev",
     "cli:dev": "pnpm -F create-mild-theme run dev",
     "build": "tsup",
-    "docs:build": "pnpm -F docs run build",
+    "docs:build": "pnpm build && pnpm -F docs run build",
     "cli:build": "pnpm -F create-mild-theme run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
