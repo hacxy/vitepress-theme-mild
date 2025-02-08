@@ -6,11 +6,11 @@ import {
   group,
   intro,
   outro,
-  select,
   text
 } from '@clack/prompts';
 import fs from 'fs-extra';
 import template from 'lodash.template';
+import minimist from 'minimist';
 import { bold, cyan, yellow } from 'picocolors';
 
 export enum ScaffoldThemeType {
@@ -23,7 +23,7 @@ export interface ScaffoldOptions {
   root: string
   title?: string
   description?: string
-  theme: ScaffoldThemeType
+  // theme: ScaffoldThemeType
   useTs: boolean
   injectNpmScripts: boolean
 }
@@ -33,8 +33,8 @@ function getPackageManger() {
   return name.split('/')[0];
 }
 
-export async function init(root: string | undefined) {
-  intro(bold(cyan('Welcome to VitePress!')));
+export async function createTheme(root: string | undefined) {
+  intro(bold(cyan('✨ Welcome to Mild Theme!')));
 
   const options: ScaffoldOptions = await group(
     {
@@ -43,8 +43,8 @@ export async function init(root: string | undefined) {
           return root;
 
         return text({
-          message: 'Where should VitePress initialize the config?',
-          initialValue: './',
+          message: 'Please enter the project name:',
+          initialValue: 'my-blog',
           validate() {
             // TODO make sure directory is inside
             return void 0;
@@ -64,27 +64,27 @@ export async function init(root: string | undefined) {
           placeholder: 'A VitePress Site'
         }),
 
-      theme: () =>
-        select({
-          message: 'Theme:',
-          options: [
-            {
-              value: ScaffoldThemeType.Default,
-              label: 'Default Theme',
-              hint: 'Out of the box, good-looking docs'
-            },
-            {
-              value: ScaffoldThemeType.DefaultCustom,
-              label: 'Default Theme + Customization',
-              hint: 'Add custom CSS and layout slots'
-            },
-            {
-              value: ScaffoldThemeType.Custom,
-              label: 'Custom Theme',
-              hint: 'Build your own or use external'
-            }
-          ]
-        }),
+      // theme: () =>
+      //   select({
+      //     message: 'Theme:',
+      //     options: [
+      //       {
+      //         value: ScaffoldThemeType.Default,
+      //         label: 'Default Theme',
+      //         hint: 'Out of the box, good-looking docs'
+      //       },
+      //       {
+      //         value: ScaffoldThemeType.DefaultCustom,
+      //         label: 'Default Theme + Customization',
+      //         hint: 'Add custom CSS and layout slots'
+      //       },
+      //       {
+      //         value: ScaffoldThemeType.Custom,
+      //         label: 'Custom Theme',
+      //         hint: 'Build your own or use external'
+      //       }
+      //     ]
+      //   }),
 
       useTs: () =>
         confirm({ message: 'Use TypeScript for config and theme files?' }),
@@ -109,7 +109,7 @@ export function scaffold({
   root = './',
   title = 'My Awesome Project',
   description = 'A VitePress Site',
-  theme,
+  // theme,
   useTs,
   injectNpmScripts
 }: ScaffoldOptions): string {
@@ -123,9 +123,9 @@ export function scaffold({
     title: JSON.stringify(title),
     description: JSON.stringify(description),
     useTs,
-    defaultTheme:
-      theme === ScaffoldThemeType.Default
-      || theme === ScaffoldThemeType.DefaultCustom
+    // defaultTheme:
+    //   theme === ScaffoldThemeType.Default
+    //   || theme === ScaffoldThemeType.DefaultCustom
   };
 
   const pkgPath = path.resolve('package.json');
@@ -156,19 +156,19 @@ export function scaffold({
     '.vitepress/config.js'
   ];
 
-  if (theme === ScaffoldThemeType.DefaultCustom) {
-    filesToScaffold.push(
-      '.vitepress/theme/index.js',
-      '.vitepress/theme/style.css'
-    );
-  }
-  else if (theme === ScaffoldThemeType.Custom) {
-    filesToScaffold.push(
-      '.vitepress/theme/index.js',
-      '.vitepress/theme/style.css',
-      '.vitepress/theme/Layout.vue'
-    );
-  }
+  // if (theme === ScaffoldThemeType.DefaultCustom) {
+  //   filesToScaffold.push(
+  //     '.vitepress/theme/index.js',
+  //     '.vitepress/theme/style.css'
+  //   );
+  // }
+  // else if (theme === ScaffoldThemeType.Custom) {
+  //   filesToScaffold.push(
+  //     '.vitepress/theme/index.js',
+  //     '.vitepress/theme/style.css',
+  //     '.vitepress/theme/Layout.vue'
+  //   );
+  // }
 
   for (const file of filesToScaffold) {
     renderFile(file);
@@ -186,16 +186,16 @@ export function scaffold({
       + `${cyan('.gitignore')} file.`
     );
   }
-  if (
-    theme !== ScaffoldThemeType.Default
-    && !userPkg.dependencies?.vue
-    && !userPkg.devDependencies?.vue
-  ) {
-    tips.push(
-      'Since you\'ve chosen to customize the theme, '
-      + `you should also explicitly install ${cyan('vue')} as a dev dependency.`
-    );
-  }
+  // if (
+  //   theme !== ScaffoldThemeType.Default
+  //   && !userPkg.dependencies?.vue
+  //   && !userPkg.devDependencies?.vue
+  // ) {
+  //   tips.push(
+  //     'Since you\'ve chosen to customize the theme, '
+  //     + `you should also explicitly install ${cyan('vue')} as a dev dependency.`
+  //   );
+  // }
 
   const tip = tips.length ? yellow(['\n\nTips:', ...tips].join('\n- ')) : '';
 
@@ -218,3 +218,5 @@ export function scaffold({
     )} and start writing.${tip}`;
   }
 }
+const argv: any = minimist(process.argv.slice(2));
+createTheme(argv.root);

@@ -6,7 +6,7 @@ const element = {
   }
 } as unknown as HTMLHeadElement;
 
-describe('client/theme-default/composables/outline', () => {
+describe('client/outline', () => {
   describe('resolveHeader', () => {
     it('levels range', () => {
       expect(

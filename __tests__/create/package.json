@@ -1,0 +1,9 @@
+{
+  "name": "tests-create",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "watch": "DEBUG=1 vitest"
+  }
+}

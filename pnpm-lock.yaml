@@ -126,6 +126,9 @@ importers:
       lint-staged:
         specifier: ^15.2.11
         version: 15.4.3
+      nanoid:
+        specifier: ^5.0.9
+        version: 5.0.9
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
@@ -157,6 +160,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@20.17.16)(sass@1.83.4)
 
+  __tests__/create: {}
+
   __tests__/e2e:
     devDependencies:
       vitepress-theme-mild:
@@ -177,6 +182,9 @@ importers:
       lodash.template:
         specifier: ^4.5.0
         version: 4.5.0
+      minimist:
+        specifier: ^1.2.8
+        version: 1.2.8
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4
@@ -184,6 +192,9 @@ importers:
       '@types/lodash.template':
         specifier: ^4.5.3
         version: 4.5.3
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
       '@types/node':
         specifier: ^20.12.5
         version: 20.17.16
@@ -1549,6 +1560,9 @@ packages:
 
   '@types/mdurl@2.0.0':
     resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
+
+  '@types/minimist@1.2.5':
+    resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
 
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
@@ -3649,6 +3663,11 @@ packages:
   nanoid@3.3.8:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.0.9:
+    resolution: {integrity: sha512-Aooyr6MXU6HpvvWXKoVoXwKMs/KyVakWwg7xQfv5/S/RIgJMy0Ifa45H9qqYy7pTCszrHzP21Uk4PZq2HpEM8Q==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   nanostores@0.11.3:
@@ -6310,6 +6329,8 @@ snapshots:
 
   '@types/mdurl@2.0.0': {}
 
+  '@types/minimist@1.2.5': {}
+
   '@types/ms@2.1.0': {}
 
   '@types/node@20.17.16':
@@ -8893,6 +8914,8 @@ snapshots:
       vueuc: 0.4.64(vue@3.5.13(typescript@5.7.3))
 
   nanoid@3.3.8: {}
+
+  nanoid@5.0.9: {}
 
   nanostores@0.11.3: {}
 
