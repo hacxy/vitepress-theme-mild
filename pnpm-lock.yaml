@@ -102,9 +102,6 @@ importers:
       '@vitest/coverage-istanbul':
         specifier: 2.1.8
         version: 2.1.8(vitest@2.1.8(@types/node@20.17.16)(sass@1.83.4))
-      bumpp:
-        specifier: ^9.9.1
-        version: 9.11.1(magicast@0.3.5)
       commitizen:
         specifier: ^4.3.1
         version: 4.3.1(@types/node@20.17.16)(typescript@5.7.3)
@@ -1952,11 +1949,6 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
 
-  bumpp@9.11.1:
-    resolution: {integrity: sha512-jBHlab9NnRwrpHsockb5E+MBo0os2yS6S7i3cnN8hB6EkTardKQotmd0CFdOc8pubLz2fxj2AD6RGtrySVG6Mw==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   bundle-require@5.1.0:
     resolution: {integrity: sha512-3WrrOuZiyaaZPWiEt4G3+IffISVC9HYlWueJEBWED4ZH4aIAC2PnkdnuRrR94M+w6yGWn4AglWtJtBI8YqvgoA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -3258,9 +3250,6 @@ packages:
     resolution: {integrity: sha512-WYDyuc/uFcGp6YtM2H0uKmUwieOuzeE/5YocFJLnLfclZ4inf3mRn8ZVy1s7Hxji7Jxm6Ss8gqpexD/GlKoGgg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  jsonc-parser@3.3.1:
-    resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
-
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
@@ -4548,9 +4537,6 @@ packages:
 
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
-
-  tiny-conventional-commits-parser@0.0.1:
-    resolution: {integrity: sha512-N5+AZWdBeHNSgTIaxvx0+9mFrnW4H1BbjQ84H7i3TuWSkno8Hju886hLaHZhE/hYEKrfrfl/uHurqpZJHDuYGQ==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -6803,22 +6789,6 @@ snapshots:
 
   builtin-modules@3.3.0: {}
 
-  bumpp@9.11.1(magicast@0.3.5):
-    dependencies:
-      c12: 2.0.1(magicast@0.3.5)
-      cac: 6.7.14
-      escalade: 3.2.0
-      js-yaml: 4.1.0
-      jsonc-parser: 3.3.1
-      package-manager-detector: 0.2.8
-      prompts: 2.4.2
-      semver: 7.6.3
-      tiny-conventional-commits-parser: 0.0.1
-      tinyexec: 0.3.2
-      tinyglobby: 0.2.10
-    transitivePeerDependencies:
-      - magicast
-
   bundle-require@5.1.0(esbuild@0.24.2):
     dependencies:
       esbuild: 0.24.2
@@ -6840,6 +6810,7 @@ snapshots:
       rc9: 2.1.2
     optionalDependencies:
       magicast: 0.3.5
+    optional: true
 
   cac@6.7.14: {}
 
@@ -6893,7 +6864,8 @@ snapshots:
     dependencies:
       readdirp: 4.1.1
 
-  chownr@2.0.0: {}
+  chownr@2.0.0:
+    optional: true
 
   ci-info@4.1.0: {}
 
@@ -7258,7 +7230,8 @@ snapshots:
 
   dequal@2.0.3: {}
 
-  destr@2.0.3: {}
+  destr@2.0.3:
+    optional: true
 
   detect-file@1.0.0: {}
 
@@ -7306,7 +7279,8 @@ snapshots:
     dependencies:
       is-obj: 2.0.0
 
-  dotenv@16.4.7: {}
+  dotenv@16.4.7:
+    optional: true
 
   eastasianwidth@0.2.0: {}
 
@@ -7908,6 +7882,7 @@ snapshots:
   fs-minipass@2.1.0:
     dependencies:
       minipass: 3.3.6
+    optional: true
 
   fs.realpath@1.0.0: {}
 
@@ -7945,6 +7920,7 @@ snapshots:
       ohash: 1.1.4
       pathe: 2.0.2
       tar: 6.2.1
+    optional: true
 
   giscus@1.6.0:
     dependencies:
@@ -8314,8 +8290,6 @@ snapshots:
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       semver: 7.6.3
-
-  jsonc-parser@3.3.1: {}
 
   jsonfile@6.1.0:
     dependencies:
@@ -8834,8 +8808,10 @@ snapshots:
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
+    optional: true
 
-  minipass@5.0.0: {}
+  minipass@5.0.0:
+    optional: true
 
   minipass@7.1.2: {}
 
@@ -8845,10 +8821,12 @@ snapshots:
     dependencies:
       minipass: 3.3.6
       yallist: 4.0.0
+    optional: true
 
   mitt@3.0.1: {}
 
-  mkdirp@1.0.4: {}
+  mkdirp@1.0.4:
+    optional: true
 
   mkdist@1.6.0(sass@1.83.4)(typescript@5.7.3):
     dependencies:
@@ -8928,7 +8906,8 @@ snapshots:
   node-addon-api@7.1.1:
     optional: true
 
-  node-fetch-native@1.6.6: {}
+  node-fetch-native@1.6.6:
+    optional: true
 
   node-releases@2.0.19: {}
 
@@ -8970,10 +8949,12 @@ snapshots:
       pkg-types: 1.3.1
       tinyexec: 0.3.2
       ufo: 1.5.4
+    optional: true
 
   object-assign@4.1.1: {}
 
-  ohash@1.1.4: {}
+  ohash@1.1.4:
+    optional: true
 
   once@1.4.0:
     dependencies:
@@ -9342,6 +9323,7 @@ snapshots:
     dependencies:
       defu: 6.1.4
       destr: 2.0.3
+    optional: true
 
   read-package-up@11.0.0:
     dependencies:
@@ -9759,6 +9741,7 @@ snapshots:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
+    optional: true
 
   temp-dir@3.0.0: {}
 
@@ -9781,8 +9764,6 @@ snapshots:
       any-promise: 1.3.0
 
   through@2.3.8: {}
-
-  tiny-conventional-commits-parser@0.0.1: {}
 
   tinybench@2.9.0: {}
 
@@ -10302,7 +10283,8 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  yallist@4.0.0: {}
+  yallist@4.0.0:
+    optional: true
 
   yaml-eslint-parser@1.2.3:
     dependencies:
