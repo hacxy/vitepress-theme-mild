@@ -10,12 +10,14 @@
 能力丰富的 VitePress 主题, 适用于博客和文档
 </h4>
 
-![NPM Version](https://img.shields.io/npm/v/vitepress-theme-mild)
+[![test](https://github.com/hacxy/vitepress-theme-mild/workflows/Test/badge.svg?color=8187ff&labelColor=1b1b1f)](https://github.com/hacxy/vitepress-theme-mild/actions)
+[![npm](https://img.shields.io/npm/v/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=npm)](https://www.npmjs.com/package/vitepress-theme-mild)
+[![downloads](https://img.shields.io/npm/dm/vitepress-theme-mild?color=8187ff&labelColor=1b1b1f&label=downloads)](https://www.npmjs.com/package/vitepress-theme-mild)
 
-- 📦 基于默认主题, 开箱即用
-- 📃 简约风格的博客布局, 文章列表实时热更新
-- 📖 更丰富的markdown能力, 如图片预览
-- 🔥 更灵活的自动侧边栏, 根据目录结构自动生成侧边栏
+- 📦 开箱即用, 基于默认主题, 配置简单且兼容默认主题配置
+- 📃 丰富的布局, 适用于个人博客和技术文档站
+- 📖 图片预览, 文章评论, 视频播放等能力在 markdown 中使用变得更简单
+- 🔥 更灵活的自动侧边栏, 根据目录自动生成侧边栏和文章列表, 支持热更新
 
 [查阅文档](https://theme.hacxy.cn)
 
@@ -41,11 +43,19 @@ yarn create mild-theme
 bun create mild-theme
 ```
 
+### 启动并运行
+
+```sh
+npm run dev
+```
+
+开发服务应该会运行在 http://localhost:5173 上。在浏览器中访问 URL 以查看新站点的运行情况吧！
+
 ## 关于自动侧边栏
 
 ### 使用
 
-在默认主题的基础上做了进一步提升, 现在只需要定义一个对象, key 为路径, value 为固定值: `auto`, 即可开启自动侧边栏 🚀.
+在默认主题的基础上做了进一步提升, 现在只需要定义一个对象, key 为路径, value 为固定值: `auto`, 即可开启自动侧边栏.
 
 ```js
 export default {
@@ -73,10 +83,6 @@ export default {
 为了满足上述需求, 我花费了大量时间重写了部分组件, 并结合构建时数据加载, 最终效果达到了我的预期, 现在侧边栏的配置是更灵活的, 更智能的, 也是我目前最喜欢的功能之一.
 
 更多细节请参考: [自动侧边栏](https://theme.hacxy.cn/guide/support/sidebar.html)
-
-## Changelog
-
-[CHANGELOG](./packages/docs/CHANGELOG.md)
 
 ## License
 
