@@ -176,19 +176,10 @@ importers:
       fs-extra:
         specifier: ^11.2.0
         version: 11.3.0
-      lodash.template:
-        specifier: ^4.5.0
-        version: 4.5.0
-      minimist:
-        specifier: ^1.2.8
-        version: 1.2.8
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
-      '@types/lodash.template':
-        specifier: ^4.5.3
-        version: 4.5.3
       '@types/minimist':
         specifier: ^1.2.5
         version: 1.2.5
@@ -201,6 +192,9 @@ importers:
       unbuild:
         specifier: ^2.0.0
         version: 2.0.0(sass@1.83.4)(typescript@5.7.3)
+      vitepress-theme-mild:
+        specifier: workspace:*
+        version: link:..
 
   docs:
     devDependencies:
@@ -1542,9 +1536,6 @@ packages:
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
-
-  '@types/lodash.template@4.5.3':
-    resolution: {integrity: sha512-Mo0UYKLu1oXgkV9TVoXZLlXXjyIXlW7ZQRxi/4gQJmzJr63dmicE8gG0OkPjYTKBrBic852q0JzqrtNUWLBIyA==}
 
   '@types/lodash@4.17.14':
     resolution: {integrity: sha512-jsxagdikDiDBeIRaPYtArcT8my4tN1og7MtMRquFT3XNA6axxyHDRUemqDz/taRDdOUn0GnGHRCuff4q48sW9A==}
@@ -3326,9 +3317,6 @@ packages:
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
-  lodash._reinterpolate@3.0.0:
-    resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
-
   lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
 
@@ -3349,13 +3337,6 @@ packages:
 
   lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
-
-  lodash.template@4.5.0:
-    resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
-    deprecated: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
-
-  lodash.templatesettings@4.2.0:
-    resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
 
   lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
@@ -6298,10 +6279,6 @@ snapshots:
     dependencies:
       '@types/lodash': 4.17.14
 
-  '@types/lodash.template@4.5.3':
-    dependencies:
-      '@types/lodash': 4.17.14
-
   '@types/lodash@4.17.14': {}
 
   '@types/markdown-it@14.1.2':
@@ -8383,8 +8360,6 @@ snapshots:
 
   lodash-es@4.17.21: {}
 
-  lodash._reinterpolate@3.0.0: {}
-
   lodash.camelcase@4.3.0: {}
 
   lodash.isplainobject@4.0.6:
@@ -8400,15 +8375,6 @@ snapshots:
     optional: true
 
   lodash.sortby@4.7.0: {}
-
-  lodash.template@4.5.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
-      lodash.templatesettings: 4.2.0
-
-  lodash.templatesettings@4.2.0:
-    dependencies:
-      lodash._reinterpolate: 3.0.0
 
   lodash.uniq@4.5.0: {}
 

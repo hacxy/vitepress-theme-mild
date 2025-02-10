@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   cancel,
@@ -9,23 +9,16 @@ import {
   text
 } from '@clack/prompts';
 import fs from 'fs-extra';
-import template from 'lodash.template';
-import minimist from 'minimist';
-import { bold, cyan, yellow } from 'picocolors';
+import { bold, cyan, green } from 'picocolors';
+import parentPkgInfo from '../../package.json';
 
-export enum ScaffoldThemeType {
-  Default = 'default theme',
-  DefaultCustom = 'default theme + customization',
-  Custom = 'custom theme'
-}
-
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const templatePath = path.resolve(__dirname, '../template');
+const vitepressVersion = parentPkgInfo.devDependencies.vitepress;
+const version = parentPkgInfo.version;
 export interface ScaffoldOptions {
   root: string
-  title?: string
-  description?: string
-  // theme: ScaffoldThemeType
   useTs: boolean
-  injectNpmScripts: boolean
 }
 
 function getPackageManger() {
@@ -33,67 +26,24 @@ function getPackageManger() {
   return name.split('/')[0];
 }
 
-export async function createTheme(root: string | undefined) {
-  intro(bold(cyan('✨ Welcome to Mild Theme!')));
+export async function createTheme() {
+  intro(bold(cyan('✨ Welcome to create Mild Theme!')));
 
   const options: ScaffoldOptions = await group(
     {
       root: async () => {
-        if (root)
-          return root;
-
         return text({
           message: 'Please enter the project name:',
           initialValue: 'my-blog',
           validate() {
-            // TODO make sure directory is inside
             return void 0;
           }
         });
       },
 
-      title: () =>
-        text({
-          message: 'Site title:',
-          placeholder: 'My Awesome Project'
-        }),
-
-      description: () =>
-        text({
-          message: 'Site description:',
-          placeholder: 'A VitePress Site'
-        }),
-
-      // theme: () =>
-      //   select({
-      //     message: 'Theme:',
-      //     options: [
-      //       {
-      //         value: ScaffoldThemeType.Default,
-      //         label: 'Default Theme',
-      //         hint: 'Out of the box, good-looking docs'
-      //       },
-      //       {
-      //         value: ScaffoldThemeType.DefaultCustom,
-      //         label: 'Default Theme + Customization',
-      //         hint: 'Add custom CSS and layout slots'
-      //       },
-      //       {
-      //         value: ScaffoldThemeType.Custom,
-      //         label: 'Custom Theme',
-      //         hint: 'Build your own or use external'
-      //       }
-      //     ]
-      //   }),
-
-      useTs: () =>
-        confirm({ message: 'Use TypeScript for config and theme files?' }),
-
-      injectNpmScripts: () =>
-        confirm({
-          message: 'Add VitePress npm scripts to package.json?'
-        })
+      useTs: () => confirm({ message: 'Use TypeScript for config and theme files?' }),
     },
+
     {
       onCancel: () => {
         cancel('Cancelled.');
@@ -102,121 +52,27 @@ export async function createTheme(root: string | undefined) {
     }
   );
 
-  outro(scaffold(options));
+  const targetPath = path.resolve(process.cwd(), options.root);
+  fs.cpSync(templatePath, targetPath, { recursive: true });
+
+  const rmConfigFilePath = options.useTs ? path.resolve(targetPath, '.vitepress/config.js') : path.resolve(targetPath, '.vitepress/config.ts');
+
+  if (options.useTs) {
+    fs.renameSync(path.resolve(targetPath, '.vitepress/theme/index.js'), path.resolve(targetPath, '.vitepress/theme/index.ts'));
+  }
+
+  fs.removeSync(rmConfigFilePath);
+  fs.renameSync(path.resolve(targetPath, '_gitignore'), path.resolve(targetPath, '.gitignore'));
+  const targetPkgPath = path.resolve(targetPath, 'package.json');
+  const packageJsonStr = fs.readFileSync(targetPkgPath, { encoding: 'utf-8' });
+  const packageJson = JSON.parse(packageJsonStr);
+  packageJson.devDependencies.vitepress = vitepressVersion;
+  packageJson.devDependencies['vitepress-theme-mild'] = `^${version}`;
+  packageJson.name = options.root;
+  const newPackageJsonStr = JSON.stringify(packageJson, null, 2);
+  fs.writeFileSync(targetPkgPath, newPackageJsonStr);
+  outro(bold(green('✨ Creation successful!')));
+  console.log(`\ncd ${targetPath}\n${getPackageManger()} docs:dev`);
 }
 
-export function scaffold({
-  root = './',
-  title = 'My Awesome Project',
-  description = 'A VitePress Site',
-  // theme,
-  useTs,
-  injectNpmScripts
-}: ScaffoldOptions): string {
-  const resolvedRoot = path.resolve(root);
-  const templateDir = path.resolve(
-    path.dirname(fileURLToPath(import.meta.url)),
-    '../../template'
-  );
-
-  const data = {
-    title: JSON.stringify(title),
-    description: JSON.stringify(description),
-    useTs,
-    // defaultTheme:
-    //   theme === ScaffoldThemeType.Default
-    //   || theme === ScaffoldThemeType.DefaultCustom
-  };
-
-  const pkgPath = path.resolve('package.json');
-  const userPkg = fs.existsSync(pkgPath)
-    ? JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
-    : {};
-
-  const useMjs = userPkg.type !== 'module';
-
-  const renderFile = (file: string) => {
-    const filePath = path.resolve(templateDir, file);
-    let targetPath = path.resolve(resolvedRoot, file);
-    if (useMjs && file === '.vitepress/config.js') {
-      targetPath = targetPath.replace(/\.js$/, '.mjs');
-    }
-    if (useTs) {
-      targetPath = targetPath.replace(/\.(m?)js$/, '.$1ts');
-    }
-    const src = fs.readFileSync(filePath, 'utf-8');
-    const compiled = template(src)(data);
-    fs.outputFileSync(targetPath, compiled);
-  };
-
-  const filesToScaffold = [
-    'index.md',
-    'api-examples.md',
-    'markdown-examples.md',
-    '.vitepress/config.js'
-  ];
-
-  // if (theme === ScaffoldThemeType.DefaultCustom) {
-  //   filesToScaffold.push(
-  //     '.vitepress/theme/index.js',
-  //     '.vitepress/theme/style.css'
-  //   );
-  // }
-  // else if (theme === ScaffoldThemeType.Custom) {
-  //   filesToScaffold.push(
-  //     '.vitepress/theme/index.js',
-  //     '.vitepress/theme/style.css',
-  //     '.vitepress/theme/Layout.vue'
-  //   );
-  // }
-
-  for (const file of filesToScaffold) {
-    renderFile(file);
-  }
-
-  const dir
-    = root === './' ? '' : ` ${root.replace(/^\.\//, '').replace(/[/\\]$/, '')}`;
-  const gitignorePrefix = dir ? `${dir}/.vitepress` : '.vitepress';
-
-  const tips = [];
-  if (fs.existsSync('.git')) {
-    tips.push(
-      `Make sure to add ${cyan(`${gitignorePrefix}/dist`)} and `
-      + `${cyan(`${gitignorePrefix}/cache`)} to your `
-      + `${cyan('.gitignore')} file.`
-    );
-  }
-  // if (
-  //   theme !== ScaffoldThemeType.Default
-  //   && !userPkg.dependencies?.vue
-  //   && !userPkg.devDependencies?.vue
-  // ) {
-  //   tips.push(
-  //     'Since you\'ve chosen to customize the theme, '
-  //     + `you should also explicitly install ${cyan('vue')} as a dev dependency.`
-  //   );
-  // }
-
-  const tip = tips.length ? yellow(['\n\nTips:', ...tips].join('\n- ')) : '';
-
-  if (injectNpmScripts) {
-    const scripts = {
-      'docs:dev': `vitepress dev${dir}`,
-      'docs:build': `vitepress build${dir}`,
-      'docs:preview': `vitepress preview${dir}`
-    };
-    Object.assign(userPkg.scripts || (userPkg.scripts = {}), scripts);
-    fs.writeFileSync(pkgPath, JSON.stringify(userPkg, null, 2));
-    return `Done! Now run ${cyan(
-      `${getPackageManger()} run docs:dev`
-    )} and start writing.${tip}`;
-  }
-  else {
-    const pm = getPackageManger();
-    return `You're all set! Now run ${cyan(
-      `${pm === 'npm' ? 'npx' : pm} vitepress dev${dir}`
-    )} and start writing.${tip}`;
-  }
-}
-const argv: any = minimist(process.argv.slice(2));
-createTheme(argv.root);
+createTheme();

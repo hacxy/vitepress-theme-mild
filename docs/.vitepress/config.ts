@@ -73,8 +73,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     },
     footer: {
       message: 'MIT Licensed',
-      copyright:
-        'Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
+      copyright: 'Copyright © 2024-Present <a href="https://github.com/hacxy">Hacxy</a>',
     },
   },
 });
