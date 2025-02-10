@@ -27,8 +27,8 @@ export default defineConfigWithTheme<ThemeConfig>({
       { icon: 'github', link: 'https://github.com/hacxy/vitepress-theme-mild' }
     ],
     sidebar: {
-      '/guide/fruit/': 'auto',
-      '/guide/category/': 'auto'
+      '/posts/fruit/': 'auto',
+      '/posts/category/': 'auto'
     },
     footer: {
       message: 'MIT Licensed',

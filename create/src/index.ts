@@ -73,8 +73,8 @@ export async function createTheme() {
   fs.writeFileSync(targetPkgPath, newPackageJsonStr);
 
   outro(bold(green('✨ Creation successful!')));
-
-  console.log(`\ncd ${targetPath}\n${getPackageManger()} run docs:dev`);
+  const packageManger = getPackageManger();
+  console.log(`\ncd ${targetPath}\n\n${packageManger} install\n${packageManger} run docs:dev`);
 }
 
 createTheme();
