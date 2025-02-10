@@ -3,6 +3,7 @@ import path from 'node:path';
 import { isObject } from '@vueuse/core';
 import directoryTree from 'directory-tree';
 import matter from 'gray-matter';
+import { capitalizeFirstFormat } from '../../../shared/utils';
 import { ensureIndexMd, normalizePath } from '../node/path';
 
 // sidebar排序, 越小越靠前
@@ -94,7 +95,8 @@ export function formatSidebarItems(item: any, PATH: string, config: SiteConfig, 
     normalizePath(path.relative(config.srcDir, PATH))
       .replace(/(^|\/)index\.md$/, '$1')
       .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
-  const filename = link.split('/')[link.split('/').length - 1].split('.')[0];
+  const originFilename = link.split('/')[link.split('/').length - 1].split('.')[0];
+  const filename = capitalizeFirstFormat(originFilename);
   const article = data.get(ensureIndexMd(PATH));
   const content = matter(article?.src || '').content;
   const match = content.match(/^(#+)\s+(.+)/m);
