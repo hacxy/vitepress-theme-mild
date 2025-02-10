@@ -26,7 +26,7 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
       - name: Install Playwright
-        run: pnpm playwright install chromium
+        run: npx playwright install chromium
 
       - name: Build theme and docs
         run: pnpm docs:build
