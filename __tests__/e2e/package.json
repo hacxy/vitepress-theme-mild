@@ -13,7 +13,7 @@
     "site:preview": "vitepress preview"
   },
   "devDependencies": {
-    "playwright-chromium": "^1.49.1",
+    "playwright-chromium": "^1.50.0",
     "vitepress-theme-mild": "workspace:*"
   }
 }

@@ -11,6 +11,7 @@ const root = '.';
 
 export async function setup() {
   browserServer = await chromium.launchServer({
+    channel: 'chromium',
     headless: !process.env.DEBUG,
     args: process.env.CI
       ? ['--no-sandbox', '--disable-setuid-sandbox']

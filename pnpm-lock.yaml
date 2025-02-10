@@ -159,7 +159,7 @@ importers:
   __tests__/e2e:
     devDependencies:
       playwright-chromium:
-        specifier: ^1.49.1
+        specifier: ^1.50.0
         version: 1.50.0
       vitepress-theme-mild:
         specifier: workspace:*
