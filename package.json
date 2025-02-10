@@ -19,14 +19,14 @@
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "default": "./index.js"
+      "default": "./index.ts"
     },
     "./config": {
       "types": "./config/index.d.ts",
       "default": "./config/index.js"
     }
   },
-  "module": "./index.js",
+  "module": "./index.ts",
   "types": "./types/index.d.ts",
   "files": [
     "config",
