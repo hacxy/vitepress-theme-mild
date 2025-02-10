@@ -1,3 +1,5 @@
+import baseConfig from "vitepress-theme-mild/config";
+
 /** @type {import('vitepress').UserConfigExport<import('vitepress-theme-mild').ThemeConfig>} */
 export default {
   title: 'My Blog',

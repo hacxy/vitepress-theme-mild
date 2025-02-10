@@ -19,14 +19,13 @@
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./index.js"
+      "default": "./index.js"
     },
     "./config": {
       "types": "./config/index.d.ts",
-      "import": "./config/index.js"
+      "default": "./config/index.js"
     }
   },
-  "main": "./index.js",
   "module": "./index.js",
   "types": "./types/index.d.ts",
   "files": [
