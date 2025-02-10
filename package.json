@@ -47,7 +47,7 @@
     "lint:staged": "eslint --fix",
     "theme:release": "node scripts/release.js",
     "cli:release": "pnpm -F create-mild-theme run release",
-    "release": "pnpm theme:release && pnpm release",
+    "release": "pnpm theme:release && pnpm cli:release",
     "test:unit": "vitest run --coverage",
     "test:unit:watch": "vitest",
     "test:e2e": "pnpm test:e2e-dev && pnpm test:e2e-build",
