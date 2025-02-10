@@ -1,7 +1,7 @@
 {
   "name": "create-mild-theme",
   "type": "module",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Create vitepress mild theme.",
   "author": {
     "name": "hacxy",
@@ -43,6 +43,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/minimist": "^1.2.5",
     "@types/node": "^20.12.5",
+    "picocolors": "^1.1.1",
     "typescript": "^5.7.2",
     "unbuild": "^2.0.0",
     "vitepress-theme-mild": "workspace:*"

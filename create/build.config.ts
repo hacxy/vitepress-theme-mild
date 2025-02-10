@@ -5,5 +5,7 @@ export default defineBuildConfig({
   clean: true,
   declaration: false,
   sourcemap: false,
-  rollup: { esbuild: { target: 'node18', minify: true } },
+  rollup: { esbuild: { target: 'node18', minify: true }, inlineDependencies: true },
+  failOnWarn: false,
+
 });
