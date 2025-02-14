@@ -145,8 +145,8 @@ export function createBaseDataLoader<T = {
             .replace(/(^|\/)index\.md$/, '$1')
             .replace(/\.md$/, config.cleanUrls ? '' : '.html')}`;
 
-          const html = render ? md.render(src) : undefined;
-          const tokens = md.parse(src, {});
+          const html = render ? md.render(src, { realPath: file }) : undefined;
+          const tokens = md.parse(src, { realPath: file });
           const imgs: string[] = [];
           tokens.forEach(token => {
             if (token.type === 'inline' && token.children) {
