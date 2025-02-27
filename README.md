@@ -34,7 +34,7 @@
 npm create mild-theme@latest
 
 # Use pnpm
-pnpm create mild-theme@latest
+pnpm create mild-theme
 
 # Use yarn
 yarn create mild-theme
