@@ -17,4 +17,4 @@ sidebar:
 
 - [ ] one
 - [ ] two
-- [ ] three
+- [x] three
