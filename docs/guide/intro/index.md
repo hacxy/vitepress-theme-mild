@@ -9,7 +9,7 @@ sidebar:
 
 # 概述
 
-`VitePress Theme Mild` 以下简称(Mild Theme), 是一个且具备丰富能力的 VitePress 主题, 它基于默认主题开发, 完全兼容默认主题配置, 并在此基础上进行扩展, 加入了更多可自定义的配置项, 以及丰富的markdown能力, 并额外提供了更多布局, 例如: blog、tag. 帮助快速搭建博客或技术文档.
+`VitePress Theme Mild` (以下简称Mild Theme), 是一个且具备丰富能力的 VitePress 主题, 它基于默认主题开发, 完全兼容默认主题配置, 并在此基础上进行扩展, 加入了更多可自定义的配置项, 以及丰富的markdown能力, 并额外提供了更多布局, 例如: blog、tag. 帮助快速搭建博客或技术文档.
 
 ## 为什么开发这个主题
 
