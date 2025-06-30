@@ -27,7 +27,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
   },
   vite: {
     ssr: {
-      noExternal: ['naive-ui']
+      noExternal: ['naive-ui', 'vueuc'],
     },
     resolve: {
       alias: [
@@ -44,7 +44,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       rss(),
     ],
     build: {
-      chunkSizeWarningLimit: 2048
+      chunkSizeWarningLimit: 2048,
     },
     css: {
       preprocessorOptions: {
