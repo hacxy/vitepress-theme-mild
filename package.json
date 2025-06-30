@@ -85,8 +85,7 @@
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-rss": "^0.3.0",
     "vitepress-plugin-tabs": "^0.5.0",
-    "vue": "^3.4.21",
-    "vue-easy-lightbox": "^1.19.0"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@hacxy/eslint-config": "^0.0.6",
