@@ -3,19 +3,18 @@ import type { ThemeConfig } from './types';
 import { setup } from '@css-render/vue3-ssr';
 import TwoslashFloatingVue from '@shikijs/vitepress-twoslash/client';
 import { MotionPlugin } from '@vueuse/motion';
-import { NImageGroup } from 'naive-ui';
+import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue';
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client';
 import VPTheme from 'vitepress/theme';
 import Bili from './src/client/components/Bili.vue';
 import BlogPage from './src/client/components/BlogPage.vue';
-import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
-import Image from './src/client/components/Image.vue';
 import Layout from './src/client/components/Layout.vue';
 import Tags from './src/client/components/Tags.vue';
 import { useProgress } from './src/client/hooks/useProgress';
 import '@shikijs/vitepress-twoslash/style.css';
 import './src/client/styles/index.scss';
+import 'viewerjs/dist/viewer.min.css';
 
 const MildTheme: Theme = {
   extends: VPTheme,
@@ -59,7 +58,7 @@ const MildTheme: Theme = {
         let scrollPosition = 0;
         // 监听热模块替换之前的事件
         (import.meta as any).hot.on('vite:beforeUpdate', () => {
-        // 保存当前的滚动位置
+          // 保存当前的滚动位置
           scrollPosition = window.scrollY || document.documentElement.scrollTop;
         });
 
@@ -89,9 +88,7 @@ const MildTheme: Theme = {
     app.component('blog', BlogPage);
     app.component('tags', Tags);
     app.component('DocsHeaderInfo', DocsHeaderInfo);
-    app.component('Image', Image);
-    app.component('ImageGroup', NImageGroup);
-    app.component('ContentWrapper', ContentWrapper);
+    app.component('vImageViewer', vImageViewer);
     app.component('Bili', Bili);
   }
 };
