@@ -9,7 +9,6 @@ import { useInitData } from "../hooks/useInitData";
 import { useCloseSidebarOnEscape, useSidebar } from "../hooks/useSidebar";
 import Content from "./Content.vue";
 import VMFooter from "./Footer.vue";
-import ImagePreview from "./ImagePreview.vue";
 import LocalNav from "./LocalNav.vue";
 import Sidebar from "./Sidebar.vue";
 
@@ -197,7 +196,6 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
     <slot name="layout-bottom" />
   </div>
   <content v-else />
-  <ImagePreview />
 </template>
 
 <style scoped lang="scss">
