@@ -10,7 +10,8 @@
     "watch": "DEBUG=1 vitest",
     "site:dev": "vitepress",
     "site:build": "vitepress build",
-    "site:preview": "vitepress preview"
+    "site:preview": "vitepress preview",
+    "test:install": "playwright install chromium"
   },
   "devDependencies": {
     "playwright-chromium": "^1.50.0",
