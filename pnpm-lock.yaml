@@ -83,9 +83,6 @@ importers:
       vue:
         specifier: ^3.4.21
         version: 3.5.13(typescript@5.7.3)
-      vue-easy-lightbox:
-        specifier: ^1.19.0
-        version: 1.19.0(vue@3.5.13(typescript@5.7.3))
     devDependencies:
       '@hacxy/eslint-config':
         specifier: ^0.0.6
@@ -4858,12 +4855,6 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
-
-  vue-easy-lightbox@1.19.0:
-    resolution: {integrity: sha512-YxLXgjEn91UF3DuK1y8u3Pyx2sJ7a/MnBpkyrBSQkvU1glzEJASyAZ7N+5yDpmxBQDVMwCsL2VmxWGIiFrWCgA==}
-    engines: {node: '>=14.18.3'}
-    peerDependencies:
-      vue: ^3.0.0
 
   vue-eslint-parser@9.4.3:
     resolution: {integrity: sha512-2rYRLWlIpaiN8xbPiDyXZXRgLGOtWxERV7ND5fFAv5qo1D2N9Fu9MNajBNc6o13lZ+24DAWCkQCvj4klgmcITg==}
@@ -10152,10 +10143,6 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
 
   vue-demi@0.14.10(vue@3.5.13(typescript@5.7.3)):
-    dependencies:
-      vue: 3.5.13(typescript@5.7.3)
-
-  vue-easy-lightbox@1.19.0(vue@3.5.13(typescript@5.7.3)):
     dependencies:
       vue: 3.5.13(typescript@5.7.3)
 
