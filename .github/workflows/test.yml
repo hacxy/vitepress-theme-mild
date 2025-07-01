@@ -14,7 +14,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 9
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,14 +27,14 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
-      - name: Install Playwright
-        run: npx playwright install chromium
-
       - name: Build theme and docs
         run: pnpm docs:build
 
       - name: Linter
         run: pnpm lint
+
+      - name: Install Playwright
+        run: pnpm test:install
 
       - name: Unit test
         run: pnpm test:unit

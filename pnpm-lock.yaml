@@ -65,9 +65,15 @@ importers:
       typed.js:
         specifier: ^2.1.0
         version: 2.1.0
+      viewerjs:
+        specifier: ^1.11.7
+        version: 1.11.7
       vitepress-plugin-group-icons:
         specifier: ^1.3.2
         version: 1.3.5
+      vitepress-plugin-image-viewer:
+        specifier: ^1.1.6
+        version: 1.1.6
       vitepress-plugin-rss:
         specifier: ^0.3.0
         version: 0.3.1(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@20.17.16)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.1)(sass@1.83.4)(search-insights@2.17.3)(typescript@5.7.3))
@@ -77,9 +83,6 @@ importers:
       vue:
         specifier: ^3.4.21
         version: 3.5.13(typescript@5.7.3)
-      vue-easy-lightbox:
-        specifier: ^1.19.0
-        version: 1.19.0(vue@3.5.13(typescript@5.7.3))
     devDependencies:
       '@hacxy/eslint-config':
         specifier: ^0.0.6
@@ -161,6 +164,9 @@ importers:
       playwright-chromium:
         specifier: ^1.50.0
         version: 1.50.0
+      vitepress:
+        specifier: ^1.6.3
+        version: 1.6.3(@algolia/client-search@5.20.0)(@types/node@20.17.16)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.1)(sass@1.83.4)(search-insights@2.17.3)(typescript@5.7.3)
       vitepress-theme-mild:
         specifier: workspace:*
         version: link:../..
@@ -4741,6 +4747,9 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
+  viewerjs@1.11.7:
+    resolution: {integrity: sha512-0JuVqOmL5v1jmEAlG5EBDR3XquxY8DWFQbFMprOXgaBB0F7Q/X9xWdEaQc59D8xzwkdUgXEMSSknTpriq95igg==}
+
   vite-node@2.1.8:
     resolution: {integrity: sha512-uPAwSr57kYjAUux+8E2j0q0Fxpn8M9VoyfGiRI8Kfktz9NcYMCenwY5RnZxnF1WTu3TGiYipirIzacLL3VVGFg==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -4779,6 +4788,9 @@ packages:
 
   vitepress-plugin-group-icons@1.3.5:
     resolution: {integrity: sha512-1f1NP7osRYlNTR0yS5CAqcaasKHRSAzFKpeCUOfCPwYLAFxhCxsEbRtPBm0U1CfrDVa303MsjX18ngGpFGxIMA==}
+
+  vitepress-plugin-image-viewer@1.1.6:
+    resolution: {integrity: sha512-ZfYy1s/bXju6vGVsE/5gPXT449+KaXZ6ZIPAvcmPM07VmC7Bv57bCvFar2II7C2EjexxfPQsxUh70vSBbe14kQ==}
 
   vitepress-plugin-rss@0.3.1:
     resolution: {integrity: sha512-Q0tJ/j6D0c0WXG/VEF1FNyR8Kv72GPwytUipwKEx+3zL4/AllCgYkY/Hom38zY7t7bcDk5qXeudbhoIWT+1Q+A==}
@@ -4843,12 +4855,6 @@ packages:
     peerDependenciesMeta:
       '@vue/composition-api':
         optional: true
-
-  vue-easy-lightbox@1.19.0:
-    resolution: {integrity: sha512-YxLXgjEn91UF3DuK1y8u3Pyx2sJ7a/MnBpkyrBSQkvU1glzEJASyAZ7N+5yDpmxBQDVMwCsL2VmxWGIiFrWCgA==}
-    engines: {node: '>=14.18.3'}
-    peerDependencies:
-      vue: ^3.0.0
 
   vue-eslint-parser@9.4.3:
     resolution: {integrity: sha512-2rYRLWlIpaiN8xbPiDyXZXRgLGOtWxERV7ND5fFAv5qo1D2N9Fu9MNajBNc6o13lZ+24DAWCkQCvj4klgmcITg==}
@@ -9994,6 +10000,8 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
+  viewerjs@1.11.7: {}
+
   vite-node@2.1.8(@types/node@20.17.16)(sass@1.83.4):
     dependencies:
       cac: 6.7.14
@@ -10029,6 +10037,10 @@ snapshots:
       '@iconify/utils': 2.2.1
     transitivePeerDependencies:
       - supports-color
+
+  vitepress-plugin-image-viewer@1.1.6:
+    dependencies:
+      viewerjs: 1.11.7
 
   vitepress-plugin-rss@0.3.1(vitepress@1.6.3(@algolia/client-search@5.20.0)(@types/node@20.17.16)(async-validator@4.2.5)(nprogress@0.2.0)(postcss@8.5.1)(sass@1.83.4)(search-insights@2.17.3)(typescript@5.7.3)):
     dependencies:
@@ -10131,10 +10143,6 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
 
   vue-demi@0.14.10(vue@3.5.13(typescript@5.7.3)):
-    dependencies:
-      vue: 3.5.13(typescript@5.7.3)
-
-  vue-easy-lightbox@1.19.0(vue@3.5.13(typescript@5.7.3)):
     dependencies:
       vue: 3.5.13(typescript@5.7.3)
 

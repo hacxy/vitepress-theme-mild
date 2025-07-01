@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress';
+import imageViewer from 'vitepress-plugin-image-viewer';
 import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue';
 import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
 import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
@@ -8,7 +9,6 @@ import { useInitData } from '../hooks/useInitData';
 import { useCloseSidebarOnEscape, useSidebar } from '../hooks/useSidebar';
 import Content from './Content.vue';
 import VMFooter from './Footer.vue';
-import ImagePreview from './ImagePreview.vue';
 import LocalNav from './LocalNav.vue';
 import Sidebar from './Sidebar.vue';
 
@@ -22,7 +22,7 @@ const { frontmatter, isDark, page } = useData();
 useCloseSidebarOnEscape();
 
 const route = useRoute();
-
+imageViewer(route);
 watch(() => route.path, close);
 
 // Handle not found nprogress.
@@ -44,8 +44,10 @@ provide('hero-image-slot-exists', heroImageSlotExists);
 
 //  ---------- transition start
 function enableTransitions() {
-  return 'startViewTransition' in document
-    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  return (
+    'startViewTransition' in document
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+  );
 }
 
 provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
@@ -58,8 +60,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
-    )}px at ${x}px ${y}px)`
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
   ];
 
   await document.startViewTransition(async () => {
@@ -72,19 +74,15 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     {
       duration: 300,
       easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`
-    }
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
   );
 });
 //  ---------- transition end
 </script>
 
 <template>
-  <div
-    v-if="frontmatter.layout !== false"
-    class="Layout VMLayout"
-    :class="frontmatter.pageClass"
-  >
+  <div v-if="frontmatter.layout !== false" class="Layout VMLayout" :class="frontmatter.pageClass">
     <slot name="layout-top" />
     <VPSkipLink />
     <VPBackdrop class="backdrop" :show="isOpen" @click="close()" />
@@ -198,7 +196,6 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     <slot name="layout-bottom" />
   </div>
   <content v-else />
-  <ImagePreview />
 </template>
 
 <style scoped lang="scss">

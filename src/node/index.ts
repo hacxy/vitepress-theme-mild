@@ -5,7 +5,7 @@ import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
-import { imgToImage } from './markdown/imgToImage';
+// import { imgToImage } from './markdown/imgToImage';
 import { insertDocsHeaderInfo } from './markdown/insertDocsHeaderInfo';
 import { rss } from './markdown/rss';
 import { taskCheckbox } from './markdown/taskCheckbox';
@@ -13,7 +13,6 @@ import { taskCheckbox } from './markdown/taskCheckbox';
 const baseConfig: RawConfigExports<ThemeConfig> = {
   markdown: {
     config(md) {
-      md.use(imgToImage);
       md.use(insertDocsHeaderInfo);
       md.use(groupIconMdPlugin);
       md.use(taskCheckbox);
@@ -28,7 +27,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
   },
   vite: {
     ssr: {
-      noExternal: ['naive-ui']
+      noExternal: ['naive-ui', 'vueuc'],
     },
     resolve: {
       alias: [
@@ -45,7 +44,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       rss(),
     ],
     build: {
-      chunkSizeWarningLimit: 2048
+      chunkSizeWarningLimit: 2048,
     },
     css: {
       preprocessorOptions: {
