@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useData, useRoute } from "vitepress";
-import imageViewer from "vitepress-plugin-image-viewer";
-import VPBackdrop from "vitepress/dist/client/theme-default/components/VPBackdrop.vue";
-import VPNav from "vitepress/dist/client/theme-default/components/VPNav.vue";
-import VPSkipLink from "vitepress/dist/client/theme-default/components/VPSkipLink.vue";
-import { computed, nextTick, onMounted, provide, useSlots, watch } from "vue";
-import { useInitData } from "../hooks/useInitData";
-import { useCloseSidebarOnEscape, useSidebar } from "../hooks/useSidebar";
-import Content from "./Content.vue";
-import VMFooter from "./Footer.vue";
-import LocalNav from "./LocalNav.vue";
-import Sidebar from "./Sidebar.vue";
+import { useData, useRoute } from 'vitepress';
+import imageViewer from 'vitepress-plugin-image-viewer';
+import VPBackdrop from 'vitepress/dist/client/theme-default/components/VPBackdrop.vue';
+import VPNav from 'vitepress/dist/client/theme-default/components/VPNav.vue';
+import VPSkipLink from 'vitepress/dist/client/theme-default/components/VPSkipLink.vue';
+import { computed, nextTick, onMounted, provide, useSlots, watch } from 'vue';
+import { useInitData } from '../hooks/useInitData';
+import { useCloseSidebarOnEscape, useSidebar } from '../hooks/useSidebar';
+import Content from './Content.vue';
+import VMFooter from './Footer.vue';
+import LocalNav from './LocalNav.vue';
+import Sidebar from './Sidebar.vue';
 
-import("virtual:group-icons.css");
+import('virtual:group-icons.css');
 
 // Init data 不要在其他任何地方调用这个hook 否则会存在性能浪费问题
 const { np } = useInitData();
@@ -38,19 +38,19 @@ watch(page, () => {
 });
 
 const slots = useSlots();
-const heroImageSlotExists = computed(() => !!slots["home-hero-image"]);
+const heroImageSlotExists = computed(() => !!slots['home-hero-image']);
 
-provide("hero-image-slot-exists", heroImageSlotExists);
+provide('hero-image-slot-exists', heroImageSlotExists);
 
 //  ---------- transition start
 function enableTransitions() {
   return (
-    "startViewTransition" in document &&
-    window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    'startViewTransition' in document
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
   );
 }
 
-provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
+provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   if (!enableTransitions()) {
     isDark.value = !isDark.value;
     return;
@@ -73,8 +73,8 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
     { clipPath: isDark.value ? clipPath.reverse() : clipPath },
     {
       duration: 300,
-      easing: "ease-in",
-      pseudoElement: `::view-transition-${isDark.value ? "old" : "new"}(root)`,
+      easing: 'ease-in',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     },
   );
 });
