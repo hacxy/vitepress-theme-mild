@@ -5,7 +5,7 @@ import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons';
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs';
 import { NOT_ARTICLE_LAYOUTS } from '../shared/constants';
-// import { imgToImage } from './markdown/imgToImage';
+import { contentSlide } from './markdown/content-slide.ts';
 import { insertDocsHeaderInfo } from './markdown/insertDocsHeaderInfo';
 import { rss } from './markdown/rss';
 import { taskCheckbox } from './markdown/taskCheckbox';
@@ -17,6 +17,7 @@ const baseConfig: RawConfigExports<ThemeConfig> = {
       md.use(groupIconMdPlugin);
       md.use(taskCheckbox);
       md.use(tabsMarkdownPlugin);
+      md.use(contentSlide);
     },
     codeTransformers: [transformerTwoslash() as any]
   },

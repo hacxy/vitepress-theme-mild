@@ -8,6 +8,7 @@ import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client';
 import VPTheme from 'vitepress/theme';
 import Bili from './src/client/components/Bili.vue';
 import BlogPage from './src/client/components/BlogPage.vue';
+import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
 import Layout from './src/client/components/Layout.vue';
 import Tags from './src/client/components/Tags.vue';
@@ -90,6 +91,7 @@ const MildTheme: Theme = {
     app.component('DocsHeaderInfo', DocsHeaderInfo);
     app.component('vImageViewer', vImageViewer);
     app.component('Bili', Bili);
+    app.component('ContentWrapper', ContentWrapper);
   }
 };
 export { Layout };
