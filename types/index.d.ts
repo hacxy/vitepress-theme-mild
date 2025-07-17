@@ -18,6 +18,23 @@ export interface Comment extends Omit<GiscusProps, 'theme'> {
   darkTheme: GiscusTheme
 }
 
+export interface ProjectItem {
+  title: string
+  icon?: string
+  description?: string
+  tags?: string[]
+  stars?: number
+  forks?: number
+  language?: string
+  repoUrl?: string
+  lastUpdated?: string
+}
+
+export interface Project {
+  list: ProjectItem[]
+  defaultIcon?: string
+}
+
 declare interface DefaultThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {}
 
 declare interface ThemeConfig extends DefaultThemeConfig {
@@ -38,6 +55,8 @@ declare interface ThemeConfig extends DefaultThemeConfig {
   progressBar?: Partial<NProgressOptions> | false
 
   scrollRestoration?: boolean
+
+  project?: Project
   // /**
   //  * Typescript Twoslash
   //  * @default true

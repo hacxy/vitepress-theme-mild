@@ -11,8 +11,9 @@ import BlogPage from './src/client/components/BlogPage.vue';
 import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
 import Layout from './src/client/components/Layout.vue';
-import Tags from './src/client/components/Tags.vue';
 import { useProgress } from './src/client/hooks/useProgress';
+import Projects from './src/client/pages/Projects.vue';
+import Tags from './src/client/pages/Tags.vue';
 import '@shikijs/vitepress-twoslash/style.css';
 import './src/client/styles/index.scss';
 import 'viewerjs/dist/viewer.min.css';
@@ -22,27 +23,26 @@ const MildTheme: Theme = {
   Layout,
   enhanceApp({ app, router, siteData }) {
     enhanceAppWithTabs(app);
-
     const themeConfig: ThemeConfig = siteData.value.themeConfig;
-    const originalConsoleError = console.error;
+    // const originalConsoleError = console.error;
 
     // 重写 console.error 方法
-    console.error = function (message, ...optionalParams) {
-      // 检查错误消息是否包含特定的关键字
-      if (typeof message === 'string' && message.includes('Hydration completed but contains mismatches')) {
-        // 忽略特定的 hydration 错误
-        return;
-      }
-      // 调用原始的 console.error 方法，处理其他错误
-      originalConsoleError(message, ...optionalParams);
-    };
+    // console.error = function (message, ...optionalParams) {
+    //   // 检查错误消息是否包含特定的关键字
+    //   if (typeof message === 'string' && message.includes('Hydration completed but contains mismatches')) {
+    //     // 忽略特定的 hydration 错误
+    //     return;
+    //   }
+    //   // 调用原始的 console.error 方法，处理其他错误
+    //   originalConsoleError(message, ...optionalParams);
+    // };
 
-    if ((import.meta as any).env.SSR) {
+    if (import.meta.env.SSR) {
       const { collect } = setup(app);
       app.provide('css-render-collect', collect);
     }
 
-    if (!(import.meta as any).env.SSR) {
+    if (!import.meta.env.SSR) {
       if (!themeConfig.scrollRestoration) {
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'manual';
@@ -92,7 +92,8 @@ const MildTheme: Theme = {
     app.component('vImageViewer', vImageViewer);
     app.component('Bili', Bili);
     app.component('ContentWrapper', ContentWrapper);
-  }
+    app.component('Projects', Projects);
+  },
 };
 export { Layout };
 export default MildTheme;
