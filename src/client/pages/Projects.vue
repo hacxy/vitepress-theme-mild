@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue';
 import { useData } from 'vitepress';
 import { computed } from 'vue';
 import LANGUAGE_COLORS from '../../shared/datas/language-colors';
-import Tag from '../components/common/Tag.vue';
+import Tag from '../components/Tag.vue';
 
 const { theme, frontmatter } = useData<ThemeConfig>();
 const finalList = computed<ProjectItem[]>(() => {
@@ -78,6 +78,7 @@ function handleViewSourceCode(url?: string) {
 .projects-page-wrapper {
   width: 100%;
   height: 100%;
+  padding-bottom: 20px;
   @media (min-width: 1400px) {
     .container {
       max-width: 1400px;

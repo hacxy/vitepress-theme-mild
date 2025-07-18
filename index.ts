@@ -7,11 +7,11 @@ import vImageViewer from 'vitepress-plugin-image-viewer/lib/vImageViewer.vue';
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client';
 import VPTheme from 'vitepress/theme';
 import Bili from './src/client/components/Bili.vue';
-import BlogPage from './src/client/components/BlogPage.vue';
 import ContentWrapper from './src/client/components/ContentWrapper.vue';
 import DocsHeaderInfo from './src/client/components/DocsHeaderInfo.vue';
 import Layout from './src/client/components/Layout.vue';
 import { useProgress } from './src/client/hooks/useProgress';
+import Blog from './src/client/pages/Blog.vue';
 import Projects from './src/client/pages/Projects.vue';
 import Tags from './src/client/pages/Tags.vue';
 import '@shikijs/vitepress-twoslash/style.css';
@@ -86,7 +86,7 @@ const MildTheme: Theme = {
     }
     app.use(MotionPlugin);
     app.use(TwoslashFloatingVue);
-    app.component('blog', BlogPage);
+    app.component('blog', Blog);
     app.component('tags', Tags);
     app.component('DocsHeaderInfo', DocsHeaderInfo);
     app.component('vImageViewer', vImageViewer);

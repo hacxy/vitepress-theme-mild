@@ -4,9 +4,9 @@ import { NPagination } from 'naive-ui';
 import { useData, useRouter } from 'vitepress';
 import { computed, onMounted, ref, watch } from 'vue';
 import { DEFAULT_PAGE_SIZE } from '../../shared/constants';
+import ArticlesList from '../components/ArticlesList.vue';
 import { useArticleListStore } from '../store/article';
 import { paginate } from '../utils/client/article';
-import ArticlesList from './ArticlesList.vue';
 
 const router = useRouter();
 const { frontmatter } = useData();
