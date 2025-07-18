@@ -20,5 +20,6 @@ defineProps<Props>();
   padding: 0 12px;
   box-sizing: border-box;
   margin-right: 12px;
+  margin-bottom: 12px;
 }
 </style>

@@ -19,68 +19,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ],
     project: {
-      list: [
-        {
-          title: 'AI Chat Assistant',
-          description: '基于大语言模型的智能聊天助手，支持多轮对话和上下文理解',
-          stars: 1234,
-          forks: 89,
-          language: 'TypeScript',
-          repoUrl: 'https://github.com/username/ai-chat-assistant',
-          lastUpdated: '2024-01-15',
-          tags: ['AI', 'Next.js', 'OpenAI', 'Tailwind CSS'],
-        },
-        {
-          title: 'React Component Library',
-          description: '现代化的React组件库，包含丰富的UI组件和完整的设计系统',
-          stars: 856,
-          forks: 124,
-          language: 'JavaScript',
-          repoUrl: 'https://github.com/username/react-ui-lib',
-          lastUpdated: '2024-01-12',
-          tags: ['React', 'Storybook', 'CSS-in-JS', 'TypeScript'],
-        },
-        {
-          title: 'Mobile Weather App',
-          description: '跨平台天气应用，提供实时天气信息和7天预报功能',
-          stars: 567,
-          forks: 45,
-          language: 'Dart',
-          repoUrl: 'https://github.com/username/weather-app',
-          lastUpdated: '2024-01-10',
-          tags: ['Flutter', 'Weather API', 'Mobile', 'Cross-platform'],
-        },
-        {
-          title: 'Database Migration Tool',
-          description: '数据库迁移和版本控制工具，支持多种数据库类型',
-          stars: 432,
-          forks: 67,
-          language: 'Go',
-          repoUrl: 'https://github.com/username/db-migration-tool',
-          lastUpdated: '2024-01-08',
-          tags: ['Go', 'Database', 'CLI', 'Migration'],
-        },
-        {
-          title: 'Performance Monitor',
-          description: '网站性能监控工具，实时追踪页面加载速度和用户体验指标',
-          stars: 789,
-          forks: 98,
-          language: 'Python',
-          repoUrl: 'https://github.com/username/perf-monitor',
-          lastUpdated: '2024-01-05',
-          tags: ['Python', 'Monitoring', 'Analytics', 'FastAPI'],
-        },
-        {
-          title: 'Code Snippet Manager',
-          description: '代码片段管理工具，支持语法高亮、标签分类和快速搜索',
-          stars: 345,
-          forks: 23,
-          language: 'Vue',
-          repoUrl: 'https://github.com/username/snippet-manager',
-          lastUpdated: '2024-01-03',
-          tags: ['Vue.js', 'Electron', 'CodeMirror', 'SQLite'],
-        },
-      ]
+      list: [{ title: '2048-cli-game', description: '2048 game for terminal.', repoUrl: 'https://github.com/hacxy/2048-cli-game', stars: 1, tags: [], forks: 0, language: 'TypeScript', lastUpdated: '2025-07-15 21:39:12' }, { title: 'cli-unbuild-template', description: 'CLI application development template using unbuild as a build tool.', repoUrl: 'https://github.com/hacxy/cli-unbuild-template', stars: 4, tags: ['cli', 'cli-template', 'nodejs', 'ts-cli-template', 'typescript'], forks: 0, language: 'JavaScript', lastUpdated: '2025-03-31 12:35:59' }, { title: 'create-hacxy-app', description: 'This is a demo of a nodejs scaffolding project.', repoUrl: 'https://github.com/hacxy/create-hacxy-app', stars: 1, tags: [], forks: 1, language: 'JavaScript', lastUpdated: '2025-04-22 15:39:39' }, { title: 'create-ts-frame', description: 'This is a scaffolding tool used to quickly create starter project templates with Typescript as the main development language. Templates include but are not limited to web applications, mini programs, CLI command line tools, and more.', repoUrl: 'https://github.com/hacxy/create-ts-frame', stars: 4, tags: ['cli', 'create', 'create-typescript-project', 'typescript-cli', 'typescript-template'], forks: 1, language: 'TypeScript', lastUpdated: '2024-12-16 13:50:51' }, { title: 'json2ts', description: 'Json to typescript types', repoUrl: 'https://github.com/hacxy/json2ts', stars: 1, tags: [], forks: 0, language: 'TypeScript', lastUpdated: '2024-11-01 17:28:17' }, { title: 'json2typebox', description: 'Creating TypeBox code from Json Data', repoUrl: 'https://github.com/hacxy/json2typebox', stars: 6, tags: ['json2typebox', 'typebox', 'typescript'], forks: 0, language: 'TypeScript', lastUpdated: '2024-11-05 00:34:18' }, { title: 'json2typebox-cli', description: 'Convert JSON data into TypeBox types using a command-line tool.', repoUrl: 'https://github.com/hacxy/json2typebox-cli', stars: 4, tags: ['cli', 'json2typebox', 'typebox', 'typescript'], forks: 0, language: 'JavaScript', lastUpdated: '2024-11-06 18:06:33' }, { title: 'l2d', description: '在浏览器中加载Live2D模型更简单', repoUrl: 'https://github.com/hacxy/l2d', stars: 20, tags: ['live2d', 'live2d-web'], forks: 2, language: 'TypeScript', lastUpdated: '2025-07-16 17:29:31' }]
     }
   }
 });

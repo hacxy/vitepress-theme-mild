@@ -1,18 +1,19 @@
 <script lang="ts" setup>
-import type { ThemeConfig } from '../../../types';
+import type { ProjectItem, ThemeConfig } from '../../../types';
 import { Icon } from '@iconify/vue';
 import { useData } from 'vitepress';
 import { computed } from 'vue';
 import LANGUAGE_COLORS from '../../shared/datas/language-colors';
-import Button from '../components/common/Button.vue';
 import Tag from '../components/common/Tag.vue';
 
 const { theme, frontmatter } = useData<ThemeConfig>();
-const finalList = computed(() => {
+const finalList = computed<ProjectItem[]>(() => {
   return theme.value.project?.list || frontmatter.value.list;
 });
 
-function handleViewSourceCode(url: string) {
+function handleViewSourceCode(url?: string) {
+  if (!url)
+    return;
   window.open(url);
 }
 </script>
@@ -28,10 +29,10 @@ function handleViewSourceCode(url: string) {
       </div>
       <div class="projects-list">
         <template v-for="(item) of finalList || []" :key="item.title">
-          <div class="project-card">
+          <div class="project-card" @click="handleViewSourceCode(item.repoUrl)">
             <div class="project-content">
               <div class="header">
-                <Icon icon="ph:file-code-light" ssr class="header-icon" />
+                <Icon :icon="item.icon || theme.project?.defaultIcon || 'ph:file-code-light'" ssr class="header-icon" />
                 <div>{{ item.title }}</div>
               </div>
               <div class="content">
@@ -65,20 +66,6 @@ function handleViewSourceCode(url: string) {
                   />
                 </div>
               </div>
-            </div>
-
-            <div class="actions">
-              <Button
-                v-if="item.repoUrl"
-                type="button"
-                theme="alt"
-                text="查看源码"
-                size="medium"
-                icon="line-md:github"
-                class="card-action-button"
-                @click="handleViewSourceCode(item.repoUrl)"
-              />
-              <!-- <Button/> -->
             </div>
           </div>
         </template>
@@ -130,6 +117,7 @@ function handleViewSourceCode(url: string) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        cursor: pointer;
         transition:
           box-shadow 0.3s,
           color 0.3s;
@@ -180,10 +168,8 @@ function handleViewSourceCode(url: string) {
           .tags {
             display: flex;
             margin-bottom: 8px;
+            flex-wrap: wrap;
           }
-        }
-        .actions {
-          padding: 10px 24px 20px;
         }
       }
       .project-card:hover {
