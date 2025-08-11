@@ -30,12 +30,12 @@ export interface ProjectItem {
   lastUpdated?: string
 }
 
-export interface Project {
+export interface Projects {
   list: ProjectItem[]
   defaultIcon?: string
 }
 
-declare interface DefaultThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> {}
+declare interface DefaultThemeConfig extends Omit<DefaultTheme.Config, 'sidebar'> { }
 
 declare interface ThemeConfig extends DefaultThemeConfig {
   /**
@@ -56,7 +56,7 @@ declare interface ThemeConfig extends DefaultThemeConfig {
 
   scrollRestoration?: boolean
 
-  project?: Project
+  projects?: Projects
   // /**
   //  * Typescript Twoslash
   //  * @default true

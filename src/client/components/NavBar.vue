@@ -127,8 +127,8 @@ watchPostEffect(() => {
   pointer-events: none;
 }
 
-.container>.title,
-.container>.content {
+.container > .title,
+.container > .content {
   pointer-events: none;
 }
 
@@ -213,11 +213,11 @@ watchPostEffect(() => {
   }
 }
 
-.menu+.translations::before,
-.menu+.appearance::before,
-.menu+.social-links::before,
-.translations+.appearance::before,
-.appearance+.social-links::before {
+.menu + .translations::before,
+.menu + .appearance::before,
+.menu + .social-links::before,
+.translations + .appearance::before,
+.appearance + .social-links::before {
   margin-right: 8px;
   margin-left: 8px;
   width: 1px;
@@ -226,12 +226,12 @@ watchPostEffect(() => {
   content: '';
 }
 
-.menu+.appearance::before,
-.translations+.appearance::before {
+.menu + .appearance::before,
+.translations + .appearance::before {
   margin-right: 16px;
 }
 
-.appearance+.social-links::before {
+.appearance + .social-links::before {
   margin-left: 16px;
 }
 

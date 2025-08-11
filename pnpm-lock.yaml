@@ -164,6 +164,9 @@ importers:
 
   __tests__/e2e:
     devDependencies:
+      pagefind:
+        specifier: ^1.3.0
+        version: 1.3.0
       playwright-chromium:
         specifier: ^1.50.0
         version: 1.50.0
