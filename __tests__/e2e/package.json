@@ -16,6 +16,7 @@
   "devDependencies": {
     "playwright-chromium": "^1.50.0",
     "vitepress": "^1.6.3",
+    "vitepress-plugin-pagefind": "^0.4.14",
     "vitepress-theme-mild": "workspace:*"
   }
 }

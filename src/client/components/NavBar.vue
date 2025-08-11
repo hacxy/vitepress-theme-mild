@@ -5,12 +5,12 @@ import VPNavBarAppearance from 'vitepress/dist/client/theme-default/components/V
 import VPNavBarExtra from 'vitepress/dist/client/theme-default/components/VPNavBarExtra.vue';
 import VPNavBarHamburger from 'vitepress/dist/client/theme-default/components/VPNavBarHamburger.vue';
 import VPNavBarMenu from 'vitepress/dist/client/theme-default/components/VPNavBarMenu.vue';
-import VPNavBarSearch from 'vitepress/dist/client/theme-default/components/VPNavBarSearch.vue';
 import VPNavBarSocialLinks from 'vitepress/dist/client/theme-default/components/VPNavBarSocialLinks.vue';
 import VPNavBarTranslations from 'vitepress/dist/client/theme-default/components/VPNavBarTranslations.vue';
 import { ref, watchPostEffect } from 'vue';
 import { useSidebar } from '../hooks/useSidebar';
 import VPNavBarTitle from './NavBarTitle.vue';
+import VPNavBarSearch from './VPNavBarSearch.vue';
 
 const props = defineProps<{
   isScreenOpen: boolean
@@ -31,7 +31,7 @@ watchPostEffect(() => {
     'has-sidebar': hasSidebar.value,
     'home': frontmatter.value.layout === 'home',
     'top': y.value === 0,
-    'screen-open': props.isScreenOpen
+    'screen-open': props.isScreenOpen,
   };
 });
 </script>
@@ -127,8 +127,8 @@ watchPostEffect(() => {
   pointer-events: none;
 }
 
-.container > .title,
-.container > .content {
+.container>.title,
+.container>.content {
   pointer-events: none;
 }
 
@@ -213,11 +213,11 @@ watchPostEffect(() => {
   }
 }
 
-.menu + .translations::before,
-.menu + .appearance::before,
-.menu + .social-links::before,
-.translations + .appearance::before,
-.appearance + .social-links::before {
+.menu+.translations::before,
+.menu+.appearance::before,
+.menu+.social-links::before,
+.translations+.appearance::before,
+.appearance+.social-links::before {
   margin-right: 8px;
   margin-left: 8px;
   width: 1px;
@@ -226,12 +226,12 @@ watchPostEffect(() => {
   content: '';
 }
 
-.menu + .appearance::before,
-.translations + .appearance::before {
+.menu+.appearance::before,
+.translations+.appearance::before {
   margin-right: 16px;
 }
 
-.appearance + .social-links::before {
+.appearance+.social-links::before {
   margin-left: 16px;
 }
 
