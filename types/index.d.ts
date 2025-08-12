@@ -30,7 +30,7 @@ export interface ProjectItem {
   lastUpdated?: string
 }
 
-export interface Projects {
+export interface Project {
   list: ProjectItem[]
   defaultIcon?: string
 }
@@ -56,7 +56,7 @@ declare interface ThemeConfig extends DefaultThemeConfig {
 
   scrollRestoration?: boolean
 
-  projects?: Projects
+  project?: Project
   // /**
   //  * Typescript Twoslash
   //  * @default true

@@ -8,7 +8,7 @@ import Tag from '../components/Tag.vue';
 
 const { theme, frontmatter } = useData<ThemeConfig>();
 const finalList = computed<ProjectItem[]>(() => {
-  return theme.value.projects?.list || frontmatter.value.list;
+  return theme.value.project?.list || frontmatter.value.list;
 });
 
 function handleViewSourceCode(url?: string) {
@@ -34,7 +34,7 @@ function handleViewSourceCode(url?: string) {
               <div class="header">
                 <Icon
                   :icon="item.icon
-                    || theme.projects?.defaultIcon
+                    || theme.project?.defaultIcon
                     || 'ph:file-code-light'
                   "
                   ssr
