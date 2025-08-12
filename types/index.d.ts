@@ -56,7 +56,18 @@ declare interface ThemeConfig extends DefaultThemeConfig {
 
   scrollRestoration?: boolean
 
+  /**
+   * 项目配置
+   */
   project?: Project
+
+  docContentSlideEnter?: {
+    enable?: boolean | {
+      production: boolean
+      development: boolean
+    }
+    delay?: number
+  }
   // /**
   //  * Typescript Twoslash
   //  * @default true

@@ -14,6 +14,9 @@ importers:
       '@giscus/vue':
         specifier: ^3.1.1
         version: 3.1.1(vue@3.5.13(typescript@5.7.3))
+      '@hacxy/utils':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@iconify/vue':
         specifier: ^4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.7.3))
@@ -1005,6 +1008,9 @@ packages:
     resolution: {integrity: sha512-n7jcL6/kGS0KyMS57Vk+warNCggUp5lp14R5Jh+U0JgN7mB2ut3je0RZu7y5Jz+1I5NCJfzpYmbG2qh5H7Exgw==}
     peerDependencies:
       eslint: ^9.17.0
+
+  '@hacxy/utils@0.6.0':
+    resolution: {integrity: sha512-0hjcZepus1pbn/kHUjmfP0KOhZ07NTMHDlkmJCXzLklKEISt6nCyW2RfGdlQUcJ7iFpgaEVMT4HhcNga/mxBGg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -5784,6 +5790,8 @@ snapshots:
       - svelte-eslint-parser
       - typescript
       - vitest
+
+  '@hacxy/utils@0.6.0': {}
 
   '@humanfs/core@0.19.1': {}
 
