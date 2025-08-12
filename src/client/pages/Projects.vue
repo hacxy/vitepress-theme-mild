@@ -28,11 +28,18 @@ function handleViewSourceCode(url?: string) {
         {{ frontmatter.description }}
       </div>
       <div class="projects-list">
-        <template v-for="(item) of finalList || []" :key="item.title">
+        <template v-for="item of finalList || []" :key="item.title">
           <div class="project-card" @click="handleViewSourceCode(item.repoUrl)">
             <div class="project-content">
               <div class="header">
-                <Icon :icon="item.icon || theme.project?.defaultIcon || 'ph:file-code-light'" ssr class="header-icon" />
+                <Icon
+                  :icon="item.icon
+                    || theme.project?.defaultIcon
+                    || 'ph:file-code-light'
+                  "
+                  ssr
+                  class="header-icon"
+                />
                 <div>{{ item.title }}</div>
               </div>
               <div class="content">
@@ -55,15 +62,17 @@ function handleViewSourceCode(url?: string) {
                 </div>
 
                 <div v-if="item?.language" class="language">
-                  <div class="dot" :style="{ backgroundColor: (LANGUAGE_COLORS as any)[item?.language]?.color }" />
+                  <div
+                    class="dot"
+                    :style="{
+                      backgroundColor: (LANGUAGE_COLORS as any)[item?.language]
+                        ?.color,
+                    }"
+                  />
                   {{ item.language }}
                 </div>
                 <div class="tags">
-                  <Tag
-                    v-for="tag of item.tags"
-                    :key="tag"
-                    :text="tag"
-                  />
+                  <Tag v-for="tag of item.tags" :key="tag" :text="tag" />
                 </div>
               </div>
             </div>
@@ -79,14 +88,17 @@ function handleViewSourceCode(url?: string) {
   width: 100%;
   height: 100%;
   padding-bottom: 20px;
+
   @media (min-width: 1400px) {
     .container {
       max-width: 1400px;
     }
   }
+
   .container {
     padding: 0 1rem;
     margin: 0 auto;
+
     .title {
       font-weight: 700;
       font-size: 1.5rem;
@@ -98,10 +110,12 @@ function handleViewSourceCode(url?: string) {
       margin-bottom: 1rem;
       text-align: center;
     }
+
     .projects-list {
       @media (min-width: 768px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
       @media (min-width: 1024px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -131,11 +145,13 @@ function handleViewSourceCode(url?: string) {
           font-size: var(--vpt-title-font-size);
           display: flex;
           align-items: center;
+
           .header-icon {
             font-size: 25px;
             margin-right: 4px;
           }
         }
+
         .content {
           padding: 0 24px 0;
           font-size: var(--vpt-font-size);
@@ -144,16 +160,19 @@ function handleViewSourceCode(url?: string) {
             display: flex;
             margin-bottom: 8px;
             margin-top: 8px;
+
             .status-item {
               display: flex;
               align-items: center;
               margin-right: 14px;
               font-weight: 500;
+
               .status-icon {
                 margin-right: 3px;
               }
             }
           }
+
           .language {
             display: flex;
             align-items: center;
@@ -166,6 +185,7 @@ function handleViewSourceCode(url?: string) {
               margin-right: 6px;
             }
           }
+
           .tags {
             display: flex;
             margin-bottom: 8px;
@@ -173,6 +193,7 @@ function handleViewSourceCode(url?: string) {
           }
         }
       }
+
       .project-card:hover {
         box-shadow: var(--vpt-box-shadow);
       }

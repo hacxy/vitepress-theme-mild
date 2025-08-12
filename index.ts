@@ -24,18 +24,6 @@ const MildTheme: Theme = {
   enhanceApp({ app, router, siteData }) {
     enhanceAppWithTabs(app);
     const themeConfig: ThemeConfig = siteData.value.themeConfig;
-    // const originalConsoleError = console.error;
-
-    // 重写 console.error 方法
-    // console.error = function (message, ...optionalParams) {
-    //   // 检查错误消息是否包含特定的关键字
-    //   if (typeof message === 'string' && message.includes('Hydration completed but contains mismatches')) {
-    //     // 忽略特定的 hydration 错误
-    //     return;
-    //   }
-    //   // 调用原始的 console.error 方法，处理其他错误
-    //   originalConsoleError(message, ...optionalParams);
-    // };
 
     if (import.meta.env.SSR) {
       const { collect } = setup(app);
